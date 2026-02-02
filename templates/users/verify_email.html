@@ -1,0 +1,24 @@
+
+{% extends "base_pwa.html" %}
+
+{% block content %}
+<div class="max-w-lg mx-auto mt-12 p-8 bg-white rounded-xl shadow-lg text-center border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">📬 تأیید ایمیل</h2>
+    <p class="text-gray-600 mb-6">
+        یک ایمیل تأیید به آدرس <strong>{{ current_user.email }}</strong> ارسال شد.
+    </p>
+    <p class="text-sm text-gray-500 mb-6">
+        لطفاً روی لینک تأیید کلیک کنید. اگر ایمیلی دریافت نکردید، پوشه اسپم (Spam) را بررسی کنید.
+    </p>
+
+    <!-- دکمه‌ها -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="{{ url_for('users.upload_documents') }}" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
+            ادامه مراحل
+        </a>
+        <a href="{{ url_for('users.upgrade_to_premium') }}" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition">
+            بازگشت
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e293b" />
+    <title>{% block title %}مارکت صادرات{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // <a href="{{ url_for('users.edit_profile') }}" className="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition">
+        //     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        //         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        //     </svg>
+        //     <p className="mt-2 font-medium">ویرایش پروفایل</p>
+        // </a>
+        tailwind.config = {
+            darkMode: 'class', // فعال‌سازی حالت تیره با کلاس
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tahoma', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        }
+                    }
+                }
+            }
+        };
+
+        // مدیریت تم تیره
+        function toggleDarkMode() {
+            const html = document.getElementById('html-root');
+            const isDark = html.classList.contains('dark');
+
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // بررسی تم ذخیره شده
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.getElementById('html-root');
+
+            if (savedTheme === 'dark') {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+        });
+    </script>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192.png') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}" />
+
+    <script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('installBtn').classList.remove('hidden');
+    });
+
+    function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(() => {
+                deferredPrompt = null;
+                document.getElementById('installBtn').classList.add('hidden');
+            });
+        }
+    }
+    </script>
+
+<!--    &lt;!&ndash; داخل نوار بالااااااااااااا &ndash;&gt;-->
+<!--    {% if current_user.is_authenticated %}-->
+<!--        {% set unread_count = current_user.unread_notifications_count %}-->
+<!--        <a href="{{ url_for('users.notifications') }}" class="relative text-white hover:text-yellow-200 transition">-->
+<!--            <svg>...</svg>  &lt;!&ndash; آیکون 🔔 &ndash;&gt;-->
+<!--            {% if unread_count > 0 %}-->
+<!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full animate-pulse">-->
+<!--                    {{ unread_count if unread_count < 10 else '9+' }}-->
+<!--                </span>-->
+<!--            {% endif %}-->
+<!--        </a>-->
+<!--    {% endif %}-->
+
+
+</head>
+<body dir="rtl" class="bg-gray-50 text-gray-800 dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- نوار بالا -->
+    <header class="bg-blue-600 text-white p-4 shadow-md dark:bg-primary-600">
+        <div class="container mx-auto flex justify-between items-center">
+
+            <h1 class="text-xl font-bold">🌍 ExportMarket</h1>
+
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <!-- دکمه بازگشت به پروفایل -->
+
+                {% if current_user.role == Role.ADMIN %}
+                    <div>
+                        <a href="{{ url_for('admin.dashboard') }}">
+<!--                           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">-->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="2.5" stroke="blue" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+<!--                            <p class="mt-2 font-medium"> پروفایل</p> -->
+                        </a>
+                    </div>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                    <div>
+                        <a href="{{ url_for('users.profile') }}">
+<!--                           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">-->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+<!--                            <p class="mt-2 font-medium"> پروفایل</p> -->
+                        </a>
+                    </div>
+                {% endif %}
+                {% if not current_user.is_premium %}
+                    <div>
+                        <a href="{{ url_for('users.upgrade_to_premium') }}">
+<!--                           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">-->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" />
+                            </svg>
+<!--                            <p class="mt-2 font-medium"> پروفایل</p> -->
+                        </a>
+                    </div>
+                {% endif %}
+
+
+
+<!--                <button href="{{ url_for('users.edit_profile') }}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition">-->
+<!--&lt;!&ndash;                <a href="{{ url_for('users.edit_profile') }}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition">&ndash;&gt;-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
+<!--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />-->
+<!--                    </svg>-->
+<!--                    <p class="mt-2 font-medium">ویرایش پروفایل</p>-->
+<!--                </button>-->
+                <!-- دکمه تغییر تم -->
+                <button onclick="toggleDarkMode()" class="text-white hover:text-yellow-200 transition">
+                    <svg id="light-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="dark-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <!-- آیکون اعلان‌ها -->
+                {% if current_user.is_authenticated %}
+                    {% set unread_count = current_user.unread_notifications_count %}
+                    <a href="{{ url_for('users.notifications') }}" class="relative hover:text-yellow-200 transition">
+<!--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM12 19c0 1.1.9 2 2 2s2-.9 2-2h-4z" />-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 21v-8a4 4 0 00-4-4H7a4 4 0 00-4 4v8M7 15v-2a4 4 0 014-4h2a4 4 0 014 4v2" />-->
+<!--                        </svg>-->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                        </svg>
+
+                        {% if unread_count > 0 %}
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full animate-pulse">
+                                {{ '9+' if unread_count >= 10 else unread_count }}
+                            </span>
+                        {% endif %}
+                    </a>
+
+                    <span class="text-sm">{{ current_user.username }}</span>
+                    {% if current_user.is_premium %}
+                        <span class="text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded">ویژه</span>
+                    {% endif %}
+
+                    <button onclick="installApp()" id="installBtn" class="hidden bg-white text-blue-600 text-xs px-2 py-1 rounded font-semibold">
+                        نصب
+                    </button>
+                {% else %}
+                    <div class="space-x-2 space-x-reverse">
+                        <a href="{{ url_for('users.login') }}" class="text-white hover:text-gray-300 text-sm">ورود</a>
+                        <a href="{{ url_for('users.register') }}" class="bg-white text-blue-600 hover:bg-gray-100 text-sm px-3 py-1 rounded font-semibold">ثبت‌نام</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوا -->
+    <main class="container mx-auto p-4 mt-6">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4 rounded shadow dark:bg-blue-900 dark:text-blue-200">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-sm text-gray-500 pb-6 dark:text-gray-400">
+        &copy; 2025 ExportMarket. تمامی حقوق محفوظ است.
+    </footer>
+
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ url_for('static', filename='js/sw.js') }}')
+                .then(reg => console.log('SW registered:', reg))
+                .catch(err => console.log('SW not registered:', err));
+        }
+
+        // نمایش/پنهان کردن آیکون‌ها بر اساس تم
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.getElementById('html-root');
+            const lightIcon = document.getElementById('light-icon');
+            const darkIcon = document.getElementById('dark-icon');
+            const savedTheme = localStorage.getItem('theme');
+
+            function updateIcons() {
+                if (html.classList.contains('dark')) {
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                }
+            }
+
+            updateIcons();
+
+            window.toggleDarkMode = function() {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+                updateIcons();
+            };
+        });
+    </script>
+        <!-- دکمه چت ثابت در گوشه پایین سمت راست -->
+<!--    <div class="fixed bottom-6 left-6 z-50">-->
+<!--        {% if support_user %}-->
+<!--            <a href="{{ url_for('users.chat', receiver_id = support_user.id) }}"-->
+<!--               class="relative bg-green-600 hover:bg-green-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300"-->
+<!--               aria-label="چت سریع">-->
+<!--                &lt;!&ndash; آیکون چت &ndash;&gt;-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+<!--                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />-->
+<!--                </svg>-->
+
+<!--                &lt;!&ndash; نشانگر آنلاین (اختیاری) &ndash;&gt;-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping"></span>-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+    <!-- دکمه چت ثابت در گوشه پایین سمت چپ -->
+<!--    <div class="fixed bottom-8 left-8 z-50">-->
+<!--        {% if support_user %}-->
+<!--            <a href="{{ url_for('users.chat', receiver_id=support_user.id) }}"-->
+<!--               class="relative z-50 overflow-visible bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-105 hover:origin-center hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-purple-300"-->
+<!--               aria-label="شروع چت با پشتیبانی">-->
+
+<!--                &lt;!&ndash; آیکون چت مدرن: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
+<!--&lt;!&ndash;                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; سر ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="12" cy="8" r="4" class="stroke-white fill-blue-500" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; چشم راست &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="10" cy="7" r="1" fill="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; چشم چپ &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="14" cy="7" r="1" fill="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; لبخند &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M9 11a3 3 0 0 1 6 0" stroke="white" stroke-width="2" fill="none" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; بدن ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <rect x="8" y="12" width="8" height="6" rx="3" class="stroke-white fill-blue-500" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; دست راست &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" stroke-width="2" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"&ndash;&gt;-->
+<!--&lt;!&ndash;                          stroke="white" stroke-width="1.5" opacity="0.8" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </svg>&ndash;&gt;-->
+<!--                <svg class="h-8 w-8 outline outline-2 outline-red-500">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">-->
+<!--                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"-->
+<!--                          class="stroke-white fill-blue-500" />-->
+<!--                    <path d="M12 10v4M8 12h8" stroke="white" stroke-width="2" />-->
+<!--                </svg>-->
+<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping opacity-75"></span>-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
+
+<!--                &lt;!&ndash; بالون چت (اختیاری: اگر می‌خوای حالت "پیام جدید" نشون بده) &ndash;&gt;-->
+<!--                &lt;!&ndash;-->
+<!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">-->
+<!--                    1-->
+<!--                </span>-->
+<!--                &ndash;&gt;-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!-- دکمه چت — نسخه ایمن -->
+
+
+
+ <!-- دکمه چت ثابت در گوشه پایین سمت چپ -->
+<!--    <div class="fixed bottom-6 left-6 z-50">-->
+<!--        {% if support_user %}-->
+<!--            <a href="{{ url_for('users.chat', receiver_id=support_user.id) }}">-->
+<!--&lt;!&ndash;                class="relative bg-gradient-to-r from-blue-60 hover:from-blue-700 hover:to-purple-700 p-4&ndash;&gt;-->
+<!--&lt;!&ndash;                  transition-all duration-300 transform hover:scale-105  "&ndash;&gt;-->
+<!--&lt;!&ndash;               aria-label="شروع چت با پشتیبانی">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                 آیکون چت مدرن: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                    &lt;!&ndash; سر ربات &ndash;&gt;-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
+<!--                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />-->
+<!--                    </svg>-->
+<!--                    <circle cx="12" cy="13" r="4"  class="stroke-green fill-blue-500" />-->
+
+<!--                    &lt;!&ndash; چشم راست &ndash;&gt;-->
+<!--                    <circle cx="10" cy="7" r="2" fill="red" />-->
+<!--                    &lt;!&ndash; چشم چپ &ndash;&gt;-->
+<!--                    <circle cx="14" cy="7" r="2" fill="red" />-->
+<!--                    &lt;!&ndash; لبخند &ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M9 11a3 3 0 0 1 6 0" stroke="black" stroke-width="2" fill="blue-500" />&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; بدن ربات &ndash;&gt;-->
+<!--&lt;!&ndash;                    <rect x="8" y="12" width="8" height="6" rx="3" class="animate-pulse stroke-red fill-blue-500" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <circle cx="12" cy="14" r="1" fill="white" class="" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; دست راست &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" stroke-width="2" />&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"&ndash;&gt;-->
+<!--&lt;!&ndash;                          stroke="red" stroke-width="1.5" opacity="0.8"  />&ndash;&gt;-->
+<!--                </svg>-->
+
+<!--   &lt;!&ndash; آیکون &ndash;&gt;-->
+<!--&lt;!&ndash;                <svg class="h-8 w-8 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="12" cy="8" r="4" class="fill-blue-500" stroke="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="10" cy="7" r="1" fill="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx="14" cy="7" r="1" fill="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M9 11a3 3 0 0 1 6 0" stroke="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <rect x="8" y="12" width="8" height="6" rx="3" class="fill-blue-500" stroke="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </svg>&ndash;&gt;-->
+
+<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping opacity-75"></span>-->
+<!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
+
+<!--                &lt;!&ndash; بالون چت (اختیاری: اگر می‌خوای حالت "پیام جدید" نشون بده) &ndash;&gt;-->
+<!--                &lt;!&ndash;-->
+<!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">-->
+<!--                    1-->
+<!--                </span>-->
+<!--                &ndash;&gt;-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+
+    <!-- دکمه چت حرفه‌ای -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <a href="{{ url_for('users.chat') }}"
+
+            class="focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- بالون چت -->
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    class="fill-white stroke-blue-600" />
+              <!-- علامت + درون بالون (چت جدید) -->
+
+              <line x1="12" y1="10" x2="12" y2="14" stroke="blue" stroke-width="1" />
+              <line x1="10" y1="12" x2="14" y2="12" stroke="blue" stroke-width="1" />
+              <!-- نقطه آنلاین -->
+    <!--              <circle cx="18" cy="6" r="2" class="fill-green-500 stroke-white " />-->
+              <span class="absolute bg-green-500 rounded-full w-4 h-4 animate-ping"></span>
+            </svg>
+
+        </a>
+    </div>
+</body>
+</html>

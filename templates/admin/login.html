@@ -1,0 +1,114 @@
+<!-- templates/admin/login.html -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>ورود ادمین - پنل مدیریت</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- تنظیمات Tailwind برای RTL -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tahoma', 'sans-serif']
+                    }
+                }
+            },
+            plugins: [
+                require('tailwindcss-rtl')
+            ]
+        }
+    </script>
+
+    <!-- پلاگین RTL برای Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss-rtl@0.9.5/dist/tailwindcss-rtl.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            font-family: Tahoma, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center py-12 px-4">
+
+    <div class="max-w-md w-full bg-white rounded-xl shadow-lg overflow-hidden">
+
+        <!-- هدر -->
+        <div class="bg-red-600 text-white py-6 px-8 text-center">
+            <h1 class="text-2xl font-bold">🔐 پنل مدیریت</h1>
+            <p class="text-red-100 text-sm mt-1">فقط برای کاربران ادمین</p>
+        </div>
+
+        <!-- فرم ورود -->
+        <div class="p-8 space-y-6">
+            <!-- پیام موفقیت یا خطا -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="p-3 rounded text-sm
+                            {% if category == 'error' %}
+                                bg-red-100 text-red-800 border border-red-200
+                            {% else %}
+                                bg-green-100 text-green-800 border border-green-200
+                            {% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('admin.login_post') }}" class="space-y-5">
+
+                <!-- ایمیل -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                        ایمیل
+                    </label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                           placeholder="admin@company.com">
+                </div>
+
+                <!-- رمز عبور -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+                        رمز عبور
+                    </label>
+                    <input type="password" id="password" name="password" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                           placeholder="رمز عبور خود را وارد کنید">
+                </div>
+
+                <!-- دکمه ورود -->
+                <div class="mt-6">
+                    <button type="submit"
+                            class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                        ورود به پنل ادمین
+                    </button>
+                </div>
+            </form>
+
+            <!-- لینک بازگشت -->
+            <div class="text-center mt-4">
+                <a href="{{ url_for('users.login') }}" class="text-sm text-gray-600 hover:text-gray-800">
+                    ← بازگشت به صفحه اصلی
+                </a>
+            </div>
+        </div>
+
+        <!-- فوتر -->
+        <div class="bg-gray-50 py-4 px-8 text-center border-t border-gray-100">
+            <p class="text-xs text-gray-500">
+                &copy; {{ current_year }} شرکت شما. تمامی حقوق محفوظ است.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

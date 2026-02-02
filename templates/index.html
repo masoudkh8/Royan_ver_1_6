@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>شرکت رایان - سیستم مدیریت تجارت بین‌المللی</title>
+
+    <!-- Tailwind CSS + Plugins -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tahoma', 'Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 1s ease-in',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .partner-logo {
+            filter: grayscale(100%) opacity(70%);
+            transition: all 0.3s;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%) opacity(100%);
+            transform: scale(1.1);
+        }
+        .dark-mode-btn {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid #475569;
+        }
+        .dark .dark-mode-btn {
+            background: #475569;
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- دکمه دارک مود -->
+    <button onclick="toggleDarkMode()" class="fixed bottom-6 left-6 z-50 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg dark-mode-btn transition-all">
+        <i id="dark-mode-icon" class="fas fa-moon text-lg"></i>
+    </button>
+
+    <!-- هدر -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm transition-colors">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <img src="/static/images/logo.png" alt="لوگو شرکت رایان" class="w-10 h-10 object-contain">
+                <h1 class="text-xl font-bold text-blue-700 dark:text-blue-400">شرکت رایان</h1>
+            </div>
+            <a href="/users/login" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
+                ورود به سیستم
+            </a>
+        </div>
+    </header>
+
+    <!-- بخش اصلی (هیرو) -->
+    <section class="hero-bg text-white py-24 text-center animate__animated animate__fadeIn">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__slideInDown">
+                به سیستم مدیریت تجارت بین‌المللی خوش آمدید
+            </h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90 animate__animated animate__fadeInUp">
+                شرکت رایان با ارائه پلتفرمی هوشمند، فرآیند خرید، فروش و حمل و نقل بین‌المللی کالا را ساده، شفاف و امن می‌کند.
+            </p>
+            <div class="space-x-4 space-x-reverse animate__animated animate__zoomIn">
+                <a href="/users/register" class="inline-block px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-800 font-bold rounded-lg shadow transition">
+                    ثبت‌نام کنید
+                </a>
+                <a href="/users/login" class="inline-block px-8 py-3 bg-white text-blue-700 hover:bg-gray-100 font-bold rounded-lg shadow transition">
+                    ورود به سیستم
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش خدمات -->
+    <section class="py-16 bg-white dark:bg-gray-800 transition-colors">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">خدمات ما</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- کارت ۱ -->
+                <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shopping-cart text-green-600 dark:text-green-300 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">مدیریت سفارشات</h4>
+                    <p class="text-gray-600 dark:text-gray-300">ثبت، پیگیری و تأیید سفارشات به صورت کاملاً دیجیتال و لحظه‌ای.</p>
+                </div>
+
+                <!-- کارت ۲ -->
+                <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-blue-600 dark:text-blue-300 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">امنیت و تأیید هویت</h4>
+                    <p class="text-gray-600 dark:text-gray-300">تأیید هویت کاربران، تأیید مدارک و ارتقاء به کاربر ویژه با فرآیند شفاف.</p>
+                </div>
+
+                <!-- کارت ۳ -->
+                <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.3s">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-purple-600 dark:text-purple-300 text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">پشتیبانی ۲۴/۷</h4>
+                    <p class="text-gray-600 dark:text-gray-300">پشتیبانی تخصصی به صورت چت، تماس و ایمیل در تمام روزهای هفته.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش ویدیوی آموزشی -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-700 transition-colors">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">ویدیوی آموزشی سیستم</h3>
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+                نحوه استفاده از سیستم مدیریت تجارت بین‌المللی را در این ویدیو مشاهده کنید.
+            </p>
+            <div class="flex justify-center">
+                <div class="w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <video controls class="w-full h-full">
+                        <source src="/static/videos/demo.mp4" type="video/mp4">
+                        مرورگر شما از نمایش ویدیو پشتیبانی نمی‌کند.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- بخش شرکت‌های همکار با اسلایدر چرخشی -->
+    <section class="py-16 bg-white dark:bg-gray-800 transition-colors">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">همکاری با شرکت‌های معتبر</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-10">
+                ما با شرکت‌های بزرگ و معتبر در سطح ملی و بین‌المللی همکاری داریم.
+            </p>
+
+            <!-- اسلایدر چرخشی -->
+            <div class="overflow-hidden relative">
+                <div id="partner-slider" class="flex whitespace-nowrap gap-12">
+                    <!-- مجموعه اول -->
+                    <img src="/static/images/partners/partner1.png" alt="شرکت همکار ۱" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner2.png" alt="شرکت همکار ۲" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner3.png" alt="شرکت همکار ۳" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner4.png" alt="شرکت همکار ۴" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner5.png" alt="شرکت همکار ۵" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner6.png" alt="شرکت همکار ۶" class="partner-logo h-12 object-contain w-36">
+
+                    <!-- مجموعه دوم (تکرار برای حلقه بی‌درنگ) -->
+                    <img src="/static/images/partners/partner1.png" alt="شرکت همکار ۱" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner2.png" alt="شرکت همکار ۲" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner3.png" alt="شرکت همکار ۳" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner4.png" alt="شرکت همکار ۴" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner5.png" alt="شرکت همکار ۵" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner6.png" alt="شرکت همکار ۶" class="partner-logo h-12 object-contain w-36">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش تبلیغات -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
+        <div class="container mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-6">همکاری با ما</h3>
+            <p class="mb-8 max-w-2xl mx-auto text-blue-100">
+                شما هم می‌توانید از مزایای پلتفرم رایان برای رشد تجاری خود استفاده کنید.
+            </p>
+            <a href="/users/register" class="inline-block px-8 py-3 bg-white text-blue-700 hover:bg-gray-100 font-bold rounded-lg transition">
+                همکاری با ما
+            </a>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8 transition-colors">
+        <div class="container mx-auto px-6 text-center">
+            <p>© 1403 شرکت رایان | تمامی حقوق محفوظ است</p>
+            <p class="text-gray-400 mt-2">سیستم مدیریت تجارت بین‌المللی و لجستیک</p>
+        </div>
+    </footer>
+
+
+    <!-- دارک مود جاوااسکریپت -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.getElementById('html-root');
+            const icon = document.getElementById('dark-mode-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fas fa-moon';
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fas fa-sun';
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // بارگذاری تم ذخیره شده
+        if (localStorage.theme === 'dark') {
+            document.getElementById('html-root').classList.add('dark');
+            document.getElementById('dark-mode-icon').className = 'fas fa-sun';
+        }
+
+        // ✅ اسلایدر خودکار لوگوهای همکاران
+        document.addEventListener("DOMContentLoaded", function () {
+            const slider = document.getElementById('partner-slider');
+
+            // اگر اسلایدر وجود نداشت، خطا نده
+            if (!slider) return;
+
+            let position = 0;
+            const maxScroll = slider.scrollWidth / 2; // نصف طول
+            const speed = 0.5; // سرعت حرکت
+
+            function animateSlider() {
+                position -= speed;
+                if (position <= -maxScroll) {
+                    position = 0; // حلقه بی‌نهایت
+                }
+                slider.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(animateSlider);
+            }
+
+            // شروع اسلایدر
+            animateSlider();
+
+            // توقف هنگام ماوس‌اوور
+            slider.addEventListener('mouseenter', () => {
+                cancelAnimationFrame(animateSlider);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                requestAnimationFrame(animateSlider);
+            });
+        });
+    </script>
+
+
+    <!-- دارک مود جاوااسکریپت -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.getElementById('html-root');
+            const icon = document.getElementById('dark-mode-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fas fa-moon';
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fas fa-sun';
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // بارگذاری تم ذخیره شده
+        if (localStorage.theme === 'dark') {
+            document.getElementById('html-root').classList.add('dark');
+            document.getElementById('dark-mode-icon').className = 'fas fa-sun';
+        }
+    </script>
+
+
+    <script>
+        // اسلایدر چرخشی لوگوها
+        document.addEventListener("DOMContentLoaded", function () {
+            const slider = document.getElementById('partner-slider');
+            if (!slider) return;
+
+            let position = 0;
+            const speed = 0.5; // سرعت حرکت (کم = آرام، زیاد = سریع)
+            const innerWidth = slider.firstElementChild.clientWidth + 48; // عرض هر لوگو + gap (12 = 48px)
+            const totalWidth = innerWidth * 6; // 6 لوگو در یک مجموعه
+
+            function animate() {
+                position -= speed;
+                // وقتی نیمی از اسلایدر حرکت کرد، به صورت نامرئی به اول برسون
+                if (position <= -totalWidth) {
+                    position = 0; // بازنشانی موقعیت — حلقه بی‌نهایت
+                }
+                slider.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(animate);
+            }
+
+            // شروع اسلایدر
+            animate();
+
+            // اختیاری: توقف هنگام هاور
+            slider.addEventListener('mouseenter', () => {
+                cancelAnimationFrame(animate);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                requestAnimationFrame(animate);
+            });
+        });
+    </script>
+
+</body>
+</html>

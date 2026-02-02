@@ -1,0 +1,57 @@
+<!-- templates/users/upload_documents.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}آپلود مدارک{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">📎 آپلود مدارک</h2>
+
+    <p class="text-gray-600 mb-6">
+        برای تکمیل فرآیند ارتقاء، لطفاً مدارک زیر را آپلود کنید:
+    </p>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-8">
+
+        <!-- کپی پاسپورت -->
+        <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="font-semibold text-gray-800 mb-3">کپی پاسپورت</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                فایل PDF یا تصویر واضح پاسپورت خود را آپلود کنید.
+            </p>
+            <input type="file" name="passport" accept=".pdf,image/*" required
+                   class="block w-full text-sm text-gray-500
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-blue-50 file:text-blue-700
+                          hover:file:bg-blue-100">
+        </div>
+
+        <!-- لایسنس شرکت -->
+        <div class="border border-gray-200 rounded-lg p-6">
+            <h3 class="font-semibold text-gray-800 mb-3">لایسنس شرکت</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                مدرک ثبت شرکت یا مجوز فعالیت تجاری خود را آپلود کنید.
+            </p>
+            <input type="file" name="license" accept=".pdf,image/*" required
+                   class="block w-full text-sm text-gray-500
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-green-50 file:text-green-700
+                          hover:file:bg-green-100">
+        </div>
+
+        <!-- دکمه‌ها -->
+        <div class="flex flex-col sm:flex-row gap-3 pt-4">
+            <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
+                آپلود و ادامه
+            </button>
+            <a href="{{ url_for('users.upgrade_to_premium') }}" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition">
+                بازگشت
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

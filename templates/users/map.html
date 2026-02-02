@@ -1,0 +1,249 @@
+<!-- templates/users/map.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}نقشه پورت‌ها{% endblock %}
+
+{% block content %}
+<!-- سایدبار چپ و نقشه -->
+<div class="flex h-screen bg-gray-50">
+
+    <!-- سایدبار چپ -->
+    <div id="sidebar" class="w-1/4 bg-white p-4 border-r border-gray-200 flex flex-col h-screen">
+          <!-- فقط برای فروشنده: فرم اضافه کردن -->
+
+
+
+        <!-- عنوان -->
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📌 لیست پورت‌ها</h2>
+
+        <!-- فیلتر -->
+        <input type="text" id="filter" placeholder="فیلتر بر اساس کشور..."
+               class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 text-sm"
+               onkeyup="filterPorts()">
+
+        <!-- لیست پورت‌ها با اسکرول مستقل -->
+        <div id="port-list" class="flex-1 overflow-y-auto space-y-2 max-h-64">
+            <p class="text-gray-500 text-sm">در حال بارگذاری...</p>
+        </div>
+        <form id="add-port-form" class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-2">
+            <h3 class="font-bold text-blue-800 mb-3">➕ اضافه کردن پورت جدید</h3>
+            <input type="text" id="new-port-name" placeholder="نام پورت" required
+                   class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+            <input type="text" id="new-port-country" placeholder="کشور (مثلاً IR)" required
+                   class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+            <input type="number" step="any" id="new-port-latitude" placeholder="عرض جغرافیایی" required
+                   class="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-gray-100">
+            <input type="number" step="any" id="new-port-longitude" placeholder="طول جغرافیایی" required
+                   class="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-gray-100">
+            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded text-sm font-semibold">
+                افزودن پورت
+            </button>
+        </form>
+
+        <!-- نمایش مختصات کلیک -->
+        <div id="coordinates-display" class="mt-4 p-3 bg-gray-100 rounded text-sm text-center text-gray-700 font-medium">
+            روی نقشه کلیک کنید تا مختصات نمایش داده شود
+        </div>
+    </div>
+
+    <!-- نقشه -->
+    <div id="map" class="w-3/4 h-screen"></div>
+</div>
+
+<!-- فقط اگر کاربر ویژه بود، اسکریپت اجرا شود -->
+{% if current_user.is_premium %}
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+    let map, markers = {}, ports = [];
+
+    // ایجاد نقشه
+    function initMap() {
+        map = L.map('map').setView([25.2048, 55.2708], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 🎯 کلیک روی نقشه → نمایش و پر کردن مختصات
+        map.on('click', function(e) {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+
+            // نمایش در سایدبار
+            document.getElementById('coordinates-display').innerText = `عرض: ${lat}, طول: ${lng}`;
+
+            // پر کردن فرم
+            document.getElementById('new-port-latitude').value = lat;
+            document.getElementById('new-port-longitude').value = lng;
+        });
+
+        loadPorts();
+    }
+
+    // بارگذاری پورت‌ها از API
+    async function loadPorts() {
+        try {
+            const res = await fetch('{{ url_for("users.get_ports") }}');
+            if (!res.ok) throw new Error("خطا در بارگذاری پورت‌ها");
+            ports = await res.json();
+
+            // پاک کردن قبلی‌ها
+            Object.values(markers).forEach(m => map.removeLayer(m));
+            markers = {};
+            const list = document.getElementById('port-list');
+            list.innerHTML = '';
+
+            ports.forEach(port => {
+                const lat = port.location[0];
+                const lng = port.location[1];
+
+                // ایجاد مارکر
+                const marker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup(`<b>${port.name}</b><br>کشور: ${port.country}`);
+                markers[port.id] = marker;
+
+                // ایجاد آیتم لیست
+                const item = document.createElement('div');
+                item.className = 'port-item bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:bg-gray-50 cursor-pointer flex justify-between items-center';
+                item.setAttribute('data-id', port.id);
+                item.setAttribute('data-country', port.country);
+                item.setAttribute('data-lat', lat);
+                item.setAttribute('data-lng', lng);
+                item.innerHTML = `
+                    <div>${port.name} (${port.country})</div>
+                    <div class="flex gap-1">
+                        <button class="action-btn edit-btn text-xs px-2 py-1" onclick="editPort(${port.id})">ویرایش</button>
+                        <button class="action-btn delete-btn text-xs px-2 py-1" onclick="deletePort(${port.id})">حذف</button>
+                    </div>
+                `;
+
+                // کلیک روی پورت → حرکت به موقعیت
+                item.addEventListener('click', () => {
+                    map.setView([lat, lng], 13);
+                    marker.openPopup();
+                });
+
+                list.appendChild(item);
+            });
+        } catch (error) {
+            console.error("❌ خطای بارگذاری پورت‌ها:", error);
+            document.getElementById('port-list').innerHTML = '<p class="text-red-500">خطا در بارگذاری.</p>';
+        }
+    }
+
+    // فیلتر پورت‌ها
+    function filterPorts() {
+        const filter = document.getElementById('filter').value.toLowerCase().trim();
+        document.querySelectorAll('.port-item').forEach(item => {
+            const country = item.getAttribute('data-country').toLowerCase();
+            item.style.display = country.includes(filter) ? 'flex' : 'none';
+        });
+    }
+
+    // اضافه کردن پورت جدید
+    document.getElementById('add-port-form')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = {
+            name: document.getElementById('new-port-name').value.trim(),
+            country: document.getElementById('new-port-country').value.trim(),
+            latitude: parseFloat(document.getElementById('new-port-latitude').value),
+            longitude: parseFloat(document.getElementById('new-port-longitude').value)
+        };
+
+        if (!data.name || !data.country || isNaN(data.latitude) || isNaN(data.longitude)) {
+            alert("لطفاً تمام فیلدها را پر کنید.");
+            return;
+        }
+
+        try {
+            const res = await fetch('{{ url_for("users.add_port") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (result.message) {
+                alert(result.message);
+                loadPorts(); // بروزرسانی
+                this.reset();
+            } else {
+                alert("خطا: " + result.error);
+            }
+        } catch (error) {
+            alert("خطا در ارتباط با سرور.");
+        }
+    });
+
+    // ویرایش پورت
+    async function editPort(portId) {
+        const port = ports.find(p => p.id === portId);
+        const name = prompt("نام جدید:", port.name);
+        const country = prompt("کشور جدید:", port.country);
+        const lat = parseFloat(prompt("عرض جغرافیایی جدید:", port.location[0]));
+        const lng = parseFloat(prompt("طول جغرافیایی جدید:", port.location[1]));
+
+        if (name && country && !isNaN(lat) && !isNaN(lng)) {
+            try {
+                const res = await fetch('{{ url_for("users.update_port", port_id="") }}' + portId, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, country, latitude: lat, longitude: lng })
+                });
+                const result = await res.json();
+                if (result.message) {
+                    alert(result.message);
+                    loadPorts();
+                }
+            } catch (error) {
+                alert("خطا در ویرایش.");
+            }
+        }
+    }
+
+    // حذف پورت
+    async function deletePort(portId) {
+        if (confirm("آیا مطمئن هستید؟")) {
+            try {
+                const res = await fetch('{{ url_for("users.delete_port", port_id="") }}' + portId, {
+                    method: 'DELETE'
+                });
+                const result = await res.json();
+                if (result.message) {
+                    alert(result.message);
+                    loadPorts();
+                }
+            } catch (error) {
+                alert("خطا در حذف.");
+            }
+        }
+    }
+
+    // شروع نقشه
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof L !== 'undefined') {
+            initMap();
+        } else {
+            console.error("❌ Leaflet.js لود نشده");
+        }
+    });
+</script>
+{% endif %}
+
+<!-- اگر کاربر ویژه نیست -->
+{% if not current_user.is_premium %}
+<div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm mx-4">
+        <h3 class="text-xl font-bold text-gray-800">🔒 دسترسی محدود</h3>
+        <p class="text-gray-600 mt-2">فقط کاربران ویژه می‌توانند به این نقشه دسترسی داشته باشند.</p>
+        <a href="{{ url_for('users.upgrade_to_premium') }}" class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">
+            🌟 ارتقاء به ویژه
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

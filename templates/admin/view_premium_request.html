@@ -1,0 +1,96 @@
+<!-- templates/admin/view_premium_request.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}مشاهده درخواست ارتقاء{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">📄 جزئیات درخواست ارتقاء</h2>
+
+    <div class="space-y-6">
+        <!-- اطلاعات کاربر -->
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800">👤 اطلاعات کاربر</h3>
+            <p><strong>نام کاربری:</strong> {{ req.user.username }}</p>
+            <p><strong>ایمیل:</strong> {{ req.user.email }}</p>
+            <p><strong>شرکت:</strong> {{ req.user.company_name or '—' }}</p>
+            <p><strong>کشور:</strong> {{ req.user.country or '—' }}</p>
+        </div>
+
+        <!-- وضعیت مراحل -->
+        <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800">✅ وضعیت مراحل</h3>
+            <ul class="space-y-2 text-sm">
+                <li>📱 تأیید موبایل: {% if req.phone_verified %}<span class="text-green-600">✅ تأیید شده</span>{% else %}<span class="text-red-500">❌ تأیید نشده</span>{% endif %}</li>
+                <li>📧 تأیید ایمیل: {% if req.email_verified %}<span class="text-green-600">✅ تأیید شده</span>{% else %}<span class="text-red-500">❌ تأیید نشده</span>{% endif %}</li>
+                <li>💳 پرداخت: {% if req.payment_verified %}<span class="text-green-600">✅ پرداخت شده</span>{% else %}<span class="text-red-500">❌ پرداخت نشده</span>{% endif %}</li>
+                <li>📄 وضعیت کلی: 
+                    {% if req.status == 'pending' %}
+                        <span class="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800">در انتظار بررسی</span>
+                    {% elif req.status == 'approved' %}
+                        <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">تأیید شده</span>
+                    {% elif req.status == 'rejected' %}
+                        <span class="px-2 py-1 text-xs rounded bg-red-100 text-red-800">رد شده</span>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <!-- مدارک آپلود شده -->
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800">📎 مدارک آپلود شده</h3>
+            {% if req.passport_file %}
+                <p><strong>کپی پاسپورت:</strong> 
+                    <a href="{{ url_for('static', filename='uploads/documents/' + req.passport_file) }}" 
+                       target="_blank" class="text-blue-600 hover:underline">مشاهده فایل</a>
+                </p>
+            {% else %}
+                <p><strong>کپی پاسپورت:</strong> <span class="text-red-500">آپلود نشده</span></p>
+            {% endif %}
+
+            {% if req.license_file %}
+                <p><strong>لایسنس شرکت:</strong> 
+                    <a href="{{ url_for('static', filename='uploads/documents/' + req.license_file) }}" 
+                       target="_blank" class="text-blue-600 hover:underline">مشاهده فایل</a>
+                </p>
+            {% else %}
+                <p><strong>لایسنس شرکت:</strong> <span class="text-red-500">آپلود نشده</span></p>
+            {% endif %}
+
+            {% if req.payment_receipt %}
+                <p><strong>رسید پرداخت:</strong> 
+                    <a href="{{ url_for('static', filename='uploads/' + req.payment_receipt) }}" 
+                       target="_blank" class="text-blue-600 hover:underline">مشاهده فایل</a>
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- تاریخ‌ها -->
+        <div class="p-4 bg-gray-50 rounded-lg">
+            <p><strong>ارسال شده در:</strong> {{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}</p>
+            {% if req.reviewed_at %}
+                <p><strong>بررسی شده در:</strong> {{ req.reviewed_at.strftime('%Y/%m/%d - %H:%M') }}</p>
+            {% endif %}
+        </div>
+
+        <!-- دکمه‌های عملیات -->
+        <div class="flex gap-4 mt-6">
+            <a href="{{ url_for('admin.premium_requests') }}" class="px-4 py-2 bg-gray-600 text-white rounded-lg text-sm">
+                بازگشت
+            </a>
+            {% if req.status == 'pending' %}
+            <form method="POST" action="{{ url_for('admin.approve_premium', req_id=req.id) }}" class="inline">
+                <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm">
+                    ✅ تأیید درخواست
+                </button>
+            </form>
+            <form method="POST" action="{{ url_for('admin.reject_premium', req_id=req.id) }}" class="inline">
+                <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm">
+                    ❌ رد درخواست
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

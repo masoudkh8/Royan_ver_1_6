@@ -1,0 +1,21 @@
+{
+  "name": "ROYAN EXPORT MARKET",
+  "short_name": "رویان صادرات ‌مارکت",
+  "start_url": "/users/profile",
+  "display": "standalone",
+  "background_color": "#0066cc",
+  "theme_color": "#0066cc",
+  "description": "سیستم مدیریت صادرات و واردات بین‌المللی رویان",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
