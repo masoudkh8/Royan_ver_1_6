@@ -14,7 +14,7 @@ from flask import Flask
 from config import Config
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from flask_mailman import Mail ,message
+from flask_mail import Mail ,message
 from routes.users import users_bp  # ✅ درست
 from routes.admin import admin_bp
 from routes.users import root_bp
