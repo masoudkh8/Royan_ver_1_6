@@ -144,6 +144,15 @@ def create_app():
             'SUBSCRIPTION_SEMI_ANNUAL_IRR': Config.SUBSCRIPTION_SEMI_ANNUAL_IRR
         }
 
+    @app.route('/set_language/<lang_code>')
+    def set_language(lang_code):
+        """تغییر زبان کاربر و ذخیره در session"""
+        from flask import session, redirect, request
+        if lang_code in SUPPORTED_LANGUAGES:
+            session['lang'] = lang_code
+        # بازگشت به صفحه قبلی یا صفحه اصلی
+        return redirect(request.referrer or url_for('root.index'))
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))

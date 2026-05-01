@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-01 21:27+0000\n"
+"POT-Creation-Date: 2026-05-01 22:13+0000\n"
 "PO-Revision-Date: 2026-05-01 18:54+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: tr\n"
@@ -16,6 +16,1411 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: templates/base_pwa.html:114 templates/base_pwa.html:235
+msgid "ExportMarket"
+msgstr ""
+
+#: templates/base_pwa.html:202 templates/users/dashboard.html:18
+msgid "Premium"
+msgstr ""
+
+#: templates/base_pwa.html:206
+msgid "Install"
+msgstr ""
+
+#: templates/base_pwa.html:210 templates/index.html:86
+#: templates/users/register.html:70
+msgid "Login"
+msgstr ""
+
+#: templates/base_pwa.html:211 templates/index.html:103
+#: templates/users/register.html:4 templates/users/register.html:61
+msgid "Register"
+msgstr ""
+
+#: templates/base_pwa.html:235
+msgid "All rights reserved."
+msgstr ""
+
+#: templates/index.html:6
+msgid "Rayan Company - International Trade Management System"
+msgstr ""
+
+#: templates/index.html:72
+msgid "Rayan Company Logo"
+msgstr ""
+
+#: templates/index.html:73 templates/index.html:237
+msgid "Rayan Company"
+msgstr ""
+
+#: templates/index.html:96
+msgid "Welcome to the International Trade Management System"
+msgstr ""
+
+#: templates/index.html:99
+msgid ""
+"Rayan Company provides an intelligent platform that simplifies, secures, "
+"and brings transparency to the international trade process of buying, "
+"selling, and transporting goods."
+msgstr ""
+
+#: templates/index.html:106
+msgid "Login to System"
+msgstr ""
+
+#: templates/index.html:115
+msgid "Our Services"
+msgstr ""
+
+#: templates/index.html:122
+msgid "Order Management"
+msgstr ""
+
+#: templates/index.html:123
+msgid "Digital and real-time registration, tracking, and confirmation of orders."
+msgstr ""
+
+#: templates/index.html:131
+msgid "Security & Identity Verification"
+msgstr ""
+
+#: templates/index.html:132
+msgid ""
+"User identity verification, document approval, and transparent premium "
+"upgrade process."
+msgstr ""
+
+#: templates/index.html:140
+msgid "24/7 Support"
+msgstr ""
+
+#: templates/index.html:141
+msgid "Professional support via chat, call, and email throughout the week."
+msgstr ""
+
+#: templates/index.html:150
+msgid "System Training Video"
+msgstr ""
+
+#: templates/index.html:152
+msgid ""
+"Watch this video to learn how to use the international trade management "
+"system."
+msgstr ""
+
+#: templates/index.html:158
+msgid "Your browser does not support video playback."
+msgstr ""
+
+#: templates/index.html:168
+msgid "Cooperation with Reputable Companies"
+msgstr ""
+
+#: templates/index.html:170
+msgid ""
+"We collaborate with large and reputable companies at national and "
+"international levels."
+msgstr ""
+
+#: templates/index.html:177 templates/index.html:185
+msgid "Partner Company 1"
+msgstr ""
+
+#: templates/index.html:178 templates/index.html:186
+msgid "Partner Company 2"
+msgstr ""
+
+#: templates/index.html:179 templates/index.html:187
+msgid "Partner Company 3"
+msgstr ""
+
+#: templates/index.html:180 templates/index.html:188
+msgid "Partner Company 4"
+msgstr ""
+
+#: templates/index.html:181 templates/index.html:189
+msgid "Partner Company 5"
+msgstr ""
+
+#: templates/index.html:182 templates/index.html:190
+msgid "Partner Company 6"
+msgstr ""
+
+#: templates/index.html:201
+msgid "Image Magazine"
+msgstr ""
+
+#: templates/index.html:204
+msgid ""
+"Specialized reference for international trade, maritime transport, and "
+"logistics"
+msgstr ""
+
+#: templates/index.html:207
+msgid ""
+"To access the latest magazine issues, request sponsorship, advertising, "
+"and annual subscription, visit the magazine section."
+msgstr ""
+
+#: templates/index.html:211
+msgid "Enter Magazine Section"
+msgstr ""
+
+#: templates/index.html:214 templates/magazine/index.html:29
+#: templates/magazine/subscribe.html:22
+msgid "Annual Subscription"
+msgstr ""
+
+#: templates/index.html:224 templates/index.html:229
+msgid "Cooperate with Us"
+msgstr ""
+
+#: templates/index.html:226
+msgid "You can also benefit from Rayan platform advantages to grow your business."
+msgstr ""
+
+#: templates/index.html:237
+msgid "All Rights Reserved"
+msgstr ""
+
+#: templates/index.html:238
+msgid "International Trade and Logistics Management System"
+msgstr ""
+
+#: templates/admin/dashboard.html:4
+msgid "Admin Dashboard"
+msgstr ""
+
+#: templates/admin/dashboard.html:8
+msgid "📊 Admin Dashboard"
+msgstr ""
+
+#: templates/admin/dashboard.html:13
+msgid "Total Users"
+msgstr ""
+
+#: templates/admin/dashboard.html:18
+msgid "Premium Requests"
+msgstr ""
+
+#: templates/admin/dashboard.html:23
+#: templates/admin/view_premium_request.html:29
+msgid "Pending Review"
+msgstr ""
+
+#: templates/admin/dashboard.html:31 templates/admin/manage_users.html:8
+msgid "🔧 Manage Users"
+msgstr ""
+
+#: templates/admin/dashboard.html:34
+msgid "📂 Premium Upgrade Requests"
+msgstr ""
+
+#: templates/admin/login.html:7
+msgid "Admin Login - Admin Panel"
+msgstr ""
+
+#: templates/admin/login.html:44
+msgid "🔐 Admin Panel"
+msgstr ""
+
+#: templates/admin/login.html:45
+msgid "Only for admin users"
+msgstr ""
+
+#: templates/admin/login.html:71 templates/admin/manage_users.html:34
+#: templates/magazine/advertisement.html:43
+#: templates/magazine/sponsorship.html:43 templates/users/login.html:26
+#: templates/users/register.html:19
+msgid "Email"
+msgstr ""
+
+#: templates/admin/login.html:81 templates/users/login.html:31
+#: templates/users/register.html:25
+msgid "Password"
+msgstr ""
+
+#: templates/admin/login.html:85
+msgid "Enter your password"
+msgstr ""
+
+#: templates/admin/login.html:92
+msgid "Login to Admin Panel"
+msgstr ""
+
+#: templates/admin/login.html:100
+msgid "← Back to Home Page"
+msgstr ""
+
+#: templates/admin/login.html:108
+msgid "Your Company. All rights reserved."
+msgstr ""
+
+#: templates/admin/manage_users.html:4
+msgid "Manage Users"
+msgstr ""
+
+#: templates/admin/manage_users.html:15 templates/admin/manage_users.html:56
+msgid "Active"
+msgstr ""
+
+#: templates/admin/manage_users.html:19 templates/admin/manage_users.html:58
+msgid "Inactive"
+msgstr ""
+
+#: templates/admin/manage_users.html:23
+#: templates/admin/premium_requests.html:18
+msgid "All"
+msgstr ""
+
+#: templates/admin/manage_users.html:33 templates/users/register.html:13
+msgid "Username"
+msgstr ""
+
+#: templates/admin/manage_users.html:35
+msgid "Role"
+msgstr ""
+
+#: templates/admin/manage_users.html:36
+msgid "Premium?"
+msgstr ""
+
+#: templates/admin/manage_users.html:37
+#: templates/admin/premium_requests.html:40
+msgid "Status"
+msgstr ""
+
+#: templates/admin/manage_users.html:38
+#: templates/admin/premium_requests.html:42
+msgid "Actions"
+msgstr ""
+
+#: templates/admin/manage_users.html:49
+msgid "✅ Yes"
+msgstr ""
+
+#: templates/admin/manage_users.html:51
+msgid "❌ No"
+msgstr ""
+
+#: templates/admin/manage_users.html:78
+msgid "Are you sure you want to deactivate this user?"
+msgstr ""
+
+#: templates/admin/manage_users.html:81
+msgid "Deactivate"
+msgstr ""
+
+#: templates/admin/manage_users.html:88
+msgid "Activate"
+msgstr ""
+
+#: templates/admin/manage_users.html:93
+msgid "You"
+msgstr ""
+
+#: templates/admin/manage_users.html:99
+msgid "No users found."
+msgstr ""
+
+#: templates/admin/manage_users.html:113 templates/admin/manage_users.html:117
+msgid "Previous"
+msgstr ""
+
+#: templates/admin/manage_users.html:141 templates/admin/manage_users.html:145
+msgid "Next"
+msgstr ""
+
+#: templates/admin/premium_requests.html:4
+msgid "Premium Upgrade Requests"
+msgstr ""
+
+#: templates/admin/premium_requests.html:8
+msgid "📂 Premium User Upgrade Requests"
+msgstr ""
+
+#: templates/admin/premium_requests.html:11
+msgid "New!"
+msgstr ""
+
+#: templates/admin/premium_requests.html:22
+#: templates/admin/premium_requests.html:51
+msgid "Pending"
+msgstr ""
+
+#: templates/admin/premium_requests.html:26
+#: templates/admin/premium_requests.html:53
+#: templates/admin/view_premium_request.html:31
+#: templates/users/upgrade_premium.html:44
+#: templates/users/upgrade_premium.html:138
+msgid "Approved"
+msgstr ""
+
+#: templates/admin/premium_requests.html:30
+#: templates/admin/premium_requests.html:55
+#: templates/admin/view_premium_request.html:33
+#: templates/users/upgrade_premium.html:140
+msgid "Rejected"
+msgstr ""
+
+#: templates/admin/premium_requests.html:39
+msgid "User"
+msgstr ""
+
+#: templates/admin/premium_requests.html:41
+msgid "Submission Date"
+msgstr ""
+
+#: templates/admin/premium_requests.html:62
+msgid "View"
+msgstr ""
+
+#: templates/admin/premium_requests.html:67
+msgid "Approve"
+msgstr ""
+
+#: templates/admin/premium_requests.html:72
+msgid "Reject"
+msgstr ""
+
+#: templates/admin/premium_requests.html:80
+msgid "No requests found."
+msgstr ""
+
+#: templates/admin/view_premium_request.html:4
+msgid "View Upgrade Request"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:8
+msgid "📄 Upgrade Request Details"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:13
+msgid "👤 User Information"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:14
+msgid "Username:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:15
+msgid "Email:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:16
+msgid "Company:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:17
+msgid "Country:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:22
+msgid "✅ Step Status"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:24
+msgid "📱 Phone Verification:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:24
+#: templates/admin/view_premium_request.html:25
+msgid "✅ Verified"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:24
+#: templates/admin/view_premium_request.html:25
+msgid "❌ Not Verified"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:25
+msgid "📧 Email Verification:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:26
+msgid "💳 Payment:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:26
+msgid "✅ Paid"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:26
+msgid "❌ Not Paid"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:27
+msgid "📄 Overall Status:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:41
+msgid "📎 Uploaded Documents"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:43
+#: templates/admin/view_premium_request.html:48
+msgid "Passport Copy:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:45
+#: templates/admin/view_premium_request.html:54
+#: templates/admin/view_premium_request.html:63
+msgid "View File"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:48
+#: templates/admin/view_premium_request.html:57
+msgid "Not Uploaded"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:52
+#: templates/admin/view_premium_request.html:57
+msgid "Company License:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:61
+msgid "Payment Receipt:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:70
+msgid "Submitted At:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:72
+msgid "Reviewed At:"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:79 templates/users/chat.html:28
+#: templates/users/edit_profile.html:35 templates/users/notifications.html:26
+#: templates/users/upload_documents.html:52
+#: templates/users/verify_email.html:20 templates/users/verify_phone.html:54
+msgid "Back"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:84
+msgid "✅ Approve Request"
+msgstr ""
+
+#: templates/admin/view_premium_request.html:89
+msgid "❌ Reject Request"
+msgstr ""
+
+#: templates/magazine/advertisement.html:4
+msgid "Advertisement Request - Imazheh Magazine"
+msgstr ""
+
+#: templates/magazine/advertisement.html:12
+msgid "Advertisement Request in Imazheh Magazine"
+msgstr ""
+
+#: templates/magazine/advertisement.html:15
+msgid "To place an advertisement in the magazine, please complete the form below"
+msgstr ""
+
+#: templates/magazine/advertisement.html:25
+#: templates/magazine/sponsorship.html:25
+msgid "Full Name"
+msgstr ""
+
+#: templates/magazine/advertisement.html:34
+msgid "Company / Brand Name"
+msgstr ""
+
+#: templates/magazine/advertisement.html:52
+#: templates/magazine/sponsorship.html:52
+msgid "Phone Number"
+msgstr ""
+
+#: templates/magazine/advertisement.html:61
+msgid "Ad Type"
+msgstr ""
+
+#: templates/magazine/advertisement.html:65
+#: templates/magazine/advertisement.html:91 templates/users/place_order.html:30
+#: templates/users/place_order.html:70 templates/users/register.html:33
+msgid "Select..."
+msgstr ""
+
+#: templates/magazine/advertisement.html:66
+msgid "Full Page"
+msgstr ""
+
+#: templates/magazine/advertisement.html:67
+msgid "Half Page"
+msgstr ""
+
+#: templates/magazine/advertisement.html:68
+msgid "Quarter Page"
+msgstr ""
+
+#: templates/magazine/advertisement.html:69
+msgid "Back Cover"
+msgstr ""
+
+#: templates/magazine/advertisement.html:70
+msgid "Inside Cover"
+msgstr ""
+
+#: templates/magazine/advertisement.html:71
+msgid "Advertising Banner"
+msgstr ""
+
+#: templates/magazine/advertisement.html:78
+msgid "Ad Size"
+msgstr ""
+
+#: templates/magazine/advertisement.html:80
+msgid "e.g.: 21x29 cm"
+msgstr ""
+
+#: templates/magazine/advertisement.html:87
+msgid "Publication Duration"
+msgstr ""
+
+#: templates/magazine/advertisement.html:92
+msgid "One Issue"
+msgstr ""
+
+#: templates/magazine/advertisement.html:93
+msgid "Three Issues"
+msgstr ""
+
+#: templates/magazine/advertisement.html:94
+msgid "Six Issues"
+msgstr ""
+
+#: templates/magazine/advertisement.html:95
+msgid "Annual (12 Issues)"
+msgstr ""
+
+#: templates/magazine/advertisement.html:102
+msgid "Message and Comments"
+msgstr ""
+
+#: templates/magazine/advertisement.html:111
+msgid "Submit Advertisement Request"
+msgstr ""
+
+#: templates/magazine/advertisement.html:119
+msgid "← Back to Magazine Home"
+msgstr ""
+
+#: templates/magazine/index.html:4
+msgid "Imazheh Magazine"
+msgstr ""
+
+#: templates/magazine/index.html:11
+msgid "Imazheh Visual Magazine"
+msgstr ""
+
+#: templates/magazine/index.html:14
+msgid ""
+"Specialized reference for international trade, maritime transport and "
+"logistics"
+msgstr ""
+
+#: templates/magazine/index.html:21
+msgid "Sponsorship Request"
+msgstr ""
+
+#: templates/magazine/index.html:25
+msgid "Advertise in Magazine"
+msgstr ""
+
+#: templates/magazine/index.html:37
+msgid "Published Issues"
+msgstr ""
+
+#: templates/magazine/index.html:51
+msgid "Magazine Issue"
+msgstr ""
+
+#: templates/magazine/index.html:58
+msgid "New"
+msgstr ""
+
+#: templates/magazine/index.html:69
+msgid "Description of this issue will be added soon."
+msgstr ""
+
+#: templates/magazine/index.html:73
+msgid "Publish Date:"
+msgstr ""
+
+#: templates/magazine/index.html:73 templates/users/vessel_finder.html:126
+#: templates/users/vessel_finder.html:130
+#: templates/users/vessel_finder.html:134
+msgid "Unknown"
+msgstr ""
+
+#: templates/magazine/index.html:74
+msgid "Downloads"
+msgstr ""
+
+#: templates/magazine/index.html:84
+msgid "Download Digital Version"
+msgstr ""
+
+#: templates/magazine/index.html:95
+msgid "No issues have been published yet."
+msgstr ""
+
+#: templates/magazine/index.html:98
+msgid "The first issue of the magazine will be available soon."
+msgstr ""
+
+#: templates/magazine/sponsorship.html:4
+msgid "Sponsorship Request - Tasvir Magazine"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:12
+msgid "Tasvir Magazine Sponsorship Request"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:15
+msgid "To collaborate and sponsor the magazine, please complete the form below"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:34
+msgid "Company / Organization Name"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:61
+msgid "Message and Description"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:70
+msgid "Submit Sponsorship Request"
+msgstr ""
+
+#: templates/magazine/sponsorship.html:78
+#, python-format
+msgid "%(arrow)s Back to Magazine Home"
+msgstr ""
+
+#: templates/magazine/subscribe.html:23 templates/magazine/subscribe.html:33
+#: templates/magazine/subscribe.html:89 templates/magazine/subscribe.html:90
+msgid "Tomans"
+msgstr ""
+
+#: templates/magazine/subscribe.html:25
+msgid "12 printed issues per year"
+msgstr ""
+
+#: templates/magazine/subscribe.html:26 templates/magazine/subscribe.html:36
+msgid "Access to digital version"
+msgstr ""
+
+#: templates/magazine/subscribe.html:27 templates/magazine/subscribe.html:37
+msgid "Free postal delivery"
+msgstr ""
+
+#: templates/magazine/subscribe.html:28
+msgid "Special event discounts"
+msgstr ""
+
+#: templates/magazine/subscribe.html:32
+msgid "Semi-Annual Subscription"
+msgstr ""
+
+#: templates/magazine/subscribe.html:35
+msgid "6 printed issues"
+msgstr ""
+
+#: templates/magazine/subscribe.html:89
+msgid "Annual"
+msgstr ""
+
+#: templates/magazine/subscribe.html:90
+msgid "Semi-Annual"
+msgstr ""
+
+#: templates/users/chat.html:9
+msgid "⚠️ Chat Access"
+msgstr ""
+
+#: templates/users/chat.html:10
+msgid "Only <strong>Premium</strong> users can use the chat system."
+msgstr ""
+
+#: templates/users/chat.html:12 templates/users/map.html:243
+msgid "🌟 Upgrade to Premium"
+msgstr ""
+
+#: templates/users/chat.html:22
+msgid "Chat"
+msgstr ""
+
+#: templates/users/chat.html:35
+msgid "Premium Contacts"
+msgstr ""
+
+#: templates/users/chat.html:53
+msgid "Conversation with:"
+msgstr ""
+
+#: templates/users/chat.html:77
+msgid "No messages sent yet."
+msgstr ""
+
+#: templates/users/chat.html:83
+msgid "Write your message..."
+msgstr ""
+
+#: templates/users/chat.html:87
+msgid "Send"
+msgstr ""
+
+#: templates/users/chat.html:92
+msgid "Select a premium contact to start chatting."
+msgstr ""
+
+#: templates/users/dashboard.html:4
+msgid "Dashboard"
+msgstr ""
+
+#: templates/users/dashboard.html:29 templates/users/edit_profile.html:4
+msgid "Edit Profile"
+msgstr ""
+
+#: templates/users/dashboard.html:36
+msgid "Orders"
+msgstr ""
+
+#: templates/users/dashboard.html:44
+msgid "View My Orders"
+msgstr ""
+
+#: templates/users/dashboard.html:51 templates/users/dashboard.html:138
+msgid "Manage Orders"
+msgstr ""
+
+#: templates/users/dashboard.html:54
+#, python-format
+msgid "%(count)d New"
+msgstr ""
+
+#: templates/users/dashboard.html:66
+msgid "Chat with Seller"
+msgstr ""
+
+#: templates/users/dashboard.html:73
+msgid "Chat with Broker"
+msgstr ""
+
+#: templates/users/dashboard.html:79
+msgid "Start Chat"
+msgstr ""
+
+#: templates/users/dashboard.html:85
+msgid "Enter Chat"
+msgstr ""
+
+#: templates/users/dashboard.html:89
+msgid "Chat is only available for premium users."
+msgstr ""
+
+#: templates/users/dashboard.html:97
+msgid "Port Finder"
+msgstr ""
+
+#: templates/users/dashboard.html:100
+msgid "Vessel Finder"
+msgstr ""
+
+#: templates/users/dashboard.html:104
+msgid "Port Finder access is only available for premium users."
+msgstr ""
+
+#: templates/users/dashboard.html:107
+msgid "Vessel Finder access is only available for premium users."
+msgstr ""
+
+#: templates/users/dashboard.html:115
+msgid "Upgrade to Premium User"
+msgstr ""
+
+#: templates/users/dashboard.html:117
+msgid "Access to map, chat, and other exclusive features"
+msgstr ""
+
+#: templates/users/dashboard.html:121
+msgid "Start Upgrade Process"
+msgstr ""
+
+#: templates/users/dashboard.html:126
+msgid "You are a premium user"
+msgstr ""
+
+#: templates/users/dashboard.html:127
+msgid "Enjoy our exclusive features!"
+msgstr ""
+
+#: templates/users/dashboard.html:147
+msgid "Logout"
+msgstr ""
+
+#: templates/users/edit_profile.html:8
+msgid "✏️ Edit Profile"
+msgstr ""
+
+#: templates/users/edit_profile.html:13
+msgid "Company Name"
+msgstr ""
+
+#: templates/users/edit_profile.html:14 templates/users/register.html:43
+msgid "Export Company"
+msgstr ""
+
+#: templates/users/edit_profile.html:19 templates/users/map.html:106
+#: templates/users/register.html:48
+msgid "Country"
+msgstr ""
+
+#: templates/users/edit_profile.html:20 templates/users/register.html:49
+msgid "Iran"
+msgstr ""
+
+#: templates/users/edit_profile.html:25
+msgid "Phone"
+msgstr ""
+
+#: templates/users/edit_profile.html:32
+msgid "Save Changes"
+msgstr ""
+
+#: templates/users/login.html:5 templates/users/login.html:41
+msgid "Login to Account"
+msgstr ""
+
+#: templates/users/login.html:18
+msgid "Welcome"
+msgstr ""
+
+#: templates/users/login.html:19
+msgid "Login to International Export Market"
+msgstr ""
+
+#: templates/users/login.html:48
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/users/login.html:50
+msgid "Register Now"
+msgstr ""
+
+#: templates/users/make_payment.html:11
+msgid "Payment Amount"
+msgstr ""
+
+#: templates/users/make_payment.html:11
+#: templates/users/upgrade_premium.html:117
+msgid "USD"
+msgstr ""
+
+#: templates/users/make_payment.html:13
+msgid "Please upload the payment receipt after making the payment."
+msgstr ""
+
+#: templates/users/map.html:4
+msgid "Ports Map"
+msgstr ""
+
+#: templates/users/map.html:17
+msgid "📌 Ports List"
+msgstr ""
+
+#: templates/users/map.html:20
+msgid "Filter by country..."
+msgstr ""
+
+#: templates/users/map.html:26
+msgid "Loading..."
+msgstr ""
+
+#: templates/users/map.html:29
+msgid "➕ Add New Port"
+msgstr ""
+
+#: templates/users/map.html:30
+msgid "Port Name"
+msgstr ""
+
+#: templates/users/map.html:32
+msgid "Country (e.g. IR)"
+msgstr ""
+
+#: templates/users/map.html:34 templates/users/vessel_finder.html:137
+msgid "Latitude"
+msgstr ""
+
+#: templates/users/map.html:36 templates/users/vessel_finder.html:141
+msgid "Longitude"
+msgstr ""
+
+#: templates/users/map.html:39
+msgid "Add Port"
+msgstr ""
+
+#: templates/users/map.html:45
+msgid "Click on the map to display coordinates"
+msgstr ""
+
+#: templates/users/map.html:91 templates/users/map.html:133
+msgid "Error loading ports"
+msgstr ""
+
+#: templates/users/map.html:119
+msgid "Edit"
+msgstr ""
+
+#: templates/users/map.html:120
+msgid "Delete"
+msgstr ""
+
+#: templates/users/map.html:134
+msgid "Error loading."
+msgstr ""
+
+#: templates/users/map.html:158
+msgid "Please fill all fields."
+msgstr ""
+
+#: templates/users/map.html:174
+msgid "Error:"
+msgstr ""
+
+#: templates/users/map.html:177
+msgid "Server communication error."
+msgstr ""
+
+#: templates/users/map.html:184
+msgid "New name:"
+msgstr ""
+
+#: templates/users/map.html:185
+msgid "New country:"
+msgstr ""
+
+#: templates/users/map.html:186
+msgid "New latitude:"
+msgstr ""
+
+#: templates/users/map.html:187
+msgid "New longitude:"
+msgstr ""
+
+#: templates/users/map.html:202
+msgid "Edit error."
+msgstr ""
+
+#: templates/users/map.html:209
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/users/map.html:220
+msgid "Delete error."
+msgstr ""
+
+#: templates/users/map.html:230
+msgid "Leaflet.js not loaded"
+msgstr ""
+
+#: templates/users/map.html:240
+msgid "🔒 Restricted Access"
+msgstr ""
+
+#: templates/users/map.html:241
+msgid "Only premium users can access this map."
+msgstr ""
+
+#: templates/users/notifications.html:4 templates/users/notifications.html:20
+msgid "Notifications"
+msgstr ""
+
+#: templates/users/notifications.html:50
+msgid "No notifications available."
+msgstr ""
+
+#: templates/users/payment_confirmation.html:4
+msgid "Send Payment Receipt"
+msgstr ""
+
+#: templates/users/payment_confirmation.html:15
+msgid "✅ Payment Receipt Received"
+msgstr ""
+
+#: templates/users/payment_confirmation.html:18
+msgid ""
+"Your upgrade request has been received. The management team will review "
+"your documents as soon as possible and notify you of the result via "
+"email."
+msgstr ""
+
+#: templates/users/payment_confirmation.html:23
+msgid "Review Time:"
+msgstr ""
+
+#: templates/users/payment_confirmation.html:23
+msgid "Usually between 24 to 48 business hours"
+msgstr ""
+
+#: templates/users/payment_confirmation.html:29
+#: templates/users/place_order.html:14
+msgid "Back to Profile"
+msgstr ""
+
+#: templates/users/payment_confirmation.html:32
+msgid "Contact Support"
+msgstr ""
+
+#: templates/users/place_order.html:4
+msgid "Place New Order"
+msgstr ""
+
+#: templates/users/place_order.html:19
+msgid "📝 Place New Order"
+msgstr ""
+
+#: templates/users/place_order.html:20
+msgid "Complete your export or import order"
+msgstr ""
+
+#: templates/users/place_order.html:28
+msgid "Product"
+msgstr ""
+
+#: templates/users/place_order.html:31
+msgid "Wheat"
+msgstr ""
+
+#: templates/users/place_order.html:32
+msgid "Rice"
+msgstr ""
+
+#: templates/users/place_order.html:33
+msgid "Sugar"
+msgstr ""
+
+#: templates/users/place_order.html:34
+msgid "Corn"
+msgstr ""
+
+#: templates/users/place_order.html:35
+msgid "Steel"
+msgstr ""
+
+#: templates/users/place_order.html:40
+msgid "Quantity (Tons)"
+msgstr ""
+
+#: templates/users/place_order.html:48
+msgid "Price per Ton (USD)"
+msgstr ""
+
+#: templates/users/place_order.html:56
+msgid "Origin Port"
+msgstr ""
+
+#: templates/users/place_order.html:57
+msgid "e.g. Bandar Abbas"
+msgstr ""
+
+#: templates/users/place_order.html:62
+msgid "Destination Port"
+msgstr ""
+
+#: templates/users/place_order.html:63
+msgid "e.g. Jeddah"
+msgstr ""
+
+#: templates/users/place_order.html:68 templates/users/register.html:35
+msgid "Seller"
+msgstr ""
+
+#: templates/users/place_order.html:78
+msgid "Notes (Optional)"
+msgstr ""
+
+#: templates/users/place_order.html:81
+msgid "Payment terms, packaging, ..."
+msgstr ""
+
+#: templates/users/place_order.html:91
+msgid "Place Order"
+msgstr ""
+
+#: templates/users/register.html:8
+msgid "📝 Register in Market"
+msgstr ""
+
+#: templates/users/register.html:14
+msgid "e.g. ali_export"
+msgstr ""
+
+#: templates/users/register.html:31
+msgid "Your Role"
+msgstr ""
+
+#: templates/users/register.html:34
+msgid "Buyer"
+msgstr ""
+
+#: templates/users/register.html:36
+msgid "Broker"
+msgstr ""
+
+#: templates/users/register.html:42
+msgid "Company Name (Optional)"
+msgstr ""
+
+#: templates/users/register.html:54
+msgid "Phone (Optional)"
+msgstr ""
+
+#: templates/users/register.html:68
+msgid "Have an account?"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:6
+msgid "Premium Upgrade Process"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:11
+msgid "Start"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:12
+#: templates/users/upgrade_premium.html:64
+msgid "Complete"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:26
+msgid "Your request has been submitted"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:27
+msgid "Ready for payment"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:28
+msgid "Ready to upload documents"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:29
+msgid "Ready for email verification"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:30
+msgid "Start by verifying your mobile number"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:38
+#, python-format
+msgid "You have previously requested %(count)s times."
+msgstr ""
+
+#: templates/users/upgrade_premium.html:40
+#, python-format
+msgid "Request %(num)s:"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:42
+#, python-format
+msgid "Rejected on %(date)s"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:60
+msgid "Mobile Number Verification"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:62
+#: templates/users/upgrade_premium.html:80
+msgid "Verified"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:77
+#: templates/users/upgrade_premium.html:84
+msgid "Email Verification"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:97
+#: templates/users/upgrade_premium.html:104
+#: templates/users/upload_documents.html:4
+msgid "Upload Documents"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:100
+msgid "Uploaded"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:117
+#: templates/users/upgrade_premium.html:124
+msgid "Payment"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:120
+msgid "Paid"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:136
+#: templates/users/upgrade_premium.html:146
+msgid "Final Review and Approval"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:142
+msgid "Under Review"
+msgstr ""
+
+#: templates/users/upload_documents.html:8
+msgid "📎 Upload Documents"
+msgstr ""
+
+#: templates/users/upload_documents.html:11
+msgid "To complete the upgrade process, please upload the following documents:"
+msgstr ""
+
+#: templates/users/upload_documents.html:18
+msgid "Passport Copy"
+msgstr ""
+
+#: templates/users/upload_documents.html:20
+msgid "Upload a clear PDF or image of your passport."
+msgstr ""
+
+#: templates/users/upload_documents.html:33
+msgid "Company License"
+msgstr ""
+
+#: templates/users/upload_documents.html:35
+msgid "Upload your company registration document or business license."
+msgstr ""
+
+#: templates/users/upload_documents.html:49
+msgid "Upload and Continue"
+msgstr ""
+
+#: templates/users/verify_email.html:6
+msgid "📬 Email Verification"
+msgstr ""
+
+#: templates/users/verify_email.html:8
+msgid "A verification email has been sent to"
+msgstr ""
+
+#: templates/users/verify_email.html:11
+msgid ""
+"Please click on the verification link. If you did not receive an email, "
+"check your spam folder."
+msgstr ""
+
+#: templates/users/verify_email.html:17
+msgid "Continue Steps"
+msgstr ""
+
+#: templates/users/verify_phone.html:4
+msgid "Verify Phone Number"
+msgstr ""
+
+#: templates/users/verify_phone.html:16
+msgid "📱 Verify Phone Number"
+msgstr ""
+
+#: templates/users/verify_phone.html:36
+msgid "Verification code sent to"
+msgstr ""
+
+#: templates/users/verify_phone.html:42
+msgid "6-digit Code"
+msgstr ""
+
+#: templates/users/verify_phone.html:51
+msgid "Verify Code"
+msgstr ""
+
+#: templates/users/verify_phone.html:61
+msgid "Didn't receive the code?"
+msgstr ""
+
+#: templates/users/verify_phone.html:65
+msgid "Resend Code"
+msgstr ""
+
+#: templates/users/verify_phone.html:72
+msgid "⏳ Verification code expires after 10 minutes."
+msgstr ""
+
+#: templates/users/vessel_finder.html:7
+msgid "Vessel Tracking - Vessel Finder"
+msgstr ""
+
+#: templates/users/vessel_finder.html:47
+msgid "🌍 Vessel Finder"
+msgstr ""
+
+#: templates/users/vessel_finder.html:57
+msgid "Search Vessel by IMO Number"
+msgstr ""
+
+#: templates/users/vessel_finder.html:59
+msgid ""
+"The IMO (International Maritime Organization) number is a unique 7-digit "
+"code assigned to each vessel."
+msgstr ""
+
+#: templates/users/vessel_finder.html:64
+msgid "IMO Number"
+msgstr ""
+
+#: templates/users/vessel_finder.html:70
+msgid "e.g.: 9679593"
+msgstr ""
+
+#: templates/users/vessel_finder.html:80
+msgid "🔍 Search Vessel"
+msgstr ""
+
+#: templates/users/vessel_finder.html:107
+msgid "Feature"
+msgstr ""
+
+#: templates/users/vessel_finder.html:108
+msgid "Value"
+msgstr ""
+
+#: templates/users/vessel_finder.html:113
+msgid "IMO"
+msgstr ""
+
+#: templates/users/vessel_finder.html:117
+msgid "MMSI"
+msgstr ""
+
+#: templates/users/vessel_finder.html:121
+msgid "Vessel Name"
+msgstr ""
+
+#: templates/users/vessel_finder.html:125
+msgid "Destination"
+msgstr ""
+
+#: templates/users/vessel_finder.html:129
+msgid "Speed (knot)"
+msgstr ""
+
+#: templates/users/vessel_finder.html:133
+msgid "ETA (Date of Arrival)"
+msgstr ""
+
+#: templates/users/vessel_finder.html:149
+msgid "Enter an IMO number to view the vessel location."
+msgstr ""
+
+#: templates/users/vessel_finder.html:168
+msgid "Location:"
+msgstr ""
 
 #~ msgid "ExportMarket"
 #~ msgstr ""
