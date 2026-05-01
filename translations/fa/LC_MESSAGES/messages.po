@@ -1,0 +1,128 @@
+# Persian translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-01 20:06+0000\n"
+"PO-Revision-Date: 2026-05-01 19:56+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fa\n"
+"Language-Team: fa <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: templates/base_pwa.html:7 templates/base_pwa.html:114
+msgid "ExportMarket"
+msgstr "مارکت صادرات"
+
+#: templates/base_pwa.html:202 templates/users/dashboard.html:18
+msgid "Premium"
+msgstr "ویژه"
+
+#: templates/base_pwa.html:206
+msgid "Install"
+msgstr "نصب"
+
+#: templates/base_pwa.html:210
+msgid "Login"
+msgstr "ورود"
+
+#: templates/base_pwa.html:211
+msgid "Register"
+msgstr "ثبت‌نام"
+
+#: templates/base_pwa.html:235
+msgid "All rights reserved"
+msgstr "تمامی حقوق محفوظ است"
+
+#: templates/users/dashboard.html:4
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: templates/users/dashboard.html:29
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+#: templates/users/dashboard.html:36
+msgid "Orders"
+msgstr "سفارش‌ها"
+
+#: templates/users/dashboard.html:44
+msgid "My Orders"
+msgstr "مشاهده سفارش‌های من"
+
+#: templates/users/dashboard.html:51 templates/users/dashboard.html:138
+msgid "Manage Orders"
+msgstr "مدیریت سفارش‌ها"
+
+#: templates/users/dashboard.html:54
+msgid "new"
+msgstr "جدید"
+
+#: templates/users/dashboard.html:66
+msgid "Chat with Seller"
+msgstr "چت با فروشنده"
+
+#: templates/users/dashboard.html:73
+msgid "Chat with Broker"
+msgstr "چت با بروکر"
+
+#: templates/users/dashboard.html:79
+msgid "Start Chat"
+msgstr "شروع چت"
+
+#: templates/users/dashboard.html:85
+msgid "Enter Chat"
+msgstr "ورود به چت"
+
+#: templates/users/dashboard.html:89
+msgid "Chat is only available for premium users."
+msgstr "چت فقط برای کاربران ویژه فعال است."
+
+#: templates/users/dashboard.html:97
+msgid "Port Finder"
+msgstr "جستجوی بندر"
+
+#: templates/users/dashboard.html:100
+msgid "Vessel Finder"
+msgstr "جستجوی کشتی"
+
+#: templates/users/dashboard.html:104
+msgid "Port Finder is only available for premium users."
+msgstr "دسترسی به جستجوی بندر فقط برای کاربران ویژه فعال است."
+
+#: templates/users/dashboard.html:107
+msgid "Vessel Finder is only available for premium users."
+msgstr "دسترسی به جستجوی کشتی فقط برای کاربران ویژه فعال است."
+
+#: templates/users/dashboard.html:115
+msgid "Upgrade to Premium User"
+msgstr "ارتقاء به کاربر ویژه"
+
+#: templates/users/dashboard.html:117
+msgid "Access to map, chat, and other exclusive features"
+msgstr "دسترسی به نقشه، چت، و سایر قابلیت‌های انحصاری"
+
+#: templates/users/dashboard.html:121
+msgid "Start Upgrade Process"
+msgstr "شروع فرآیند ارتقاء"
+
+#: templates/users/dashboard.html:126
+msgid "You are a premium user"
+msgstr "شما کاربر ویژه هستید"
+
+#: templates/users/dashboard.html:127
+msgid "Enjoy our premium features!"
+msgstr "از قابلیت‌های ویژه ما لذت ببرید!"
+
+#: templates/users/dashboard.html:147
+msgid "Logout"
+msgstr "خروج از حساب"
+

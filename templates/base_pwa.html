@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" id="html-root">
+<html lang="{{ current_lang }}" dir="{{ 'rtl' if current_lang in ['fa', 'ar', 'ur'] else 'ltr' }}" id="html-root">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1e293b" />
-    <title>{% block title %}مارکت صادرات{% endblock %}</title>
+    <title>{% block title %}{{ _('ExportMarket') }}{% endblock %}</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -111,9 +111,18 @@
     <header class="bg-blue-600 text-white p-4 shadow-md dark:bg-primary-600">
         <div class="container mx-auto flex justify-between items-center">
 
-            <h1 class="text-xl font-bold">🌍 ExportMarket</h1>
+            <h1 class="text-xl font-bold">🌍 {{ _('ExportMarket') }}</h1>
 
             <div class="flex items-center space-x-4 space-x-reverse">
+                <!-- انتخاب زبان -->
+                <select onchange="if(this.value) window.location='{{ url_for('root.set_language', lang_code='') }}'+this.value" 
+                        class="text-gray-800 text-xs px-2 py-1 rounded focus:outline-none">
+                    {% for code, name in supported_languages.items() %}
+                        <option value="{{ code }}" {% if current_lang == code %}selected{% endif %}>
+                            {{ name }}
+                        </option>
+                    {% endfor %}
+                </select>
                 <!-- دکمه بازگشت به پروفایل -->
 
                 {% if current_user.role == Role.ADMIN %}
@@ -190,16 +199,16 @@
 
                     <span class="text-sm">{{ current_user.username }}</span>
                     {% if current_user.is_premium %}
-                        <span class="text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded">ویژه</span>
+                        <span class="text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded">{{ _('Premium') }}</span>
                     {% endif %}
 
                     <button onclick="installApp()" id="installBtn" class="hidden bg-white text-blue-600 text-xs px-2 py-1 rounded font-semibold">
-                        نصب
+                        {{ _('Install') }}
                     </button>
                 {% else %}
                     <div class="space-x-2 space-x-reverse">
-                        <a href="{{ url_for('users.login') }}" class="text-white hover:text-gray-300 text-sm">ورود</a>
-                        <a href="{{ url_for('users.register') }}" class="bg-white text-blue-600 hover:bg-gray-100 text-sm px-3 py-1 rounded font-semibold">ثبت‌نام</a>
+                        <a href="{{ url_for('users.login') }}" class="text-white hover:text-gray-300 text-sm">{{ _('Login') }}</a>
+                        <a href="{{ url_for('users.register') }}" class="bg-white text-blue-600 hover:bg-gray-100 text-sm px-3 py-1 rounded font-semibold">{{ _('Register') }}</a>
                     </div>
                 {% endif %}
             </div>
@@ -223,7 +232,7 @@
 
     <!-- Footer -->
     <footer class="mt-12 text-center text-sm text-gray-500 pb-6 dark:text-gray-400">
-        &copy; 2025 ExportMarket. تمامی حقوق محفوظ است.
+        &copy; 2025 ExportMarket. {{ _('All rights reserved') }}.
     </footer>
 
     <!-- Service Worker -->

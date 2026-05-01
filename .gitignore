@@ -1,35 +1,5 @@
 ```
-# Database file
-app.db
-
-# Dependencies
-.venv/
-venv/
 __pycache__/
 *.pyc
-*$py.class
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Logs
-*.log
-
-# Coverage
-.coverage
-htmlcov/
-coverage/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# OS
-.DS_Store
-Thumbs.db
+*.mo
 ```

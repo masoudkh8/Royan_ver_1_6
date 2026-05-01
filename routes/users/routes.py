@@ -12,7 +12,18 @@ from models import Message, Notification
 from models.user import db, User, Role
 from models.port import Port
 
-from . import users_bp,root_bp
+from routes.users import users_bp,root_bp
+
+# مسیر تغییر زبان
+@root_bp.route('/set_language/<lang_code>')
+def set_language(lang_code):
+    """تغییر زبان کاربر"""
+    from app import SUPPORTED_LANGUAGES
+    if lang_code in SUPPORTED_LANGUAGES:
+        session['lang'] = lang_code
+    # برگشت به صفحه قبلی
+    next_url = request.args.get('next', request.referrer or url_for('root.main_page'))
+    return redirect(next_url)
 
 # routes/users/routes.py یا app.py
 @root_bp.route('/')
