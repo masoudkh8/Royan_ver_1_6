@@ -3,13 +3,13 @@
 
 {% block content %}
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
-    <h2 class="text-2xl font-bold text-gray-800 mb-2">فرآیند ارتقاء به کاربر ویژه</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ _('Premium Upgrade Process') }}</h2>
 
     <!-- نوار پیشرفت -->
     <div class="mt-4 mb-6">
         <div class="flex justify-between text-xs text-gray-600 mb-2">
-            <span>شروع</span>
-            <span>تکمیل</span>
+            <span>{{ _('Start') }}</span>
+            <span>{{ _('Complete') }}</span>
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2.5">
             <div class="bg-gradient-to-r from-blue-500 to-green-500 h-2.5 rounded-full transition-all duration-500"
@@ -23,11 +23,11 @@
             </div>
         </div>
         <div class="text-center mt-2 text-sm text-gray-500">
-            {% if req and req.payment_receipt %}✅ درخواست شما ارسال شد
-            {% elif req and req.passport_file and req.license_file %}📤 آماده پرداخت
-            {% elif req and req.email_verified %}📄 آماده آپلود مدارک
-            {% elif req and req.phone_verified %}✉️ آماده تأیید ایمیل
-            {% else %}📱 تأیید شماره موبایل را شروع کنید
+            {% if req and req.payment_receipt %}✅ {{ _('Your request has been submitted') }}
+            {% elif req and req.passport_file and req.license_file %}📤 {{ _('Ready for payment') }}
+            {% elif req and req.email_verified %}📄 {{ _('Ready to upload documents') }}
+            {% elif req and req.phone_verified %}✉️ {{ _('Ready for email verification') }}
+            {% else %}📱 {{ _('Start by verifying your mobile number') }}
             {% endif %}
         </div>
     </div>
@@ -35,13 +35,13 @@
     <!-- پیام تاریخچه درخواست‌ها -->
     {% if requests|length > 1 %}
         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 text-sm">
-            <p>شما قبلاً {{ requests|length }} بار درخواست داده‌اید.</p>
+            <p>{{ _('You have previously requested %(count)s times.', count=requests|length) }}.</p>
             {% for r in requests %}
-                <p>درخواست {{ loop.index }}:
+                <p>{{ _('Request %(num)s:', num=loop.index) }}
                     {% if r.status == 'rejected' %}
-                        <span class="text-red-600">رد شده در {{ r.submitted_at.strftime('%Y/%m/%d') }}</span>
+                        <span class="text-red-600">{{ _('Rejected on %(date)s', date=r.submitted_at.strftime('%Y/%m/%d')) }}</span>
                     {% elif r.status == 'approved' %}
-                        <span class="text-green-600">تأیید شده</span>
+                        <span class="text-green-600">{{ _('Approved') }}</span>
                     {% endif %}
                 </p>
             {% endfor %}
@@ -57,11 +57,11 @@
                 text-white flex items-center justify-center text-sm font-bold">
                 1
             </div>
-            <span class="mr-3">تأیید شماره موبایل</span>
+            <span class="mr-3">{{ _('Mobile Number Verification') }}</span>
             {% if req and req.phone_verified %}
-                <span class="text-green-600 text-sm">✅ تأیید شده</span>
+                <span class="text-green-600 text-sm">✅ {{ _('Verified') }}</span>
             {% else %}
-                <a href="{{ url_for('users.verify_phone') }}" class="text-blue-600 text-sm font-medium">تکمیل</a>
+                <a href="{{ url_for('users.verify_phone') }}" class="text-blue-600 text-sm font-medium">{{ _('Complete') }}</a>
             {% endif %}
         </div>
 
@@ -74,14 +74,14 @@
                         text-white flex items-center justify-center text-sm font-bold">
                         2
                     </div>
-                    <span class="mr-3">تأیید ایمیل</span>
+                    <span class="mr-3">{{ _('Email Verification') }}</span>
                 </a>
                 {% if req.email_verified %}
-                    <span class="text-green-600 text-sm">✅ تأیید شده</span>
+                    <span class="text-green-600 text-sm">✅ {{ _('Verified') }}</span>
                 {% endif %}
             {% else %}
                 <div class="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center text-sm font-bold">2</div>
-                <span class="mr-3 text-gray-400">تأیید ایمیل</span>
+                <span class="mr-3 text-gray-400">{{ _('Email Verification') }}</span>
             {% endif %}
         </div>
 
@@ -94,14 +94,14 @@
                         text-white flex items-center justify-center text-sm font-bold">
                         3
                     </div>
-                    <span class="mr-3">آپلود مدارک</span>
+                    <span class="mr-3">{{ _('Upload Documents') }}</span>
                 </a>
                 {% if req.passport_file and req.license_file %}
-                    <span class="text-green-600 text-sm">✅ آپلود شده</span>
+                    <span class="text-green-600 text-sm">✅ {{ _('Uploaded') }}</span>
                 {% endif %}
             {% else %}
                 <div class="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center text-sm font-bold">3</div>
-                <span class="mr-3 text-gray-400">آپلود مدارک</span>
+                <span class="mr-3 text-gray-400">{{ _('Upload Documents') }}</span>
             {% endif %}
         </div>
 
@@ -114,14 +114,14 @@
                         text-white flex items-center justify-center text-sm font-bold">
                         4
                     </div>
-                    <span class="mr-3">پرداخت 10,000 دلار</span>
+                    <span class="mr-3">{{ _('Payment') }} {{ '{:,}'.format(PREMIUM_PRICE_USD) }} {{ _('USD') }}</span>
                 </a>
                 {% if req.payment_receipt %}
-                    <span class="text-green-600 text-sm">✅ پرداخت شده</span>
+                    <span class="text-green-600 text-sm">✅ {{ _('Paid') }}</span>
                 {% endif %}
             {% else %}
                 <div class="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center text-sm font-bold">4</div>
-                <span class="mr-3 text-gray-400">پرداخت</span>
+                <span class="mr-3 text-gray-400">{{ _('Payment') }}</span>
             {% endif %}
         </div>
 
@@ -133,17 +133,17 @@
                     text-white flex items-center justify-center text-sm font-bold">
                     5
                 </div>
-                <span class="mr-3">بررسی و تأیید نهایی</span>
+                <span class="mr-3">{{ _('Final Review and Approval') }}</span>
                 {% if req.status == 'approved' %}
-                    <span class="text-green-600 text-sm">✅ تأیید شده</span>
+                    <span class="text-green-600 text-sm">✅ {{ _('Approved') }}</span>
                 {% elif req.status == 'rejected' %}
-                    <span class="text-red-600 text-sm">❌ رد شده</span>
+                    <span class="text-red-600 text-sm">❌ {{ _('Rejected') }}</span>
                 {% else %}
-                    <span class="text-yellow-600 text-sm">در حال بررسی</span>
+                    <span class="text-yellow-600 text-sm">{{ _('Under Review') }}</span>
                 {% endif %}
             {% else %}
                 <div class="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center text-sm font-bold">5</div>
-                <span class="mr-3 text-gray-400">بررسی و تأیید نهایی</span>
+                <span class="mr-3 text-gray-400">{{ _('Final Review and Approval') }}</span>
             {% endif %}
         </div>
     </div>

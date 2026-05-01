@@ -30,6 +30,11 @@ def set_language(lang_code):
 def main_page():
     return render_template('index.html')
 
+@root_bp.route('/change_language/<lang_code>')
+def change_language(lang_code):
+    """Endpoint جایگزین برای تغییر زبان - قابل دسترسی با نام root.change_language"""
+    return set_language(lang_code)
+
 
 @users_bp.route('/create_first_admin', methods=['GET', 'POST'])
 def create_first_admin():

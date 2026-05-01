@@ -2,7 +2,7 @@
 <!-- templates/users/login.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}ورود به حساب{% endblock %}
+{% block title %}{{ _('Login to Account') }}{% endblock %}
 
 {% block content %}
 <div class="flex min-h-screen items-center justify-center px-4 py-12">
@@ -15,20 +15,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v3m-3-3h6M6 10h12M6 6h12M6 14h12M6 18h12" />
                 </svg>
             </div>
-            <h2 class="mt-4 text-2xl font-bold text-gray-800">خوش آمدید</h2>
-            <p class="text-gray-500">به مارکت صادرات بین‌المللی وارد شوید</p>
+            <h2 class="mt-4 text-2xl font-bold text-gray-800">{{ _('Welcome') }}</h2>
+            <p class="text-gray-500">{{ _('Login to International Export Market') }}</p>
         </div>
 
         <!-- فرم ورود -->
         <form class="mt-8 space-y-6" method="POST">
             <div class="space-y-4">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">ایمیل</label>
+                    <label for="email" class="block text-sm font-medium text-gray-700">{{ _('Email') }}</label>
                     <input id="email" name="email" type="email" required
                            class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out text-sm">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">رمز عبور</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700">{{ _('Password') }}</label>
                     <input id="password" name="password" type="password" required
                            class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out text-sm">
                 </div>
@@ -38,16 +38,16 @@
             <div>
                 <button type="submit"
                         class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-105 transition duration-200">
-                    ورود به حساب
+                    {{ _('Login to Account') }}
                 </button>
             </div>
 
             <!-- لینک ثبت‌نام -->
             <div class="text-center">
                 <p class="text-sm text-gray-600">
-                    حساب ندارید؟
+                    {{ _("Don't have an account?") }}
                     <a href="{{ url_for('users.register') }}" class="font-medium text-blue-600 hover:text-blue-500 transition">
-                        ثبت‌نام کنید
+                        {{ _('Register Now') }}
                     </a>
                 </p>
             </div>

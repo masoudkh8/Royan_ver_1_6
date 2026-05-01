@@ -1,7 +1,7 @@
 <!-- templates/users/map.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}نقشه پورت‌ها{% endblock %}
+{% block title %}{{ _('Ports Map') }}{% endblock %}
 
 {% block content %}
 <!-- سایدبار چپ و نقشه -->
@@ -14,35 +14,35 @@
 
 
         <!-- عنوان -->
-        <h2 class="text-xl font-bold text-gray-800 mb-4">📌 لیست پورت‌ها</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">{{ _('📌 Ports List') }}</h2>
 
         <!-- فیلتر -->
-        <input type="text" id="filter" placeholder="فیلتر بر اساس کشور..."
+        <input type="text" id="filter" placeholder="{{ _('Filter by country...') }}"
                class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 text-sm"
                onkeyup="filterPorts()">
 
         <!-- لیست پورت‌ها با اسکرول مستقل -->
         <div id="port-list" class="flex-1 overflow-y-auto space-y-2 max-h-64">
-            <p class="text-gray-500 text-sm">در حال بارگذاری...</p>
+            <p class="text-gray-500 text-sm">{{ _('Loading...') }}</p>
         </div>
         <form id="add-port-form" class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-2">
-            <h3 class="font-bold text-blue-800 mb-3">➕ اضافه کردن پورت جدید</h3>
-            <input type="text" id="new-port-name" placeholder="نام پورت" required
+            <h3 class="font-bold text-blue-800 mb-3">{{ _('➕ Add New Port') }}</h3>
+            <input type="text" id="new-port-name" placeholder="{{ _('Port Name') }}" required
                    class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
-            <input type="text" id="new-port-country" placeholder="کشور (مثلاً IR)" required
+            <input type="text" id="new-port-country" placeholder="{{ _('Country (e.g. IR)') }}" required
                    class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
-            <input type="number" step="any" id="new-port-latitude" placeholder="عرض جغرافیایی" required
+            <input type="number" step="any" id="new-port-latitude" placeholder="{{ _('Latitude') }}" required
                    class="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-gray-100">
-            <input type="number" step="any" id="new-port-longitude" placeholder="طول جغرافیایی" required
+            <input type="number" step="any" id="new-port-longitude" placeholder="{{ _('Longitude') }}" required
                    class="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-gray-100">
             <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded text-sm font-semibold">
-                افزودن پورت
+                {{ _('Add Port') }}
             </button>
         </form>
 
         <!-- نمایش مختصات کلیک -->
         <div id="coordinates-display" class="mt-4 p-3 bg-gray-100 rounded text-sm text-center text-gray-700 font-medium">
-            روی نقشه کلیک کنید تا مختصات نمایش داده شود
+            {{ _('Click on the map to display coordinates') }}
         </div>
     </div>
 
@@ -74,7 +74,7 @@
             const lng = e.latlng.lng.toFixed(6);
 
             // نمایش در سایدبار
-            document.getElementById('coordinates-display').innerText = `عرض: ${lat}, طول: ${lng}`;
+            document.getElementById('coordinates-display').innerText = `${_('Lat')}: ${lat}, ${_('Lng')}: ${lng}`;
 
             // پر کردن فرم
             document.getElementById('new-port-latitude').value = lat;
@@ -88,7 +88,7 @@
     async function loadPorts() {
         try {
             const res = await fetch('{{ url_for("users.get_ports") }}');
-            if (!res.ok) throw new Error("خطا در بارگذاری پورت‌ها");
+            if (!res.ok) throw new Error("{{ _('Error loading ports') }}");
             ports = await res.json();
 
             // پاک کردن قبلی‌ها
@@ -103,7 +103,7 @@
 
                 // ایجاد مارکر
                 const marker = L.marker([lat, lng]).addTo(map)
-                    .bindPopup(`<b>${port.name}</b><br>کشور: ${port.country}`);
+                    .bindPopup(`<b>${port.name}</b><br>{{ _('Country') }}: ${port.country}`);
                 markers[port.id] = marker;
 
                 // ایجاد آیتم لیست
@@ -116,8 +116,8 @@
                 item.innerHTML = `
                     <div>${port.name} (${port.country})</div>
                     <div class="flex gap-1">
-                        <button class="action-btn edit-btn text-xs px-2 py-1" onclick="editPort(${port.id})">ویرایش</button>
-                        <button class="action-btn delete-btn text-xs px-2 py-1" onclick="deletePort(${port.id})">حذف</button>
+                        <button class="action-btn edit-btn text-xs px-2 py-1" onclick="editPort(${port.id})">{{ _('Edit') }}</button>
+                        <button class="action-btn delete-btn text-xs px-2 py-1" onclick="deletePort(${port.id})">{{ _('Delete') }}</button>
                     </div>
                 `;
 
@@ -130,8 +130,8 @@
                 list.appendChild(item);
             });
         } catch (error) {
-            console.error("❌ خطای بارگذاری پورت‌ها:", error);
-            document.getElementById('port-list').innerHTML = '<p class="text-red-500">خطا در بارگذاری.</p>';
+            console.error("❌ {{ _('Error loading ports') }}:", error);
+            document.getElementById('port-list').innerHTML = '<p class="text-red-500">{{ _('Error loading.') }}</p>';
         }
     }
 
@@ -155,7 +155,7 @@
         };
 
         if (!data.name || !data.country || isNaN(data.latitude) || isNaN(data.longitude)) {
-            alert("لطفاً تمام فیلدها را پر کنید.");
+            alert("{{ _('Please fill all fields.') }}");
             return;
         }
 
@@ -171,20 +171,20 @@
                 loadPorts(); // بروزرسانی
                 this.reset();
             } else {
-                alert("خطا: " + result.error);
+                alert("{{ _('Error:') }} " + result.error);
             }
         } catch (error) {
-            alert("خطا در ارتباط با سرور.");
+            alert("{{ _('Server communication error.') }}");
         }
     });
 
     // ویرایش پورت
     async function editPort(portId) {
         const port = ports.find(p => p.id === portId);
-        const name = prompt("نام جدید:", port.name);
-        const country = prompt("کشور جدید:", port.country);
-        const lat = parseFloat(prompt("عرض جغرافیایی جدید:", port.location[0]));
-        const lng = parseFloat(prompt("طول جغرافیایی جدید:", port.location[1]));
+        const name = prompt("{{ _('New name:') }}", port.name);
+        const country = prompt("{{ _('New country:') }}", port.country);
+        const lat = parseFloat(prompt("{{ _('New latitude:') }}", port.location[0]));
+        const lng = parseFloat(prompt("{{ _('New longitude:') }}", port.location[1]));
 
         if (name && country && !isNaN(lat) && !isNaN(lng)) {
             try {
@@ -199,14 +199,14 @@
                     loadPorts();
                 }
             } catch (error) {
-                alert("خطا در ویرایش.");
+                alert("{{ _('Edit error.') }}");
             }
         }
     }
 
     // حذف پورت
     async function deletePort(portId) {
-        if (confirm("آیا مطمئن هستید؟")) {
+        if (confirm("{{ _('Are you sure?') }}")) {
             try {
                 const res = await fetch('{{ url_for("users.delete_port", port_id="") }}' + portId, {
                     method: 'DELETE'
@@ -217,7 +217,7 @@
                     loadPorts();
                 }
             } catch (error) {
-                alert("خطا در حذف.");
+                alert("{{ _('Delete error.') }}");
             }
         }
     }
@@ -227,7 +227,7 @@
         if (typeof L !== 'undefined') {
             initMap();
         } else {
-            console.error("❌ Leaflet.js لود نشده");
+            console.error("❌ {{ _('Leaflet.js not loaded') }}");
         }
     });
 </script>
@@ -237,10 +237,10 @@
 {% if not current_user.is_premium %}
 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm mx-4">
-        <h3 class="text-xl font-bold text-gray-800">🔒 دسترسی محدود</h3>
-        <p class="text-gray-600 mt-2">فقط کاربران ویژه می‌توانند به این نقشه دسترسی داشته باشند.</p>
+        <h3 class="text-xl font-bold text-gray-800">{{ _('🔒 Restricted Access') }}</h3>
+        <p class="text-gray-600 mt-2">{{ _('Only premium users can access this map.') }}</p>
         <a href="{{ url_for('users.upgrade_to_premium') }}" class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">
-            🌟 ارتقاء به ویژه
+            {{ _('🌟 Upgrade to Premium') }}
         </a>
     </div>
 </div>

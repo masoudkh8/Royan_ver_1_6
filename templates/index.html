@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" id="html-root">
+<html lang="{{ current_lang }}" dir="{{ 'rtl' if current_lang in ['fa', 'ar', 'ur', 'he'] else 'ltr' }}" id="html-root">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>شرکت رایان - سیستم مدیریت تجارت بین‌المللی</title>
+    <title>{{ _('Rayan Company - International Trade Management System') }}</title>
 
     <!-- Tailwind CSS + Plugins -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -69,12 +69,23 @@
     <header class="bg-white dark:bg-gray-800 shadow-sm transition-colors">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2 space-x-reverse">
-                <img src="/static/images/logo.png" alt="لوگو شرکت رایان" class="w-10 h-10 object-contain">
-                <h1 class="text-xl font-bold text-blue-700 dark:text-blue-400">شرکت رایان</h1>
+                <img src="/static/images/logo.png" alt="{{ _('Rayan Company Logo') }}" class="w-10 h-10 object-contain">
+                <h1 class="text-xl font-bold text-blue-700 dark:text-blue-400">{{ _('Rayan Company') }}</h1>
             </div>
-            <a href="/users/login" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
-                ورود به سیستم
-            </a>
+            <div class="flex items-center space-x-4">
+                <!-- انتخاب زبان -->
+                <select onchange="if(this.value) window.location='/set_language/'+this.value" 
+                        class="text-gray-800 text-xs px-2 py-1 rounded focus:outline-none border border-gray-300">
+                    {% for code, name in supported_languages.items() %}
+                        <option value="{{ code }}" {% if current_lang == code %}selected{% endif %}>
+                            {{ name }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <a href="/users/login" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
+                    {{ _('Login') }}
+                </a>
+            </div>
         </div>
     </header>
 
@@ -82,17 +93,17 @@
     <section class="hero-bg text-white py-24 text-center animate__animated animate__fadeIn">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__slideInDown">
-                به سیستم مدیریت تجارت بین‌المللی خوش آمدید
+                {{ _('Welcome to the International Trade Management System') }}
             </h2>
             <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90 animate__animated animate__fadeInUp">
-                شرکت رایان با ارائه پلتفرمی هوشمند، فرآیند خرید، فروش و حمل و نقل بین‌المللی کالا را ساده، شفاف و امن می‌کند.
+                {{ _('Rayan Company provides an intelligent platform that simplifies, secures, and brings transparency to the international trade process of buying, selling, and transporting goods.') }}
             </p>
             <div class="space-x-4 space-x-reverse animate__animated animate__zoomIn">
                 <a href="/users/register" class="inline-block px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-800 font-bold rounded-lg shadow transition">
-                    ثبت‌نام کنید
+                    {{ _('Register') }}
                 </a>
                 <a href="/users/login" class="inline-block px-8 py-3 bg-white text-blue-700 hover:bg-gray-100 font-bold rounded-lg shadow transition">
-                    ورود به سیستم
+                    {{ _('Login to System') }}
                 </a>
             </div>
         </div>
@@ -101,15 +112,15 @@
     <!-- بخش خدمات -->
     <section class="py-16 bg-white dark:bg-gray-800 transition-colors">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">خدمات ما</h3>
+            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">{{ _('Our Services') }}</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- کارت ۱ -->
                 <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.1s">
                     <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shopping-cart text-green-600 dark:text-green-300 text-xl"></i>
                     </div>
-                    <h4 class="text-xl font-semibold mb-2 dark:text-white">مدیریت سفارشات</h4>
-                    <p class="text-gray-600 dark:text-gray-300">ثبت، پیگیری و تأیید سفارشات به صورت کاملاً دیجیتال و لحظه‌ای.</p>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">{{ _('Order Management') }}</h4>
+                    <p class="text-gray-600 dark:text-gray-300">{{ _('Digital and real-time registration, tracking, and confirmation of orders.') }}</p>
                 </div>
 
                 <!-- کارت ۲ -->
@@ -117,8 +128,8 @@
                     <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shield-alt text-blue-600 dark:text-blue-300 text-xl"></i>
                     </div>
-                    <h4 class="text-xl font-semibold mb-2 dark:text-white">امنیت و تأیید هویت</h4>
-                    <p class="text-gray-600 dark:text-gray-300">تأیید هویت کاربران، تأیید مدارک و ارتقاء به کاربر ویژه با فرآیند شفاف.</p>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">{{ _('Security & Identity Verification') }}</h4>
+                    <p class="text-gray-600 dark:text-gray-300">{{ _('User identity verification, document approval, and transparent premium upgrade process.') }}</p>
                 </div>
 
                 <!-- کارت ۳ -->
@@ -126,8 +137,8 @@
                     <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-headset text-purple-600 dark:text-purple-300 text-xl"></i>
                     </div>
-                    <h4 class="text-xl font-semibold mb-2 dark:text-white">پشتیبانی ۲۴/۷</h4>
-                    <p class="text-gray-600 dark:text-gray-300">پشتیبانی تخصصی به صورت چت، تماس و ایمیل در تمام روزهای هفته.</p>
+                    <h4 class="text-xl font-semibold mb-2 dark:text-white">{{ _('24/7 Support') }}</h4>
+                    <p class="text-gray-600 dark:text-gray-300">{{ _('Professional support via chat, call, and email throughout the week.') }}</p>
                 </div>
             </div>
         </div>
@@ -136,15 +147,15 @@
     <!-- بخش ویدیوی آموزشی -->
     <section class="py-16 bg-gray-50 dark:bg-gray-700 transition-colors">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">ویدیوی آموزشی سیستم</h3>
+            <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">{{ _('System Training Video') }}</h3>
             <p class="text-center text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-                نحوه استفاده از سیستم مدیریت تجارت بین‌المللی را در این ویدیو مشاهده کنید.
+                {{ _('Watch this video to learn how to use the international trade management system.') }}
             </p>
             <div class="flex justify-center">
                 <div class="w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg">
                     <video controls class="w-full h-full">
                         <source src="/static/videos/demo.mp4" type="video/mp4">
-                        مرورگر شما از نمایش ویدیو پشتیبانی نمی‌کند.
+                        {{ _('Your browser does not support video playback.') }}
                     </video>
                 </div>
             </div>
@@ -154,29 +165,29 @@
    <!-- بخش شرکت‌های همکار با اسلایدر چرخشی -->
     <section class="py-16 bg-white dark:bg-gray-800 transition-colors">
         <div class="container mx-auto px-6 text-center">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">همکاری با شرکت‌های معتبر</h3>
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{{ _('Cooperation with Reputable Companies') }}</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-10">
-                ما با شرکت‌های بزرگ و معتبر در سطح ملی و بین‌المللی همکاری داریم.
+                {{ _('We collaborate with large and reputable companies at national and international levels.') }}
             </p>
 
             <!-- اسلایدر چرخشی -->
             <div class="overflow-hidden relative">
                 <div id="partner-slider" class="flex whitespace-nowrap gap-12">
                     <!-- مجموعه اول -->
-                    <img src="/static/images/partners/partner1.png" alt="شرکت همکار ۱" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner2.png" alt="شرکت همکار ۲" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner3.png" alt="شرکت همکار ۳" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner4.png" alt="شرکت همکار ۴" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner5.png" alt="شرکت همکار ۵" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner6.png" alt="شرکت همکار ۶" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner1.png" alt="{{ _('Partner Company 1') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner2.png" alt="{{ _('Partner Company 2') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner3.png" alt="{{ _('Partner Company 3') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner4.png" alt="{{ _('Partner Company 4') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner5.png" alt="{{ _('Partner Company 5') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner6.png" alt="{{ _('Partner Company 6') }}" class="partner-logo h-12 object-contain w-36">
 
                     <!-- مجموعه دوم (تکرار برای حلقه بی‌درنگ) -->
-                    <img src="/static/images/partners/partner1.png" alt="شرکت همکار ۱" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner2.png" alt="شرکت همکار ۲" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner3.png" alt="شرکت همکار ۳" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner4.png" alt="شرکت همکار ۴" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner5.png" alt="شرکت همکار ۵" class="partner-logo h-12 object-contain w-36">
-                    <img src="/static/images/partners/partner6.png" alt="شرکت همکار ۶" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner1.png" alt="{{ _('Partner Company 1') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner2.png" alt="{{ _('Partner Company 2') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner3.png" alt="{{ _('Partner Company 3') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner4.png" alt="{{ _('Partner Company 4') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner5.png" alt="{{ _('Partner Company 5') }}" class="partner-logo h-12 object-contain w-36">
+                    <img src="/static/images/partners/partner6.png" alt="{{ _('Partner Company 6') }}" class="partner-logo h-12 object-contain w-36">
                 </div>
             </div>
         </div>
@@ -186,21 +197,21 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-center justify-center mb-6">
-                    <i class="fas fa-book-open text-5xl ml-4"></i>
-                    <h3 class="text-3xl font-bold">مجله تصویریماژه</h3>
+                    <i class="fas fa-book-open text-5xl {{ 'ml-4' if current_lang in ['fa', 'ar', 'ur', 'he'] else 'mr-4' }}"></i>
+                    <h3 class="text-3xl font-bold">{{ _('Image Magazine') }}</h3>
                 </div>
                 <p class="mb-6 text-lg text-indigo-100">
-                    مرجع تخصصی تجارت بین‌الملل، حمل و نقل دریایی و لجستیک
+                    {{ _('Specialized reference for international trade, maritime transport, and logistics') }}
                 </p>
                 <p class="mb-8 text-indigo-200">
-                    برای دسترسی به آخرین شماره‌های مجله، درخواست اسپانسری، تبلیغات و اشتراک سالیانه، به بخش مجله مراجعه کنید.
+                    {{ _('To access the latest magazine issues, request sponsorship, advertising, and annual subscription, visit the magazine section.') }}
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="/magazine" class="inline-block px-8 py-3 bg-white text-indigo-700 hover:bg-gray-100 font-bold rounded-lg transition transform hover:scale-105 shadow-lg">
-                        ورود به بخش مجله
+                        {{ _('Enter Magazine Section') }}
                     </a>
                     <a href="/magazine/subscribe" class="inline-block px-8 py-3 bg-indigo-800 text-white hover:bg-indigo-900 font-bold rounded-lg transition transform hover:scale-105 shadow-lg">
-                        اشتراک سالیانه
+                        {{ _('Annual Subscription') }}
                     </a>
                 </div>
             </div>
@@ -210,12 +221,12 @@
     <!-- بخش تبلیغات -->
     <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
         <div class="container mx-auto px-6">
-            <h3 class="text-2xl font-bold mb-6">همکاری با ما</h3>
+            <h3 class="text-2xl font-bold mb-6">{{ _('Cooperate with Us') }}</h3>
             <p class="mb-8 max-w-2xl mx-auto text-blue-100">
-                شما هم می‌توانید از مزایای پلتفرم رایان برای رشد تجاری خود استفاده کنید.
+                {{ _('You can also benefit from Rayan platform advantages to grow your business.') }}
             </p>
             <a href="/users/register" class="inline-block px-8 py-3 bg-white text-blue-700 hover:bg-gray-100 font-bold rounded-lg transition">
-                همکاری با ما
+                {{ _('Cooperate with Us') }}
             </a>
         </div>
     </section>
@@ -223,8 +234,8 @@
     <!-- فوتر -->
     <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8 transition-colors">
         <div class="container mx-auto px-6 text-center">
-            <p>© 1403 شرکت رایان | تمامی حقوق محفوظ است</p>
-            <p class="text-gray-400 mt-2">سیستم مدیریت تجارت بین‌المللی و لجستیک</p>
+            <p>© 1403 {{ _('Rayan Company') }} | {{ _('All Rights Reserved') }}</p>
+            <p class="text-gray-400 mt-2">{{ _('International Trade and Logistics Management System') }}</p>
         </div>
     </footer>
 
@@ -283,66 +294,8 @@
                 requestAnimationFrame(animateSlider);
             });
         });
-    </script>
 
-
-    <!-- دارک مود جاوااسکریپت -->
-    <script>
-        function toggleDarkMode() {
-            const html = document.getElementById('html-root');
-            const icon = document.getElementById('dark-mode-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = 'fas fa-moon';
-                localStorage.theme = 'light';
-            } else {
-                html.classList.add('dark');
-                icon.className = 'fas fa-sun';
-                localStorage.theme = 'dark';
-            }
-        }
-
-        // بارگذاری تم ذخیره شده
-        if (localStorage.theme === 'dark') {
-            document.getElementById('html-root').classList.add('dark');
-            document.getElementById('dark-mode-icon').className = 'fas fa-sun';
-        }
-    </script>
-
-
-    <script>
-        // اسلایدر چرخشی لوگوها
-        document.addEventListener("DOMContentLoaded", function () {
-            const slider = document.getElementById('partner-slider');
-            if (!slider) return;
-
-            let position = 0;
-            const speed = 0.5; // سرعت حرکت (کم = آرام، زیاد = سریع)
-            const innerWidth = slider.firstElementChild.clientWidth + 48; // عرض هر لوگو + gap (12 = 48px)
-            const totalWidth = innerWidth * 6; // 6 لوگو در یک مجموعه
-
-            function animate() {
-                position -= speed;
-                // وقتی نیمی از اسلایدر حرکت کرد، به صورت نامرئی به اول برسون
-                if (position <= -totalWidth) {
-                    position = 0; // بازنشانی موقعیت — حلقه بی‌نهایت
-                }
-                slider.style.transform = `translateX(${position}px)`;
-                requestAnimationFrame(animate);
-            }
-
-            // شروع اسلایدر
-            animate();
-
-            // اختیاری: توقف هنگام هاور
-            slider.addEventListener('mouseenter', () => {
-                cancelAnimationFrame(animate);
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                requestAnimationFrame(animate);
-            });
-        });
+        // تغییر جهت صفحه بر اساس زبان - حذف شد چون در HTML با Jinja2 انجام می‌شود
     </script>
 
 </body>

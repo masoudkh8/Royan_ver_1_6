@@ -19,22 +19,22 @@
         <!-- کارت‌های اشتراک -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-green-500">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">اشتراک سالیانه</h3>
-                <p class="text-3xl font-bold text-green-600 mb-4">۱,۲۰۰,۰۰۰ تومان</p>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ _('Annual Subscription') }}</h3>
+                <p class="text-3xl font-bold text-green-600 mb-4">{{ '{:,}'.format(SUBSCRIPTION_ANNUAL_IRR) }} {{ _('Tomans') }}</p>
                 <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                    <li class="flex items-center">✓ ۱۲ شماره چاپی سالانه</li>
-                    <li class="flex items-center">✓ دسترسی به نسخه دیجیتال</li>
-                    <li class="flex items-center">✓ ارسال رایگان پستی</li>
-                    <li class="flex items-center">✓ تخفیف ویژه رویدادها</li>
+                    <li class="flex items-center">✓ {{ _('12 printed issues per year') }}</li>
+                    <li class="flex items-center">✓ {{ _('Access to digital version') }}</li>
+                    <li class="flex items-center">✓ {{ _('Free postal delivery') }}</li>
+                    <li class="flex items-center">✓ {{ _('Special event discounts') }}</li>
                 </ul>
             </div>
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-teal-500">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">اشتراک شش ماهه</h3>
-                <p class="text-3xl font-bold text-teal-600 mb-4">۶۵۰,۰۰۰ تومان</p>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ _('Semi-Annual Subscription') }}</h3>
+                <p class="text-3xl font-bold text-teal-600 mb-4">{{ '{:,}'.format(SUBSCRIPTION_SEMI_ANNUAL_IRR) }} {{ _('Tomans') }}</p>
                 <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-                    <li class="flex items-center">✓ ۶ شماره چاپی</li>
-                    <li class="flex items-center">✓ دسترسی به نسخه دیجیتال</li>
-                    <li class="flex items-center">✓ ارسال رایگان پستی</li>
+                    <li class="flex items-center">✓ {{ _('6 printed issues') }}</li>
+                    <li class="flex items-center">✓ {{ _('Access to digital version') }}</li>
+                    <li class="flex items-center">✓ {{ _('Free postal delivery') }}</li>
                 </ul>
             </div>
         </div>
@@ -86,8 +86,8 @@
                     </label>
                     <select id="subscription_type" name="subscription_type" required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
-                        <option value="annual">سالیانه (۱,۲۰۰,۰۰۰ تومان)</option>
-                        <option value="semi_annual">شش ماهه (۶۵۰,۰۰۰ تومان)</option>
+                        <option value="annual">{{ _('Annual') }} ({{ '{:,}'.format(SUBSCRIPTION_ANNUAL_IRR) }} {{ _('Tomans') }})</option>
+                        <option value="semi_annual">{{ _('Semi-Annual') }} ({{ '{:,}'.format(SUBSCRIPTION_SEMI_ANNUAL_IRR) }} {{ _('Tomans') }})</option>
                     </select>
                 </div>
 

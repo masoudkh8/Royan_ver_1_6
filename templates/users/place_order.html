@@ -1,7 +1,7 @@
 <!-- templates/users/place_order.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}ثبت سفارش جدید{% endblock %}
+{% block title %}{{ _('Place New Order') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 mb-20">
@@ -11,13 +11,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        بازگشت به پروفایل
+        {{ _('Back to Profile') }}
     </a>
 
 
     <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold text-gray-800">📝 ثبت سفارش جدید</h1>
-        <p class="text-gray-600">سفارش خود را برای صادرات یا واردات تکمیل کنید</p>
+        <h1 class="text-2xl font-bold text-gray-800">{{ _('📝 Place New Order') }}</h1>
+        <p class="text-gray-600">{{ _('Complete your export or import order') }}</p>
     </div>
 
     <form method="POST" action="{{ url_for('users.place_order') }}" class="space-y-6">
@@ -25,19 +25,19 @@
         <!-- محصول و کمیت -->
         <div class="grid md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-sm font-medium text-gray-700">محصول</label>
+                <label class="block text-sm font-medium text-gray-700">{{ _('Product') }}</label>
                 <select name="product" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                    <option value="">انتخاب کنید...</option>
-                    <option value="wheat">گندم</option>
-                    <option value="rice">برنج</option>
-                    <option value="sugar">قند</option>
-                    <option value="corn">ذرت</option>
-                    <option value="steel">فولاد</option>
+                    <option value="">{{ _('Select...') }}</option>
+                    <option value="wheat">{{ _('Wheat') }}</option>
+                    <option value="rice">{{ _('Rice') }}</option>
+                    <option value="sugar">{{ _('Sugar') }}</option>
+                    <option value="corn">{{ _('Corn') }}</option>
+                    <option value="steel">{{ _('Steel') }}</option>
                 </select>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">کمیت (تن)</label>
+                <label class="block text-sm font-medium text-gray-700">{{ _('Quantity (Tons)') }}</label>
                 <input type="number" name="quantity" required min="1" step="0.1"
                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
@@ -45,7 +45,7 @@
 
         <!-- قیمت -->
         <div>
-            <label class="block text-sm font-medium text-gray-700">قیمت هر تن (دلار)</label>
+            <label class="block text-sm font-medium text-gray-700">{{ _('Price per Ton (USD)') }}</label>
             <input type="number" name="price" required min="10" step="5"
                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
         </div>
@@ -53,21 +53,21 @@
         <!-- پورت مبدأ و مقصد -->
         <div class="grid md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-sm font-medium text-gray-700">پورت مبدأ</label>
-                <input type="text" name="origin_port" placeholder="مثلاً بندرعباس"
+                <label class="block text-sm font-medium text-gray-700">{{ _('Origin Port') }}</label>
+                <input type="text" name="origin_port" placeholder="{{ _('e.g. Bandar Abbas') }}"
                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">پورت مقصد</label>
-                <input type="text" name="destination_port" placeholder="مثلاً جده"
+                <label class="block text-sm font-medium text-gray-700">{{ _('Destination Port') }}</label>
+                <input type="text" name="destination_port" placeholder="{{ _('e.g. Jeddah') }}"
                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
         </div>
         <div>
-            <label>فروشنده</label>
+            <label>{{ _('Seller') }}</label>
             <select name="seller_id" required class="form-control">
-                <option value="">انتخاب کنید...</option>
+                <option value="">{{ _('Select...') }}</option>
                 {% for seller in sellers %}
                     <option value="{{ seller.id }}">{{ seller.username }} ({{ seller.company_name or '-' }})</option>
                 {% endfor %}
@@ -75,10 +75,10 @@
         </div>
         <!-- توضیحات اختیاری -->
         <div>
-            <label class="block text-sm font-medium text-gray-700">توضیحات (اختیاری)</label>
+            <label class="block text-sm font-medium text-gray-700">{{ _('Notes (Optional)') }}</label>
             <textarea name="notes" rows="3"
                       class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="شرایط پرداخت، بسته‌بندی، ..."></textarea>
+                      placeholder="{{ _('Payment terms, packaging, ...') }}"></textarea>
         </div>
 
         <!-- دکمه ارسال -->
@@ -88,7 +88,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                ثبت سفارش
+                {{ _('Place Order') }}
             </button>
 
         </div>

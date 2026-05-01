@@ -132,13 +132,16 @@ def create_app():
 
     @app.context_processor
     def inject_language_vars():
-        """تزریق متغیرهای زبان به تمام تمپلیت‌ها"""
+        """تزریق متغیرهای زبان و قیمت‌ها به تمام تمپلیت‌ها"""
         from flask import session, request
         current_lang = session.get('lang', 'fa')
         return {
             'current_lang': current_lang,
             'supported_languages': SUPPORTED_LANGUAGES,
-            '_': gettext
+            '_': gettext,
+            'PREMIUM_PRICE_USD': Config.PREMIUM_PRICE_USD,
+            'SUBSCRIPTION_ANNUAL_IRR': Config.SUBSCRIPTION_ANNUAL_IRR,
+            'SUBSCRIPTION_SEMI_ANNUAL_IRR': Config.SUBSCRIPTION_SEMI_ANNUAL_IRR
         }
 
     @login_manager.user_loader

@@ -6,33 +6,33 @@
 
     {% if not current_user.is_premium %}
         <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded shadow">
-            <p class="font-bold">⚠️ دسترسی به چت</p>
-            <p>فقط کاربران <strong>ویژه</strong> می‌توانند از سیستم چت استفاده کنند.</p>
+            <p class="font-bold">{{ _('⚠️ Chat Access') }}</p>
+            <p>{{ _('Only <strong>Premium</strong> users can use the chat system.') }}</p>
             <a href="{{ url_for('users.upgrade_to_premium') }}" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded text-sm font-semibold">
-                🌟 ارتقاء به کاربر ویژه
+                {{ _('🌟 Upgrade to Premium') }}
             </a>
         </div>
     {% else %}
-        <!-- محتوای چت فقط برای کاربران ویژه -->
+        <!-- چت محتوا فقط برای کاربران ویژه -->
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 ml-2 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                چت
+                {{ _('Chat') }}
             </h2>
             <a href="{{ url_for('users.profile') }}" class="text-sm text-blue-600 hover:text-blue-800 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                بازگشت
+                {{ _('Back') }}
             </a>
         </div>
 
         <div class="flex gap-6">
             <!-- لیست کاربران ویژه -->
             <div class="w-1/3 bg-white p-4 rounded-xl shadow-sm border">
-                <h3 class="font-bold text-gray-800 mb-3">مخاطبین ویژه</h3>
+                <h3 class="font-bold text-gray-800 mb-3">{{ _('Premium Contacts') }}</h3>
                 <ul class="space-y-2">
                     {% for u in users %}
                     <li>
@@ -50,7 +50,7 @@
             <div class="flex-1">
                 {% if receiver %}
                     <div class="bg-white rounded-xl shadow-sm border p-4 mb-4">
-                        <h3 class="font-bold">گفتگو با: {{ receiver.username }} 🌟</h3>
+                        <h3 class="font-bold">{{ _('Conversation with:') }} {{ receiver.username }} 🌟</h3>
                     </div>
 
                     <!-- تاریخچه پیام‌ها -->
@@ -74,22 +74,22 @@
                             </div>
                             {% endfor %}
                         {% else %}
-                            <p class="text-gray-500 text-center mt-8">هنوز پیامی ارسال نشده.</p>
+                            <p class="text-gray-500 text-center mt-8">{{ _('No messages sent yet.') }}</p>
                         {% endif %}
                     </div>
 
                     <!-- فرم ارسال پیام -->
                     <form method="POST" class="flex gap-2">
-                        <input type="text" name="content" placeholder="پیام خود را بنویسید..." required
+                        <input type="text" name="content" placeholder="{{ _('Write your message...') }}" required
                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
                         <button type="submit"
                                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm">
-                            ارسال
+                            {{ _('Send') }}
                         </button>
                     </form>
                 {% else %}
                     <div class="text-center py-12 text-gray-500 bg-gray-50 rounded-xl">
-                        <p>برای شروع چت، یک مخاطب ویژه انتخاب کنید.</p>
+                        <p>{{ _('Select a premium contact to start chatting.') }}</p>
                     </div>
                 {% endif %}
             </div>

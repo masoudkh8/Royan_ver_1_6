@@ -1,7 +1,7 @@
 <!-- templates/users/orders.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}سفارش‌های من{% endblock %}
+{% block title %}{{ _('My Orders') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto">
@@ -12,11 +12,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        بازگشت به پروفایل
+        {{ _('Back to Profile') }}
     </a>
 
 
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">📦 سفارش‌های من</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('📦 My Orders') }}</h2>
 
     {% if orders %}
         <div class="space-y-4">
@@ -24,9 +24,9 @@
             <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h3 class="text-lg font-semibold">سفارش #{{ order.id }}</h3>
-                        <p class="text-gray-600">{{ order.quantity_tons }} تن {{ order.product }} | {{ '{:,.0f}'.format(order.total_price) }} دلار</p>
-                        <p class="text-sm text-gray-500">خریدار: {{ order.buyer.username }} | فروشنده: {{ order.seller.username }}</p>
+                        <h3 class="text-lg font-semibold">{{ _('Order #%(id)s', id=order.id) }}</h3>
+                        <p class="text-gray-600">{{ '%(quantity)s tons %(product)s | %(price)s USD', quantity=order.quantity_tons, product=order.product, price='{:,.0f}'.format(order.total_price) }}</p>
+                        <p class="text-sm text-gray-500">{{ _('Buyer: %(buyer)s | Seller: %(seller)s', buyer=order.buyer.username, seller=order.seller.username) }}</p>
                     </div>
                     <span class="
                         px-3 py-1 rounded-full text-xs font-bold
@@ -38,23 +38,23 @@
                         {% endif %}
                     ">
                         {{ {
-                            'pending': 'در انتظار',
-                            'confirmed': 'تأیید شده',
-                            'in_transit': 'در حال حمل',
-                            'delivered': 'تحویل داده شد',
-                            'cancelled': 'لغو شده'
+                            'pending': _('Pending'),
+                            'confirmed': _('Confirmed'),
+                            'in_transit': _('In Transit'),
+                            'delivered': _('Delivered'),
+                            'cancelled': _('Cancelled')
                         }[order.status.value] }}
                     </span>
                 </div>
 
                 <div class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
                     <div>
-                        <strong>مبدأ:</strong> {{ order.origin_port }}<br>
-                        <strong>مقصد:</strong> {{ order.destination_port }}
+                        <strong>{{ _('Origin:') }}</strong> {{ order.origin_port }}<br>
+                        <strong>{{ _('Destination:') }}</strong> {{ order.destination_port }}
                     </div>
                     <div>
-                        <strong>تاریخ:</strong> {{ order.created_at.strftime('%d/%m/%Y') }}
-                        {% if order.shipped_at %}<br><strong>ارسال:</strong> {{ order.shipped_at.strftime('%d/%m/%Y') }}{% endif %}
+                        <strong>{{ _('Date:') }}</strong> {{ order.created_at.strftime('%d/%m/%Y') }}
+                        {% if order.shipped_at %}<br><strong>{{ _('Shipped:') }}</strong> {{ order.shipped_at.strftime('%d/%m/%Y') }}{% endif %}
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            هنوز سفارشی ثبت نکردید.
+            {{ _('You have not placed any orders yet.') }}
         </div>
     {% endif %}
 </div>

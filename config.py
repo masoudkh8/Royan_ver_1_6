@@ -19,6 +19,11 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_PASSWORD= 'jcdhiqoktqtindfg'
     
+    # تنظیمات قیمت‌ها
+    PREMIUM_PRICE_USD = 10000  # قیمت ارتقاء به کاربر ویژه به دلار
+    SUBSCRIPTION_ANNUAL_IRR = 1200000  # اشتراک سالیانه مجله به تومان
+    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # اشتراک شش ماهه مجله به تومان
+    
     # تنظیمات آپلود فایل مجله
     UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
     MAGAZINE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'magazines')

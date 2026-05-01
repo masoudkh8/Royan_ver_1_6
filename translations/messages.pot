@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-01 18:54+0000\n"
+"POT-Creation-Date: 2026-05-01 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,4 +16,248 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: templates/base_pwa.html:114
+msgid "ExportMarket"
+msgstr ""
+
+#: templates/index.html:6
+msgid "Rayan Company - International Trade Management System"
+msgstr ""
+
+#: templates/index.html:72
+msgid "Rayan Company Logo"
+msgstr ""
+
+#: templates/index.html:73 templates/index.html:237
+msgid "Rayan Company"
+msgstr ""
+
+#: templates/index.html:86
+msgid "Login"
+msgstr ""
+
+#: templates/index.html:96
+msgid "Welcome to the International Trade Management System"
+msgstr ""
+
+#: templates/index.html:99
+msgid ""
+"Rayan Company provides an intelligent platform that simplifies, secures, "
+"and brings transparency to the international trade process of buying, "
+"selling, and transporting goods."
+msgstr ""
+
+#: templates/index.html:103
+msgid "Register"
+msgstr ""
+
+#: templates/index.html:106
+msgid "Login to System"
+msgstr ""
+
+#: templates/index.html:115
+msgid "Our Services"
+msgstr ""
+
+#: templates/index.html:122
+msgid "Order Management"
+msgstr ""
+
+#: templates/index.html:123
+msgid "Digital and real-time registration, tracking, and confirmation of orders."
+msgstr ""
+
+#: templates/index.html:131
+msgid "Security & Identity Verification"
+msgstr ""
+
+#: templates/index.html:132
+msgid ""
+"User identity verification, document approval, and transparent premium "
+"upgrade process."
+msgstr ""
+
+#: templates/index.html:140
+msgid "24/7 Support"
+msgstr ""
+
+#: templates/index.html:141
+msgid "Professional support via chat, call, and email throughout the week."
+msgstr ""
+
+#: templates/index.html:150
+msgid "System Training Video"
+msgstr ""
+
+#: templates/index.html:152
+msgid ""
+"Watch this video to learn how to use the international trade management "
+"system."
+msgstr ""
+
+#: templates/index.html:158
+msgid "Your browser does not support video playback."
+msgstr ""
+
+#: templates/index.html:168
+msgid "Cooperation with Reputable Companies"
+msgstr ""
+
+#: templates/index.html:170
+msgid ""
+"We collaborate with large and reputable companies at national and "
+"international levels."
+msgstr ""
+
+#: templates/index.html:177 templates/index.html:185
+msgid "Partner Company 1"
+msgstr ""
+
+#: templates/index.html:178 templates/index.html:186
+msgid "Partner Company 2"
+msgstr ""
+
+#: templates/index.html:179 templates/index.html:187
+msgid "Partner Company 3"
+msgstr ""
+
+#: templates/index.html:180 templates/index.html:188
+msgid "Partner Company 4"
+msgstr ""
+
+#: templates/index.html:181 templates/index.html:189
+msgid "Partner Company 5"
+msgstr ""
+
+#: templates/index.html:182 templates/index.html:190
+msgid "Partner Company 6"
+msgstr ""
+
+#: templates/index.html:201
+msgid "Image Magazine"
+msgstr ""
+
+#: templates/index.html:204
+msgid ""
+"Specialized reference for international trade, maritime transport, and "
+"logistics"
+msgstr ""
+
+#: templates/index.html:207
+msgid ""
+"To access the latest magazine issues, request sponsorship, advertising, "
+"and annual subscription, visit the magazine section."
+msgstr ""
+
+#: templates/index.html:211
+msgid "Enter Magazine Section"
+msgstr ""
+
+#: templates/index.html:214 templates/magazine/subscribe.html:22
+msgid "Annual Subscription"
+msgstr ""
+
+#: templates/index.html:224 templates/index.html:229
+msgid "Cooperate with Us"
+msgstr ""
+
+#: templates/index.html:226
+msgid "You can also benefit from Rayan platform advantages to grow your business."
+msgstr ""
+
+#: templates/index.html:237
+msgid "All Rights Reserved"
+msgstr ""
+
+#: templates/index.html:238
+msgid "International Trade and Logistics Management System"
+msgstr ""
+
+#: templates/magazine/subscribe.html:23 templates/magazine/subscribe.html:33
+#: templates/magazine/subscribe.html:89 templates/magazine/subscribe.html:90
+msgid "Tomans"
+msgstr ""
+
+#: templates/magazine/subscribe.html:25
+msgid "12 printed issues per year"
+msgstr ""
+
+#: templates/magazine/subscribe.html:26 templates/magazine/subscribe.html:36
+msgid "Access to digital version"
+msgstr ""
+
+#: templates/magazine/subscribe.html:27 templates/magazine/subscribe.html:37
+msgid "Free postal delivery"
+msgstr ""
+
+#: templates/magazine/subscribe.html:28
+msgid "Special event discounts"
+msgstr ""
+
+#: templates/magazine/subscribe.html:32
+msgid "Semi-Annual Subscription"
+msgstr ""
+
+#: templates/magazine/subscribe.html:35
+msgid "6 printed issues"
+msgstr ""
+
+#: templates/magazine/subscribe.html:89
+msgid "Annual"
+msgstr ""
+
+#: templates/magazine/subscribe.html:90
+msgid "Semi-Annual"
+msgstr ""
+
+#: templates/users/login.html:5 templates/users/login.html:41
+msgid "Login to Account"
+msgstr ""
+
+#: templates/users/login.html:18
+msgid "Welcome"
+msgstr ""
+
+#: templates/users/login.html:19
+msgid "Login to International Export Market"
+msgstr ""
+
+#: templates/users/login.html:26
+msgid "Email"
+msgstr ""
+
+#: templates/users/login.html:31
+msgid "Password"
+msgstr ""
+
+#: templates/users/login.html:48
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/users/login.html:50
+msgid "Register Now"
+msgstr ""
+
+#: templates/users/make_payment.html:11
+msgid "Payment Amount"
+msgstr ""
+
+#: templates/users/make_payment.html:11
+#: templates/users/upgrade_premium.html:117
+msgid "USD"
+msgstr ""
+
+#: templates/users/make_payment.html:13
+msgid "Please upload the payment receipt after making the payment."
+msgstr ""
+
+#: templates/users/upgrade_premium.html:117
+#: templates/users/upgrade_premium.html:124
+msgid "Payment"
+msgstr ""
+
+#: templates/users/upgrade_premium.html:120
+msgid "Paid"
+msgstr ""
 
