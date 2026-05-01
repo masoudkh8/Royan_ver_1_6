@@ -1,15 +1,11 @@
 ```
-# Database file
-app.db
+# Compiled Python files
+*.pyc
+__pycache__/
 
 # Dependencies
-.venv/
 venv/
-__pycache__/
-*.pyc
-*$py.class
-
-# Environment
+.venv/
 .env
 .env.local
 *.env.*
@@ -17,19 +13,15 @@ __pycache__/
 # Logs
 *.log
 
-# Coverage
-.coverage
-htmlcov/
-coverage/
+# Translations (if compiled MO files are generated)
+*.mo
 
-# IDE
+# VSCode files
 .vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
 
-# OS
-.DS_Store
-Thumbs.db
+# Build artifacts
+dist/
+build/
+*.js
+*.css
 ```
