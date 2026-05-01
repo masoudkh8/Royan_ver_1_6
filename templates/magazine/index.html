@@ -1,32 +1,32 @@
 <!-- templates/magazine/index.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}مجله تصویر - Imazheh{% endblock %}
+{% block title %}{{ _('Imazheh Magazine') }}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
     <!-- هدر مجله -->
     <div class="max-w-7xl mx-auto mb-12 text-center">
         <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in">
-            مجله تصویریماژه
+            {{ _('Imazheh Visual Magazine') }}
         </h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-            مرجع تخصصی تجارت بین‌الملل، حمل و نقل دریایی و لجستیک
+            {{ _('Specialized reference for international trade, maritime transport and logistics') }}
         </p>
-        
+
         <!-- دکمه‌های اقدام -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
-            <a href="{{ url_for('magazine.sponsorship_request') }}" 
+            <a href="{{ url_for('magazine.sponsorship_request') }}"
                class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg">
-                درخواست اسپانسری
+                {{ _('Sponsorship Request') }}
             </a>
-            <a href="{{ url_for('magazine.advertisement_request') }}" 
+            <a href="{{ url_for('magazine.advertisement_request') }}"
                class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg">
-                تبلیغات در مجله
+                {{ _('Advertise in Magazine') }}
             </a>
-            <a href="{{ url_for('magazine.subscribe') }}" 
+            <a href="{{ url_for('magazine.subscribe') }}"
                class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg">
-                اشتراک سالیانه
+                {{ _('Annual Subscription') }}
             </a>
         </div>
     </div>
@@ -34,9 +34,9 @@
     <!-- شماره‌های مجله -->
     <div class="max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            شماره‌های منتشر شده
+            {{ _('Published Issues') }}
         </h2>
-        
+
         {% if issues %}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for issue in issues %}
@@ -48,40 +48,40 @@
                     {% else %}
                     <div class="text-white text-center p-4">
                         <div class="text-6xl font-bold mb-2">{{ issue.issue_number }}</div>
-                        <div class="text-lg">شماره مجله</div>
+                        <div class="text-lg">{{ _('Magazine Issue') }}</div>
                     </div>
                     {% endif %}
-                    
+
                     <!-- نشان جدید -->
                     {% if issue.publish_date and issue.publish_date.strftime('%Y-%m-%d') >= (now() - timedelta(days=30)).strftime('%Y-%m-%d') %}
                     <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
-                        جدید
+                        {{ _('New') }}
                     </div>
                     {% endif %}
                 </div>
-                
+
                 <!-- اطلاعات شماره -->
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         {{ issue.title }}
                     </h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                        {{ issue.description or 'توضیحات این شماره به زودی اضافه خواهد شد.' }}
+                        {{ issue.description or _('Description of this issue will be added soon.') }}
                     </p>
-                    
+
                     <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <span>تاریخ انتشار: {{ issue.publish_date.strftime('%Y/%m/%d') if issue.publish_date else 'نامشخص' }}</span>
-                        <span>{{ issue.download_count }} دانلود</span>
+                        <span>{{ _('Publish Date:') }} {{ issue.publish_date.strftime('%Y/%m/%d') if issue.publish_date else _('Unknown') }}</span>
+                        <span>{{ issue.download_count }} {{ _('Downloads') }}</span>
                     </div>
-                    
+
                     <!-- دکمه دانلود -->
-                    <a href="{{ url_for('magazine.download_issue', issue_id=issue.id) }}" 
+                    <a href="{{ url_for('magazine.download_issue', issue_id=issue.id) }}"
                        class="block w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-center py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-md">
                         <div class="flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
-                            دانلود نسخه دیجیتال
+                            {{ _('Download Digital Version') }}
                         </div>
                     </a>
                 </div>
@@ -92,10 +92,10 @@
         <div class="text-center py-12">
             <div class="text-6xl mb-4">📚</div>
             <p class="text-xl text-gray-600 dark:text-gray-400">
-                هنوز شماره‌ای منتشر نشده است.
+                {{ _('No issues have been published yet.') }}
             </p>
             <p class="text-gray-500 dark:text-gray-500 mt-2">
-                به زودی اولین شماره مجله در دسترس قرار خواهد گرفت.
+                {{ _('The first issue of the magazine will be available soon.') }}
             </p>
         </div>
         {% endif %}

@@ -1,7 +1,7 @@
 <!-- templates/users/notifications.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}اعلان‌ها{% endblock %}
+{% block title %}{{ _('Notifications') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto">
@@ -17,13 +17,13 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
             </svg>
 
-            اعلان‌ها
+            {{ _('Notifications') }}
         </h2>
         <a href="{{ url_for('users.profile') }}" class="text-sm text-blue-600 hover:text-blue-800 flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            بازگشت
+            {{ _('Back') }}
         </a>
     </div>
 
@@ -47,7 +47,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM12 19c0 1.1.9 2 2 2s2-.9 2-2h-4z" />
             </svg>
-            هیچ اعلانی وجود ندارد.
+            {{ _('No notifications available.') }}
         </div>
     {% endif %}
 </div>

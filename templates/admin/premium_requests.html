@@ -1,33 +1,33 @@
 <!-- templates/admin/premium_requests.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}درخواست‌های ارتقاء به ویژه{% endblock %}
+{% block title %}{{ _('Premium Upgrade Requests') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">📂 درخواست‌های ارتقاء به کاربر ویژه</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('📂 Premium User Upgrade Requests') }}</h2>
     <div class="mb-6 flex gap-2">
         {% if request.status == 'pending' %}
-        <span class="bg-red-100 text-red-800 px-2 py-1 rounded">جدید!</span>
+        <span class="bg-red-100 text-red-800 px-2 py-1 rounded">{{ _('New!') }}</span>
         {% endif %}
     </div>
     <!-- فیلتر وضعیت -->
     <div class="mb-6 flex gap-2">
         <a href="{{ url_for('admin.premium_requests', status='all') }}"
            class="px-4 py-2 text-sm font-medium rounded-lg {% if status_filter == 'all' %}bg-blue-600 text-white{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
-            همه
+            {{ _('All') }}
         </a>
         <a href="{{ url_for('admin.premium_requests', status='pending') }}"
            class="px-4 py-2 text-sm font-medium rounded-lg {% if status_filter == 'pending' %}bg-yellow-600 text-white{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
-            در انتظار
+            {{ _('Pending') }}
         </a>
         <a href="{{ url_for('admin.premium_requests', status='approved') }}"
            class="px-4 py-2 text-sm font-medium rounded-lg {% if status_filter == 'approved' %}bg-green-600 text-white{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
-            تأیید شده
+            {{ _('Approved') }}
         </a>
         <a href="{{ url_for('admin.premium_requests', status='rejected') }}"
            class="px-4 py-2 text-sm font-medium rounded-lg {% if status_filter == 'rejected' %}bg-red-600 text-white{% else %}bg-gray-100 text-gray-800 hover:bg-gray-200{% endif %}">
-            رد شده
+            {{ _('Rejected') }}
         </a>
     </div>
 
@@ -36,10 +36,10 @@
         <table class="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">کاربر</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">وضعیت</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">تاریخ ارسال</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('User') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Status') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Submission Date') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Actions') }}</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -48,28 +48,28 @@
                     <td class="py-3 px-4 text-sm">{{ req.user.username }}</td>
                     <td class="py-3 px-4 text-sm">
                         {% if req.status == 'pending' %}
-                            <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">در انتظار</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">{{ _('Pending') }}</span>
                         {% elif req.status == 'approved' %}
-                            <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">تأیید شده</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">{{ _('Approved') }}</span>
                         {% elif req.status == 'rejected' %}
-                            <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">رد شده</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">{{ _('Rejected') }}</span>
                         {% endif %}
                     </td>
                     <td class="py-3 px-4 text-sm">{{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}</td>
                     <td class="py-3 px-4 text-sm space-x-2 space-x-reverse">
                         <a href="{{ url_for('admin.view_premium_request', req_id=req.id) }}"
                            class="text-blue-600 hover:text-blue-800 text-sm">
-                            مشاهده
+                            {{ _('View') }}
                         </a>
                         {% if req.status == 'pending' %}
                         <form method="POST" action="{{ url_for('admin.approve_premium', req_id=req.id) }}" class="inline">
                             <button type="submit" class="text-green-600 hover:text-green-800 text-sm">
-                                تأیید
+                                {{ _('Approve') }}
                             </button>
                         </form>
                         <form method="POST" action="{{ url_for('admin.reject_premium', req_id=req.id) }}" class="inline">
                             <button type="submit" class="text-red-600 hover:text-red-800 text-sm">
-                                رد
+                                {{ _('Reject') }}
                             </button>
                         </form>
                         {% endif %}
@@ -77,7 +77,7 @@
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="4" class="py-4 text-center text-gray-500">درخواستی یافت نشد.</td>
+                    <td colspan="4" class="py-4 text-center text-gray-500">{{ _('No requests found.') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -1,26 +1,26 @@
 <!-- templates/admin/manage_users.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}مدیریت کاربران{% endblock %}
+{% block title %}{{ _('Manage Users') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">🔧 مدیریت کاربران</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('🔧 Manage Users') }}</h2>
 
     <!-- فیلتر وضعیت -->
     <div class="flex space-x-4 space-x-reverse mb-6 text-sm">
 
         <a href="{{ url_for('admin.manage_users', status='active', page=1) }}"
            class="...">
-            فعال ({{ total_active }})
+            {{ _('Active') }} ({{ total_active }})
         </a>
         <a href="{{ url_for('admin.manage_users', status='inactive', page=1) }}"
            class="...">
-            غیرفعال ({{ total_inactive }})
+            {{ _('Inactive') }} ({{ total_inactive }})
         </a>
         <a href="{{ url_for('admin.manage_users', status='all', page=1) }}"
            class="...">
-            همه
+            {{ _('All') }}
         </a>
 
     </div>
@@ -30,12 +30,12 @@
         <table class="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">نام کاربری</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">ایمیل</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">نقش</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">ویژه؟</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">وضعیت</th>
-                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">عملیات</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Username') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Email') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Role') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Premium?') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Status') }}</th>
+                    <th class="py-3 px-4 text-right text-sm font-semibold text-gray-700">{{ _('Actions') }}</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -46,16 +46,16 @@
                     <td class="py-3 px-4 text-sm">{{ user.role.value }}</td>
                     <td class="py-3 px-4 text-sm">
                         {% if user.is_premium %}
-                            <span class="text-green-600 text-xs font-semibold">✅ بله</span>
+                            <span class="text-green-600 text-xs font-semibold">{{ _('✅ Yes') }}</span>
                         {% else %}
-                            <span class="text-red-500 text-xs">❌ خیر</span>
+                            <span class="text-red-500 text-xs">{{ _('❌ No') }}</span>
                         {% endif %}
                     </td>
                     <td class="py-3 px-4 text-sm">
                         {% if user.is_active %}
-                            <span class="text-green-600 text-xs font-semibold">فعال</span>
+                            <span class="text-green-600 text-xs font-semibold">{{ _('Active') }}</span>
                         {% else %}
-                            <span class="text-red-600 text-xs font-semibold">غیرفعال</span>
+                            <span class="text-red-600 text-xs font-semibold">{{ _('Inactive') }}</span>
                         {% endif %}
                     </td>
                     <td class="py-3 px-4 text-sm space-y-2">
@@ -75,28 +75,28 @@
                         {% if user.id != current_user.id %}
                             {% if user.is_active %}
                                 <form method="POST" action="{{ url_for('admin.deactivate_user', user_id=user.id) }}"
-                                      onsubmit="return confirm('آیا مطمئن هستید که می‌خواهید این کاربر را غیرفعال کنید؟')"
+                                      onsubmit="return confirm('{{ _('Are you sure you want to deactivate this user?') }}')"
                                       class="inline">
                                     <button type="submit" class="text-red-600 hover:text-red-800 text-sm">
-                                        غیرفعال کردن
+                                        {{ _('Deactivate') }}
                                     </button>
                                 </form>
                             {% else %}
                                 <form method="POST" action="{{ url_for('admin.activate_user', user_id=user.id) }}"
                                       class="inline">
                                     <button type="submit" class="text-green-600 hover:text-green-800 text-sm">
-                                        فعال‌سازی
+                                        {{ _('Activate') }}
                                     </button>
                                 </form>
                             {% endif %}
                         {% else %}
-                            <span class="text-gray-500 text-xs">شما</span>
+                            <span class="text-gray-500 text-xs">{{ _('You') }}</span>
                         {% endif %}
                     </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="6" class="py-4 text-center text-gray-500">کاربری یافت نشد.</td>
+                    <td colspan="6" class="py-4 text-center text-gray-500">{{ _('No users found.') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -110,11 +110,11 @@
             {% if users.has_prev %}
                 <a href="{{ url_for('admin.manage_users', page=users.prev_num, status=status_filter) }}"
                    class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-blue-600 hover:bg-blue-50">
-                    قبلی
+                    {{ _('Previous') }}
                 </a>
             {% else %}
                 <span class="px-3 py-2 rounded-l-md border border-gray-300 bg-gray-100 text-sm font-medium text-gray-500">
-                    قبلی
+                    {{ _('Previous') }}
                 </span>
             {% endif %}
 
@@ -138,11 +138,11 @@
             {% if users.has_next %}
                 <a href="{{ url_for('admin.manage_users', page=users.next_num, status=status_filter) }}"
                    class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-blue-600 hover:bg-blue-50">
-                    بعدی
+                    {{ _('Next') }}
                 </a>
             {% else %}
                 <span class="px-3 py-2 rounded-r-md border border-gray-300 bg-gray-100 text-sm font-medium text-gray-500">
-                    بعدی
+                    {{ _('Next') }}
                 </span>
             {% endif %}
         </nav>
