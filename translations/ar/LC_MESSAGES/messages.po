@@ -1,0 +1,921 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-01 21:27+0000\n"
+"PO-Revision-Date: 2026-05-01 18:54+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#~ msgid "ExportMarket"
+#~ msgstr ""
+
+#~ msgid "Premium"
+#~ msgstr ""
+
+#~ msgid "Install"
+#~ msgstr ""
+
+#~ msgid "Login"
+#~ msgstr ""
+
+#~ msgid "Register"
+#~ msgstr ""
+
+#~ msgid "All rights reserved."
+#~ msgstr ""
+
+#~ msgid "Rayan Company - International Trade Management System"
+#~ msgstr ""
+
+#~ msgid "Rayan Company Logo"
+#~ msgstr ""
+
+#~ msgid "Rayan Company"
+#~ msgstr ""
+
+#~ msgid "Welcome to the International Trade Management System"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Rayan Company provides an intelligent "
+#~ "platform that simplifies, secures, and "
+#~ "brings transparency to the international "
+#~ "trade process of buying, selling, and"
+#~ " transporting goods."
+#~ msgstr ""
+
+#~ msgid "Login to System"
+#~ msgstr ""
+
+#~ msgid "Our Services"
+#~ msgstr ""
+
+#~ msgid "Order Management"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Digital and real-time registration, "
+#~ "tracking, and confirmation of orders."
+#~ msgstr ""
+
+#~ msgid "Security & Identity Verification"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "User identity verification, document approval,"
+#~ " and transparent premium upgrade process."
+#~ msgstr ""
+
+#~ msgid "24/7 Support"
+#~ msgstr ""
+
+#~ msgid "Professional support via chat, call, and email throughout the week."
+#~ msgstr ""
+
+#~ msgid "System Training Video"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Watch this video to learn how to"
+#~ " use the international trade management "
+#~ "system."
+#~ msgstr ""
+
+#~ msgid "Your browser does not support video playback."
+#~ msgstr ""
+
+#~ msgid "Cooperation with Reputable Companies"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "We collaborate with large and reputable"
+#~ " companies at national and international"
+#~ " levels."
+#~ msgstr ""
+
+#~ msgid "Partner Company 1"
+#~ msgstr ""
+
+#~ msgid "Partner Company 2"
+#~ msgstr ""
+
+#~ msgid "Partner Company 3"
+#~ msgstr ""
+
+#~ msgid "Partner Company 4"
+#~ msgstr ""
+
+#~ msgid "Partner Company 5"
+#~ msgstr ""
+
+#~ msgid "Partner Company 6"
+#~ msgstr ""
+
+#~ msgid "Image Magazine"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Specialized reference for international trade,"
+#~ " maritime transport, and logistics"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To access the latest magazine issues,"
+#~ " request sponsorship, advertising, and "
+#~ "annual subscription, visit the magazine "
+#~ "section."
+#~ msgstr ""
+
+#~ msgid "Enter Magazine Section"
+#~ msgstr ""
+
+#~ msgid "Annual Subscription"
+#~ msgstr ""
+
+#~ msgid "Cooperate with Us"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can also benefit from Rayan "
+#~ "platform advantages to grow your "
+#~ "business."
+#~ msgstr ""
+
+#~ msgid "All Rights Reserved"
+#~ msgstr ""
+
+#~ msgid "International Trade and Logistics Management System"
+#~ msgstr ""
+
+#~ msgid "Admin Dashboard"
+#~ msgstr ""
+
+#~ msgid "📊 Admin Dashboard"
+#~ msgstr ""
+
+#~ msgid "Total Users"
+#~ msgstr ""
+
+#~ msgid "Premium Requests"
+#~ msgstr ""
+
+#~ msgid "Pending Review"
+#~ msgstr ""
+
+#~ msgid "🔧 Manage Users"
+#~ msgstr ""
+
+#~ msgid "📂 Premium Upgrade Requests"
+#~ msgstr ""
+
+#~ msgid "Admin Login - Admin Panel"
+#~ msgstr ""
+
+#~ msgid "🔐 Admin Panel"
+#~ msgstr ""
+
+#~ msgid "Only for admin users"
+#~ msgstr ""
+
+#~ msgid "Email"
+#~ msgstr ""
+
+#~ msgid "Password"
+#~ msgstr ""
+
+#~ msgid "Enter your password"
+#~ msgstr ""
+
+#~ msgid "Login to Admin Panel"
+#~ msgstr ""
+
+#~ msgid "← Back to Home Page"
+#~ msgstr ""
+
+#~ msgid "Your Company. All rights reserved."
+#~ msgstr ""
+
+#~ msgid "Manage Users"
+#~ msgstr ""
+
+#~ msgid "Active"
+#~ msgstr ""
+
+#~ msgid "Inactive"
+#~ msgstr ""
+
+#~ msgid "All"
+#~ msgstr ""
+
+#~ msgid "Username"
+#~ msgstr ""
+
+#~ msgid "Role"
+#~ msgstr ""
+
+#~ msgid "Premium?"
+#~ msgstr ""
+
+#~ msgid "Status"
+#~ msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr ""
+
+#~ msgid "✅ Yes"
+#~ msgstr ""
+
+#~ msgid "❌ No"
+#~ msgstr ""
+
+#~ msgid "Are you sure you want to deactivate this user?"
+#~ msgstr ""
+
+#~ msgid "Deactivate"
+#~ msgstr ""
+
+#~ msgid "Activate"
+#~ msgstr ""
+
+#~ msgid "You"
+#~ msgstr ""
+
+#~ msgid "No users found."
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Premium Upgrade Requests"
+#~ msgstr ""
+
+#~ msgid "📂 Premium User Upgrade Requests"
+#~ msgstr ""
+
+#~ msgid "New!"
+#~ msgstr ""
+
+#~ msgid "Pending"
+#~ msgstr ""
+
+#~ msgid "Approved"
+#~ msgstr ""
+
+#~ msgid "Rejected"
+#~ msgstr ""
+
+#~ msgid "User"
+#~ msgstr ""
+
+#~ msgid "Submission Date"
+#~ msgstr ""
+
+#~ msgid "View"
+#~ msgstr ""
+
+#~ msgid "Approve"
+#~ msgstr ""
+
+#~ msgid "Reject"
+#~ msgstr ""
+
+#~ msgid "No requests found."
+#~ msgstr ""
+
+#~ msgid "View Upgrade Request"
+#~ msgstr ""
+
+#~ msgid "📄 Upgrade Request Details"
+#~ msgstr ""
+
+#~ msgid "👤 User Information"
+#~ msgstr ""
+
+#~ msgid "Username:"
+#~ msgstr ""
+
+#~ msgid "Email:"
+#~ msgstr ""
+
+#~ msgid "Company:"
+#~ msgstr ""
+
+#~ msgid "Country:"
+#~ msgstr ""
+
+#~ msgid "✅ Step Status"
+#~ msgstr ""
+
+#~ msgid "📱 Phone Verification:"
+#~ msgstr ""
+
+#~ msgid "✅ Verified"
+#~ msgstr ""
+
+#~ msgid "❌ Not Verified"
+#~ msgstr ""
+
+#~ msgid "📧 Email Verification:"
+#~ msgstr ""
+
+#~ msgid "💳 Payment:"
+#~ msgstr ""
+
+#~ msgid "✅ Paid"
+#~ msgstr ""
+
+#~ msgid "❌ Not Paid"
+#~ msgstr ""
+
+#~ msgid "📄 Overall Status:"
+#~ msgstr ""
+
+#~ msgid "📎 Uploaded Documents"
+#~ msgstr ""
+
+#~ msgid "Passport Copy:"
+#~ msgstr ""
+
+#~ msgid "View File"
+#~ msgstr ""
+
+#~ msgid "Not Uploaded"
+#~ msgstr ""
+
+#~ msgid "Company License:"
+#~ msgstr ""
+
+#~ msgid "Payment Receipt:"
+#~ msgstr ""
+
+#~ msgid "Submitted At:"
+#~ msgstr ""
+
+#~ msgid "Reviewed At:"
+#~ msgstr ""
+
+#~ msgid "Back"
+#~ msgstr ""
+
+#~ msgid "✅ Approve Request"
+#~ msgstr ""
+
+#~ msgid "❌ Reject Request"
+#~ msgstr ""
+
+#~ msgid "Tomans"
+#~ msgstr ""
+
+#~ msgid "12 printed issues per year"
+#~ msgstr ""
+
+#~ msgid "Access to digital version"
+#~ msgstr ""
+
+#~ msgid "Free postal delivery"
+#~ msgstr ""
+
+#~ msgid "Special event discounts"
+#~ msgstr ""
+
+#~ msgid "Semi-Annual Subscription"
+#~ msgstr ""
+
+#~ msgid "6 printed issues"
+#~ msgstr ""
+
+#~ msgid "Annual"
+#~ msgstr ""
+
+#~ msgid "Semi-Annual"
+#~ msgstr ""
+
+#~ msgid "⚠️ Chat Access"
+#~ msgstr ""
+
+#~ msgid "Only <strong>Premium</strong> users can use the chat system."
+#~ msgstr ""
+
+#~ msgid "🌟 Upgrade to Premium"
+#~ msgstr ""
+
+#~ msgid "Chat"
+#~ msgstr ""
+
+#~ msgid "Premium Contacts"
+#~ msgstr ""
+
+#~ msgid "Conversation with:"
+#~ msgstr ""
+
+#~ msgid "No messages sent yet."
+#~ msgstr ""
+
+#~ msgid "Write your message..."
+#~ msgstr ""
+
+#~ msgid "Send"
+#~ msgstr ""
+
+#~ msgid "Select a premium contact to start chatting."
+#~ msgstr ""
+
+#~ msgid "Dashboard"
+#~ msgstr ""
+
+#~ msgid "Edit Profile"
+#~ msgstr ""
+
+#~ msgid "Orders"
+#~ msgstr ""
+
+#~ msgid "View My Orders"
+#~ msgstr ""
+
+#~ msgid "Manage Orders"
+#~ msgstr ""
+
+#~ msgid "%(count)d New"
+#~ msgstr ""
+
+#~ msgid "Chat with Seller"
+#~ msgstr ""
+
+#~ msgid "Chat with Broker"
+#~ msgstr ""
+
+#~ msgid "Start Chat"
+#~ msgstr ""
+
+#~ msgid "Enter Chat"
+#~ msgstr ""
+
+#~ msgid "Chat is only available for premium users."
+#~ msgstr ""
+
+#~ msgid "Port Finder"
+#~ msgstr ""
+
+#~ msgid "Vessel Finder"
+#~ msgstr ""
+
+#~ msgid "Port Finder access is only available for premium users."
+#~ msgstr ""
+
+#~ msgid "Vessel Finder access is only available for premium users."
+#~ msgstr ""
+
+#~ msgid "Upgrade to Premium User"
+#~ msgstr ""
+
+#~ msgid "Access to map, chat, and other exclusive features"
+#~ msgstr ""
+
+#~ msgid "Start Upgrade Process"
+#~ msgstr ""
+
+#~ msgid "You are a premium user"
+#~ msgstr ""
+
+#~ msgid "Enjoy our exclusive features!"
+#~ msgstr ""
+
+#~ msgid "Logout"
+#~ msgstr ""
+
+#~ msgid "✏️ Edit Profile"
+#~ msgstr ""
+
+#~ msgid "Company Name"
+#~ msgstr ""
+
+#~ msgid "Export Company"
+#~ msgstr ""
+
+#~ msgid "Country"
+#~ msgstr ""
+
+#~ msgid "Iran"
+#~ msgstr ""
+
+#~ msgid "Phone"
+#~ msgstr ""
+
+#~ msgid "Save Changes"
+#~ msgstr ""
+
+#~ msgid "Login to Account"
+#~ msgstr ""
+
+#~ msgid "Welcome"
+#~ msgstr ""
+
+#~ msgid "Login to International Export Market"
+#~ msgstr ""
+
+#~ msgid "Don't have an account?"
+#~ msgstr ""
+
+#~ msgid "Register Now"
+#~ msgstr ""
+
+#~ msgid "Payment Amount"
+#~ msgstr ""
+
+#~ msgid "USD"
+#~ msgstr ""
+
+#~ msgid "Please upload the payment receipt after making the payment."
+#~ msgstr ""
+
+#~ msgid "Ports Map"
+#~ msgstr ""
+
+#~ msgid "📌 Ports List"
+#~ msgstr ""
+
+#~ msgid "Filter by country..."
+#~ msgstr ""
+
+#~ msgid "Loading..."
+#~ msgstr ""
+
+#~ msgid "➕ Add New Port"
+#~ msgstr ""
+
+#~ msgid "Port Name"
+#~ msgstr ""
+
+#~ msgid "Country (e.g. IR)"
+#~ msgstr ""
+
+#~ msgid "Latitude"
+#~ msgstr ""
+
+#~ msgid "Longitude"
+#~ msgstr ""
+
+#~ msgid "Add Port"
+#~ msgstr ""
+
+#~ msgid "Click on the map to display coordinates"
+#~ msgstr ""
+
+#~ msgid "Error loading ports"
+#~ msgstr ""
+
+#~ msgid "Edit"
+#~ msgstr ""
+
+#~ msgid "Delete"
+#~ msgstr ""
+
+#~ msgid "Error loading."
+#~ msgstr ""
+
+#~ msgid "Please fill all fields."
+#~ msgstr ""
+
+#~ msgid "Error:"
+#~ msgstr ""
+
+#~ msgid "Server communication error."
+#~ msgstr ""
+
+#~ msgid "New name:"
+#~ msgstr ""
+
+#~ msgid "New country:"
+#~ msgstr ""
+
+#~ msgid "New latitude:"
+#~ msgstr ""
+
+#~ msgid "New longitude:"
+#~ msgstr ""
+
+#~ msgid "Edit error."
+#~ msgstr ""
+
+#~ msgid "Are you sure?"
+#~ msgstr ""
+
+#~ msgid "Delete error."
+#~ msgstr ""
+
+#~ msgid "Leaflet.js not loaded"
+#~ msgstr ""
+
+#~ msgid "🔒 Restricted Access"
+#~ msgstr ""
+
+#~ msgid "Only premium users can access this map."
+#~ msgstr ""
+
+#~ msgid "Notifications"
+#~ msgstr ""
+
+#~ msgid "No notifications available."
+#~ msgstr ""
+
+#~ msgid "Send Payment Receipt"
+#~ msgstr ""
+
+#~ msgid "✅ Payment Receipt Received"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your upgrade request has been received."
+#~ " The management team will review your"
+#~ " documents as soon as possible and"
+#~ " notify you of the result via "
+#~ "email."
+#~ msgstr ""
+
+#~ msgid "Review Time:"
+#~ msgstr ""
+
+#~ msgid "Usually between 24 to 48 business hours"
+#~ msgstr ""
+
+#~ msgid "Back to Profile"
+#~ msgstr ""
+
+#~ msgid "Contact Support"
+#~ msgstr ""
+
+#~ msgid "Place New Order"
+#~ msgstr ""
+
+#~ msgid "📝 Place New Order"
+#~ msgstr ""
+
+#~ msgid "Complete your export or import order"
+#~ msgstr ""
+
+#~ msgid "Product"
+#~ msgstr ""
+
+#~ msgid "Select..."
+#~ msgstr ""
+
+#~ msgid "Wheat"
+#~ msgstr ""
+
+#~ msgid "Rice"
+#~ msgstr ""
+
+#~ msgid "Sugar"
+#~ msgstr ""
+
+#~ msgid "Corn"
+#~ msgstr ""
+
+#~ msgid "Steel"
+#~ msgstr ""
+
+#~ msgid "Quantity (Tons)"
+#~ msgstr ""
+
+#~ msgid "Price per Ton (USD)"
+#~ msgstr ""
+
+#~ msgid "Origin Port"
+#~ msgstr ""
+
+#~ msgid "e.g. Bandar Abbas"
+#~ msgstr ""
+
+#~ msgid "Destination Port"
+#~ msgstr ""
+
+#~ msgid "e.g. Jeddah"
+#~ msgstr ""
+
+#~ msgid "Seller"
+#~ msgstr ""
+
+#~ msgid "Notes (Optional)"
+#~ msgstr ""
+
+#~ msgid "Payment terms, packaging, ..."
+#~ msgstr ""
+
+#~ msgid "Place Order"
+#~ msgstr ""
+
+#~ msgid "📝 Register in Market"
+#~ msgstr ""
+
+#~ msgid "e.g. ali_export"
+#~ msgstr ""
+
+#~ msgid "Your Role"
+#~ msgstr ""
+
+#~ msgid "Buyer"
+#~ msgstr ""
+
+#~ msgid "Broker"
+#~ msgstr ""
+
+#~ msgid "Company Name (Optional)"
+#~ msgstr ""
+
+#~ msgid "Phone (Optional)"
+#~ msgstr ""
+
+#~ msgid "Have an account?"
+#~ msgstr ""
+
+#~ msgid "Premium Upgrade Process"
+#~ msgstr ""
+
+#~ msgid "Start"
+#~ msgstr ""
+
+#~ msgid "Complete"
+#~ msgstr ""
+
+#~ msgid "Your request has been submitted"
+#~ msgstr ""
+
+#~ msgid "Ready for payment"
+#~ msgstr ""
+
+#~ msgid "Ready to upload documents"
+#~ msgstr ""
+
+#~ msgid "Ready for email verification"
+#~ msgstr ""
+
+#~ msgid "Start by verifying your mobile number"
+#~ msgstr ""
+
+#~ msgid "You have previously requested %(count)s times."
+#~ msgstr ""
+
+#~ msgid "Request %(num)s:"
+#~ msgstr ""
+
+#~ msgid "Rejected on %(date)s"
+#~ msgstr ""
+
+#~ msgid "Mobile Number Verification"
+#~ msgstr ""
+
+#~ msgid "Verified"
+#~ msgstr ""
+
+#~ msgid "Email Verification"
+#~ msgstr ""
+
+#~ msgid "Upload Documents"
+#~ msgstr ""
+
+#~ msgid "Uploaded"
+#~ msgstr ""
+
+#~ msgid "Payment"
+#~ msgstr ""
+
+#~ msgid "Paid"
+#~ msgstr ""
+
+#~ msgid "Final Review and Approval"
+#~ msgstr ""
+
+#~ msgid "Under Review"
+#~ msgstr ""
+
+#~ msgid "📎 Upload Documents"
+#~ msgstr ""
+
+#~ msgid "To complete the upgrade process, please upload the following documents:"
+#~ msgstr ""
+
+#~ msgid "Passport Copy"
+#~ msgstr ""
+
+#~ msgid "Upload a clear PDF or image of your passport."
+#~ msgstr ""
+
+#~ msgid "Company License"
+#~ msgstr ""
+
+#~ msgid "Upload your company registration document or business license."
+#~ msgstr ""
+
+#~ msgid "Upload and Continue"
+#~ msgstr ""
+
+#~ msgid "📬 Email Verification"
+#~ msgstr ""
+
+#~ msgid "A verification email has been sent to"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Please click on the verification link."
+#~ " If you did not receive an "
+#~ "email, check your spam folder."
+#~ msgstr ""
+
+#~ msgid "Continue Steps"
+#~ msgstr ""
+
+#~ msgid "Verify Phone Number"
+#~ msgstr ""
+
+#~ msgid "📱 Verify Phone Number"
+#~ msgstr ""
+
+#~ msgid "Verification code sent to"
+#~ msgstr ""
+
+#~ msgid "6-digit Code"
+#~ msgstr ""
+
+#~ msgid "Verify Code"
+#~ msgstr ""
+
+#~ msgid "Didn't receive the code?"
+#~ msgstr ""
+
+#~ msgid "Resend Code"
+#~ msgstr ""
+
+#~ msgid "⏳ Verification code expires after 10 minutes."
+#~ msgstr ""
+
+#~ msgid "Vessel Tracking - Vessel Finder"
+#~ msgstr ""
+
+#~ msgid "🌍 Vessel Finder"
+#~ msgstr ""
+
+#~ msgid "Search Vessel by IMO Number"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The IMO (International Maritime Organization)"
+#~ " number is a unique 7-digit code "
+#~ "assigned to each vessel."
+#~ msgstr ""
+
+#~ msgid "IMO Number"
+#~ msgstr ""
+
+#~ msgid "e.g.: 9679593"
+#~ msgstr ""
+
+#~ msgid "🔍 Search Vessel"
+#~ msgstr ""
+
+#~ msgid "Feature"
+#~ msgstr ""
+
+#~ msgid "Value"
+#~ msgstr ""
+
+#~ msgid "IMO"
+#~ msgstr ""
+
+#~ msgid "MMSI"
+#~ msgstr ""
+
+#~ msgid "Vessel Name"
+#~ msgstr ""
+
+#~ msgid "Destination"
+#~ msgstr ""
+
+#~ msgid "Unknown"
+#~ msgstr ""
+
+#~ msgid "Speed (knot)"
+#~ msgstr ""
+
+#~ msgid "ETA (Date of Arrival)"
+#~ msgstr ""
+
+#~ msgid "Enter an IMO number to view the vessel location."
+#~ msgstr ""
+
+#~ msgid "Location:"
+#~ msgstr ""
+
