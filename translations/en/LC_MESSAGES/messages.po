@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-01 18:54+0000\n"
-"PO-Revision-Date: 2026-05-01 18:54+0000\n"
+"POT-Creation-Date: 2026-05-01 20:06+0000\n"
+"PO-Revision-Date: 2026-05-01 19:56+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -17,4 +17,112 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: templates/base_pwa.html:7 templates/base_pwa.html:114
+msgid "ExportMarket"
+msgstr "ExportMarket"
+
+#: templates/base_pwa.html:202 templates/users/dashboard.html:18
+msgid "Premium"
+msgstr "Premium"
+
+#: templates/base_pwa.html:206
+msgid "Install"
+msgstr "Install"
+
+#: templates/base_pwa.html:210
+msgid "Login"
+msgstr "Login"
+
+#: templates/base_pwa.html:211
+msgid "Register"
+msgstr "Register"
+
+#: templates/base_pwa.html:235
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+#: templates/users/dashboard.html:4
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/users/dashboard.html:29
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+#: templates/users/dashboard.html:36
+msgid "Orders"
+msgstr "Orders"
+
+#: templates/users/dashboard.html:44
+msgid "My Orders"
+msgstr "My Orders"
+
+#: templates/users/dashboard.html:51 templates/users/dashboard.html:138
+msgid "Manage Orders"
+msgstr "Manage Orders"
+
+#: templates/users/dashboard.html:54
+msgid "new"
+msgstr "new"
+
+#: templates/users/dashboard.html:66
+msgid "Chat with Seller"
+msgstr "Chat with Seller"
+
+#: templates/users/dashboard.html:73
+msgid "Chat with Broker"
+msgstr "Chat with Broker"
+
+#: templates/users/dashboard.html:79
+msgid "Start Chat"
+msgstr "Start Chat"
+
+#: templates/users/dashboard.html:85
+msgid "Enter Chat"
+msgstr "Enter Chat"
+
+#: templates/users/dashboard.html:89
+msgid "Chat is only available for premium users."
+msgstr "Chat is only available for premium users."
+
+#: templates/users/dashboard.html:97
+msgid "Port Finder"
+msgstr "Port Finder"
+
+#: templates/users/dashboard.html:100
+msgid "Vessel Finder"
+msgstr "Vessel Finder"
+
+#: templates/users/dashboard.html:104
+msgid "Port Finder is only available for premium users."
+msgstr "Port Finder is only available for premium users."
+
+#: templates/users/dashboard.html:107
+msgid "Vessel Finder is only available for premium users."
+msgstr "Vessel Finder is only available for premium users."
+
+#: templates/users/dashboard.html:115
+msgid "Upgrade to Premium User"
+msgstr "Upgrade to Premium User"
+
+#: templates/users/dashboard.html:117
+msgid "Access to map, chat, and other exclusive features"
+msgstr "Access to map, chat, and other exclusive features"
+
+#: templates/users/dashboard.html:121
+msgid "Start Upgrade Process"
+msgstr "Start Upgrade Process"
+
+#: templates/users/dashboard.html:126
+msgid "You are a premium user"
+msgstr "You are a premium user"
+
+#: templates/users/dashboard.html:127
+msgid "Enjoy our premium features!"
+msgstr "Enjoy our premium features!"
+
+#: templates/users/dashboard.html:147
+msgid "Logout"
+msgstr "Logout"
 

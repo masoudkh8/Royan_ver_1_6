@@ -1,27 +1,5 @@
 ```
-# Compiled Python files
-*.pyc
 __pycache__/
-
-# Dependencies
-venv/
-.venv/
-.env
-.env.local
-*.env.*
-
-# Logs
-*.log
-
-# Translations (if compiled MO files are generated)
+*.pyc
 *.mo
-
-# VSCode files
-.vscode/
-
-# Build artifacts
-dist/
-build/
-*.js
-*.css
 ```

@@ -22,7 +22,7 @@ def set_language(lang_code):
     if lang_code in SUPPORTED_LANGUAGES:
         session['lang'] = lang_code
     # برگشت به صفحه قبلی
-    next_url = request.args.get('next', request.referrer or url_for('main_page'))
+    next_url = request.args.get('next', request.referrer or url_for('root.main_page'))
     return redirect(next_url)
 
 # routes/users/routes.py یا app.py
