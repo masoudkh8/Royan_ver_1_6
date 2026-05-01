@@ -19,11 +19,33 @@ from routes.users import users_bp  # ✅ درست
 from routes.admin import admin_bp
 from routes.users import root_bp
 from extensions import mail
+from flask_babel import Babel, gettext, lazy_gettext as _
 # from kavenegar import *
 
 db = db
 migrate = Migrate()
 login_manager = LoginManager()
+babel = Babel()
+
+# لیست زبان‌های پشتیبانی شده (۱۶ زبان اصلی دنیا)
+SUPPORTED_LANGUAGES = {
+    'fa': 'فارسی',
+    'en': 'English',
+    'es': 'Español',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'it': 'Italiano',
+    'pt': 'Português',
+    'ru': 'Русский',
+    'zh': '中文',
+    'ja': '日本語',
+    'ko': '한국어',
+    'ar': 'العربية',
+    'tr': 'Türkçe',
+    'hi': 'हिन्दी',
+    'bn': 'বাংলা',
+    'ur': 'اردو'
+}
 
 
 # تابع برای خواندن دیتاست JSON و ذخیره در پایگاه داده
@@ -83,8 +105,20 @@ def create_app():
     app.config['MAIL_PASSWORD'] = config.Config.MAIL_PASSWORD  # از رمز واقعی استفاده نکنید
     app.config['MAIL_DEFAULT_SENDER'] = 'masoudkhalaj8@gmail.com'
 
-
-
+    # تنظیمات Babel برای چندزبانه‌سازی
+    app.config['BABEL_DEFAULT_LOCALE'] = 'fa'  # زبان پیش‌فرض فارسی
+    app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
+    
+    def get_locale():
+        """انتخاب زبان بر اساس session یا header کاربر"""
+        from flask import session, request
+        # اولویت با زبانی است که کاربر انتخاب کرده
+        if 'lang' in session:
+            return session['lang']
+        # اگر کاربر زبانی انتخاب نکرده، از Accept-Language مرورگر استفاده کن
+        return request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys(), 'fa')
+    
+    babel.init_app(app, locale_selector=get_locale)
 
 
     mail.init_app(app)
@@ -94,7 +128,18 @@ def create_app():
 
     @app.context_processor
     def inject_roles():
-        return {'Role': Role}
+        return {'Role': Role, 'SUPPORTED_LANGUAGES': SUPPORTED_LANGUAGES}
+
+    @app.context_processor
+    def inject_language_vars():
+        """تزریق متغیرهای زبان به تمام تمپلیت‌ها"""
+        from flask import session, request
+        current_lang = session.get('lang', 'fa')
+        return {
+            'current_lang': current_lang,
+            'supported_languages': SUPPORTED_LANGUAGES,
+            '_': gettext
+        }
 
     @login_manager.user_loader
     def load_user(user_id):

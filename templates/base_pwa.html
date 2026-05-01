@@ -111,9 +111,18 @@
     <header class="bg-blue-600 text-white p-4 shadow-md dark:bg-primary-600">
         <div class="container mx-auto flex justify-between items-center">
 
-            <h1 class="text-xl font-bold">🌍 ExportMarket</h1>
+            <h1 class="text-xl font-bold">🌍 {{ _('ExportMarket') }}</h1>
 
             <div class="flex items-center space-x-4 space-x-reverse">
+                <!-- انتخاب زبان -->
+                <select onchange="if(this.value) window.location='{{ url_for('set_language', lang_code='') }}'+this.value" 
+                        class="text-gray-800 text-xs px-2 py-1 rounded focus:outline-none">
+                    {% for code, name in supported_languages.items() %}
+                        <option value="{{ code }}" {% if current_lang == code %}selected{% endif %}>
+                            {{ name }}
+                        </option>
+                    {% endfor %}
+                </select>
                 <!-- دکمه بازگشت به پروفایل -->
 
                 {% if current_user.role == Role.ADMIN %}

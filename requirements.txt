@@ -25,3 +25,4 @@ sqlalchemy==2.0.46
 typing-extensions==4.15.0
 urllib3==2.6.3
 werkzeug==2.3.7
+Flask-Babel==4.0.0
