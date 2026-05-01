@@ -1,43 +1,27 @@
-venv_py_3_12/
-venv_py_3_12
-
-__pycache__
-*.db
-instance/
-setup.py
-setup doc.txt
-
-
+```
+# Database
+app.db
 
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
-venv/
 env/
-ENV/
-
-# Flask
-instance/
-.webassets-cache
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Environment variables
-.env
-.env.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
+venv/
+.venv/
+.venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
 .DS_Store
 Thumbs.db
+```
