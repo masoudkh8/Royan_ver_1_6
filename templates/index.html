@@ -74,7 +74,7 @@
             </div>
             <div class="flex items-center space-x-4">
                 <!-- انتخاب زبان -->
-                <select onchange="if(this.value) window.location='/set_language/'+this.value" 
+                <select onchange="if(this.value) window.location='{{ url_for('set_language', lang_code='') }}'+this.value" 
                         class="text-gray-800 text-xs px-2 py-1 rounded focus:outline-none border border-gray-300">
                     {% for code, name in supported_languages.items() %}
                         <option value="{{ code }}" {% if current_lang == code %}selected{% endif %}>
