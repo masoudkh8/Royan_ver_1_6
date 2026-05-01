@@ -2,6 +2,28 @@
 import os
 from dotenv import load_dotenv
 
+SUPPORTED_LANGUAGES = {
+    'fa': 'فارسی',
+    'en': 'English',
+    'es': 'Español',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'it': 'Italiano',
+    'pt': 'Português',
+    'ru': 'Русский',
+    'zh': '中文',
+    'ja': '日本語',
+    'ko': '한국어',
+    'ar': 'العربية',
+    'tr': 'Türkçe',
+    'hi': 'हिन्दी',
+    'bn': 'বাংলা',
+    'ur': 'اردو'
+}
+
+RTL_LANGUAGES = ['fa', 'ar', 'ur']
+
+
 load_dotenv()
 
 
