@@ -18,4 +18,10 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_PASSWORD= 'jcdhiqoktqtindfg'
+    
+    # تنظیمات آپلود فایل مجله
+    UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
+    MAGAZINE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'magazines')
+    MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # حداکثر حجم فایل 50 مگابایت
+    ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}
 

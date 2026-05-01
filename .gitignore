@@ -1,27 +1,35 @@
 ```
-# Database
+# Database file
 app.db
 
-# Python
+# Dependencies
+.venv/
+venv/
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
+*$py.class
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Logs
 *.log
+
+# Coverage
+.coverage
+htmlcov/
+coverage/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# OS
 .DS_Store
 Thumbs.db
 ```

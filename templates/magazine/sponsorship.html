@@ -1,0 +1,84 @@
+<!-- templates/magazine/sponsorship.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}درخواست اسپانسری - مجله تصویر{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <!-- هدر -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                درخواست اسپانسری مجله تصویر
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+                برای همکاری و اسپانسری مجله، فرم زیر را تکمیل کنید
+            </p>
+        </div>
+
+        <!-- فرم -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8">
+            <form method="POST" action="{{ url_for('magazine.sponsorship_request') }}" class="space-y-6">
+                <!-- نام و نام خانوادگی -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        نام و نام خانوادگی <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- نام شرکت -->
+                <div>
+                    <label for="company" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        نام شرکت / سازمان
+                    </label>
+                    <input type="text" id="company" name="company"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- ایمیل -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        ایمیل <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- تلفن -->
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        شماره تلفن <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="phone" name="phone" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- پیام -->
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        پیام و توضیحات
+                    </label>
+                    <textarea id="message" name="message" rows="5"
+                              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"></textarea>
+                </div>
+
+                <!-- دکمه ارسال -->
+                <button type="submit"
+                        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
+                    ثبت درخواست اسپانسری
+                </button>
+            </form>
+
+            <!-- بازگشت -->
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('magazine.index') }}" 
+                   class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium">
+                    ← بازگشت به صفحه اصلی مجله
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
