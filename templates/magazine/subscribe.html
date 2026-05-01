@@ -1,0 +1,111 @@
+<!-- templates/magazine/subscribe.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}اشتراک سالیانه - مجله تصویر{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <!-- هدر -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                اشتراک سالیانه مجله تصویر
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+                برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید
+            </p>
+        </div>
+
+        <!-- کارت‌های اشتراک -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-green-500">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">اشتراک سالیانه</h3>
+                <p class="text-3xl font-bold text-green-600 mb-4">۱,۲۰۰,۰۰۰ تومان</p>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li class="flex items-center">✓ ۱۲ شماره چاپی سالانه</li>
+                    <li class="flex items-center">✓ دسترسی به نسخه دیجیتال</li>
+                    <li class="flex items-center">✓ ارسال رایگان پستی</li>
+                    <li class="flex items-center">✓ تخفیف ویژه رویدادها</li>
+                </ul>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-teal-500">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">اشتراک شش ماهه</h3>
+                <p class="text-3xl font-bold text-teal-600 mb-4">۶۵۰,۰۰۰ تومان</p>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li class="flex items-center">✓ ۶ شماره چاپی</li>
+                    <li class="flex items-center">✓ دسترسی به نسخه دیجیتال</li>
+                    <li class="flex items-center">✓ ارسال رایگان پستی</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- فرم -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8">
+            <form method="POST" action="{{ url_for('magazine.subscribe') }}" class="space-y-6">
+                <!-- نام و نام خانوادگی -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        نام و نام خانوادگی <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- ایمیل -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        ایمیل <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- تلفن -->
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        شماره تلفن <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="phone" name="phone" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                </div>
+
+                <!-- آدرس -->
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        آدرس پستی کامل <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="address" name="address" rows="4" required
+                              placeholder="استان، شهر، خیابان، پلاک، واحد، کد پستی"
+                              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"></textarea>
+                </div>
+
+                <!-- نوع اشتراک -->
+                <div>
+                    <label for="subscription_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        نوع اشتراک <span class="text-red-500">*</span>
+                    </label>
+                    <select id="subscription_type" name="subscription_type" required
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
+                        <option value="annual">سالیانه (۱,۲۰۰,۰۰۰ تومان)</option>
+                        <option value="semi_annual">شش ماهه (۶۵۰,۰۰۰ تومان)</option>
+                    </select>
+                </div>
+
+                <!-- دکمه ارسال -->
+                <button type="submit"
+                        class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
+                    ثبت نام اشتراک
+                </button>
+            </form>
+
+            <!-- بازگشت -->
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('magazine.index') }}" 
+                   class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium">
+                    ← بازگشت به صفحه اصلی مجله
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

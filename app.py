@@ -101,11 +101,13 @@ def create_app():
         return User.query.get(int(user_id))
 
     from routes.users import auth
+    from routes.magazine import magazine_bp
 
     # ثبت بلوپرینت
     app.register_blueprint(users_bp, url_prefix='/users')
     app.register_blueprint(root_bp, url_prefix='/')
     app.register_blueprint(admin_bp, url_prefix='/admin')
+    app.register_blueprint(magazine_bp, url_prefix='/magazine')
 
 
     @app.cli.command("create-admin")
