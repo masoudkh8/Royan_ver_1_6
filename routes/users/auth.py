@@ -17,21 +17,21 @@ from extensions import mail
 from kavenegar import *
 
 
-# سریالایزر برای توکن Email
+# سریالایزر برای token Email
 def get_serializer():
 
     return URLSafeTimedSerializer(current_app.secret_key)
 
 
-# # Send کد تأیید to موبایل (با Kavenegar)
+# # Send verification code to mobile (via Kavenegar)
 # import requests
 # import json
 #
 # def send_sms(phone, message):
-#     api_key = "YOUR_API_KEY_HERE"  # ← کلید API خودت رو اینجا واReject کن
+#     api_key = "YOUR_API_KEY_HERE"  # ← api key خودت رو اینجا واReject کن
 #     url = "https://api.kavenegar.com/v1/{}/sms/send.json".format(api_key)
 #
-#     # فرمت شماره باید 10 رقمی و بدون صفر اول باشد (مثلاً 9123456789)
+#     # Phone number must be 10 digits without leading zero (مثلاً 9123456789)
 #     if phone.startswith("0"):
 #         phone = phone[1:]
 #
@@ -55,7 +55,7 @@ def get_serializer():
 #                 print(f"❌ Error در Send to {phone}: {result.get('return').get('message')}")
 #                 return False
 #         else:
-#             print(f"❌ Status پاسخ نامعتبر: {response.status_code}")
+#             print(f"❌ Status response Invalid: {response.status_code}")
 #             return False
 #     except Exception as e:
 #         print(f"❌ Error در Send Messageک: {e}")
@@ -68,7 +68,7 @@ def get_serializer():
 # def send_sms(phone, message):
 #     print("send sms function")
 #     if not phone:
-#         current_app.logger.error("شماره موبایل خالی است.")
+#         current_app.logger.error("mobile number empty است.")
 #         return False
 #
 #     if current_app.config.get('DEBUG'):
@@ -78,7 +78,7 @@ def get_serializer():
 #     api_key = current_app.config['KAVENEGAR_API_KEY']
 #     url = f"https://api.kavenegar.com/v1/{api_key}/sms/send.json"
 #
-#     # فرمت شماره: Delete صفر اول
+#     # Phone format: Remove leading zero
 #     if phone.startswith("0"):
 #         phone = phone[1:]
 #
@@ -108,10 +108,10 @@ def get_serializer():
 # from flask import current_app
 # def send_sms(phone, message):
 #     if not phone:
-#         current_app.logger.error("شماره موبایل خالی است.")
+#         current_app.logger.error("mobile number empty است.")
 #         return False
 #
-#     # Delete صفر اول
+#     # Remove leading zero
 #     if phone.startswith("0"):
 #         phone = phone[1:]
 #
@@ -129,8 +129,8 @@ def get_serializer():
 #
 #     try:
 #         response = requests.post(url, data=data, headers=headers, timeout=50)
-#         current_app.logger.info(f"Status پاسخ: {response.status_code}")
-#         current_app.logger.info(f"مTon پاسخ: {response.text}")  # Important: ببین چه چیزی برگشت
+#         current_app.logger.info(f"Status response: {response.status_code}")
+#         current_app.logger.info(f"مTon response: {response.text}")  # Important: ببین چه چیزی back
 #
 #         if response.status_code == 200:
 #             try:
@@ -141,14 +141,14 @@ def get_serializer():
 #                     error_msg = json_resp.get("Message", "No message in response")
 #                     current_app.logger.error(f"❌ AmootSMS Error داد: {error_msg}")
 #             except Exception as e:
-#                 current_app.logger.error(f"❌ پاسخ JSON نامعتبر: {response.text[:500]}")
+#                 current_app.logger.error(f"❌ response JSON Invalid: {response.text[:500]}")
 #         else:
-#             current_app.logger.error(f"❌ Status HTTP ناموفق: {response.status_code}")
+#             current_app.logger.error(f"❌ Status HTTP ناSuccess: {response.status_code}")
 #
 #     except requests.exceptions.Timeout:
-#         current_app.logger.error("❌ درخواست to AmootSMS تایم‌اوت خوReject.")
+#         current_app.logger.error("❌ request to AmootSMS تایم‌اوت خوReject.")
 #     except requests.exceptions.ConnectionError:
-#         current_app.logger.error("❌ مشکل در اتصال to سرور AmootSMS (اتصال قطع یا Filter).")
+#         current_app.logger.error("❌ issue در connection to سرور AmootSMS (connection قطع یا Filter).")
 #     except Exception as e:
 #         current_app.logger.error(f"❌ Errorی کلی در Send Messageک: {e}")
 
@@ -156,16 +156,16 @@ import requests
 # from urllib.parse import urlencode
 # def send_sms(phone, message):
 #     # ————————— Settings —————————
-#     TOKEN = "052877AF60F77DE6FA1E58D0761A339C5D8C6BAA"  # توکن شخصی شما در AmootSMS
-#     MESSAGE = "Messageک تستی از پایتون"
+#     TOKEN = "052877AF60F77DE6FA1E58D0761A339C5D8C6BAA"  # Your personal token at AmootSMS
+#     MESSAGE = "Messageک تستی of پایتون"
 #     LINE_NUMBER = "public"  # یا شماره اختصاصی شما
-#     MOBILES = "9178001811"  # شماره Destination — بدون صفر اول
-#     SEND_DATE_TIME = '2025-09-09 04:50:00'  # خالی = Send Urgent | فرمت پیشنهادی: "2025/08/15 14:30:00"
+#     MOBILES = "9178001811"  # شماره Destination — بدون صفر first
+#     SEND_DATE_TIME = '2025-09-09 04:50:00'  # empty = Send Urgent | Suggested format: "2025/08/15 14:30:00"
 #
-#     # ————————— آدرس API —————————
+#     # ————————— address API —————————
 #     url = "https://portal.amootsms.com/rest/SendSimple"
 #
-#     # ————————— داده‌ها to فرمت فرم —————————
+#     # ————————— Data in form format —————————
 #     data = {
 #         'SMSMessageText': MESSAGE,
 #         'LineNumber': LINE_NUMBER,
@@ -177,34 +177,34 @@ import requests
 #     if SEND_DATE_TIME:
 #         data['SendDateTime'] = '2025-09-09 04:50:00'
 #
-#     # ————————— هدرها —————————
+#     # ————————— Headers —————————
 #     headers = {
 #         'Authorization': TOKEN,
 #         'Content-Type': 'application/x-www-form-urlencoded'
 #     }
 #
 #     try:
-#         # Send درخواست POST
+#         # Send request POST
 #         response = requests.post(url, data=data, headers=headers, timeout=10)
 #
-#         # چاپ Status و پاسخ
-#         print(f"Status پاسخ: {response.status_code}")
+#         # چapp Status و response
+#         print(f"Status response: {response.status_code}")
 #
 #         try:
 #             json_resp = response.json()
-#             print(f"پاسخ سرور: {json_resp}")
+#             print(f"response سرور: {json_resp}")
 #
 #             if json_resp.get("Status") in ["OK", "Submitted"] or json_resp.get("CampaignID", 0) > 0:
 #                 print("✅ Messageک successfully Send شد.")
 #             else:
 #                 print(f"❌ Error: {json_resp.get('Status', 'Unknown error')}")
 #         except Exception as e:
-#             print(f"❌ پاسخ JSON نامعتبر: {response.text}")
+#             print(f"❌ response JSON Invalid: {response.text}")
 #
 #     except requests.exceptions.Timeout:
-#         print("❌ درخواست to سرور زمان‌بندی شد (Timeout).")
+#         print("❌ Request timed out (Timeout).")
 #     except requests.exceptions.ConnectionError:
-#         print("❌ مشکل در اتصال to سرور (ممکن است Filter باشد یا سرور خاموش).")
+#         print("❌ issue در connection to سرور (ممکن است Filter باشد یا سرور خاموش).")
 #     except Exception as e:
 #         print(f"❌ Errorی غیرمنتظره: {e}")
 #
@@ -233,20 +233,20 @@ def send_sms(phone, message):
     print(current_app.config['D_STATE'])
     if not phone:
         print("00")
-        current_app.logger.error("شماره موبایل خالی است.")
+        current_app.logger.error("mobile number empty است.")
         return False
 
-    # Delete صفر اول و بررسی فرمت
+    # Remove leading zero و بررسی Formت
     cleaned_phone = phone
     if cleaned_phone.startswith("0"):
         cleaned_phone = cleaned_phone[1:]
         print("0d0")
     if not cleaned_phone.isdigit() or len(cleaned_phone) != 10:
-        current_app.logger.error(f"فرمت شماره نامعتبر: {phone}")
+        current_app.logger.error(f"Formت شماره Invalid: {phone}")
         print("0e0")
         return False
 
-    # حالت دیباگ: فقط لاگ بزن
+    # حالت دیباگ: فقط log بfemale
    # "" if current_app.config.get('DEBUG'):
     if current_app.config['D_STATE']==1:
         print("0220")
@@ -275,12 +275,12 @@ def send_sms(phone, message):
                 current_app.logger.error(f"کاوه‌نگار Error داد: {json_resp['return']['message']}")
                 return False
         else:
-            current_app.logger.error(f"Errorی HTTP: {response.status_code}, پاسخ: {response.text}")
+            current_app.logger.error(f"Errorی HTTP: {response.status_code}, response: {response.text}")
             return False
 
     except requests.exceptions.RequestException as e:
         print("1")
-        current_app.logger.error(f"Error در درخواست شبکه: {e}")
+        current_app.logger.error(f"Error در request nightکه: {e}")
         return False
     except Exception as e:
         print("2")
@@ -291,7 +291,7 @@ def send_sms(phone, message):
 
 
 # -------------------------------
-# تأیید شماره موبایل
+# تأیید mobile number
 # -------------------------------
 # @users_bp.route('/verify_phone', methods=['GET', 'POST'])
 # @login_required
@@ -307,18 +307,18 @@ def send_sms(phone, message):
 #         if code == req.phone_verification_code and req.phone_verification_code is not None:
 #             req.phone_verified = True
 #             db.session.commit()
-#             flash("✅ شماره موبایل تأیید شد.")
+#             flash("✅ Mobile number verified.")
 #             return redirect(url_for('users.verify_phone'))
 #         else:
-#             flash("کد نامعتبر است.")
+#             flash("Invalid code.")
 #
-#     # Send کد
+#     # Send code
 #     if not req.phone_verification_code:
 #         print("PROVIDE CODE")
 #         code = str(random.randint(100000, 999999))
 #         req.phone_verification_code = code
 #         db.session.commit()
-#         send_sms(current_user.phone, f"کد تأیید شما: {code}")
+#         send_sms(current_user.phone, f"Verification code شما: {code}")
 #
 #     return render_template('users/verify_phone.html', req=req)
 
@@ -329,7 +329,7 @@ def send_sms(phone, message):
 # def verify_phone():
 #     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
 #     print(req,"req")
-#     # اگر درخواستی نداشت، یکی بساز
+#     # If no request exists, create one
 #     if not req:
 #         req = PremiumRequest(
 #             user_id=current_user.id,
@@ -340,9 +340,9 @@ def send_sms(phone, message):
 #         db.session.add(req)
 #         db.session.commit()
 #
-#     # حالا req وجود داReject، ادامه منطق تأیید کد
+#     # حالا req وجود داReject، Continue logic تأیید کد
 #     if req.phone_verified:
-#         flash("✅ شماره موبایل شما قبلاً تأیید شده است.")
+#         flash("✅ Your mobile number is already confirmed.")
 #         return redirect(url_for('users.profile'))
 #
 #     if request.method == 'POST':
@@ -350,28 +350,28 @@ def send_sms(phone, message):
 #         print(code,"code")
 #         print(req.phone_verification_code, "req.phone_verification_code")
 #         if not code:
-#             flash("لطفاً کد را واReject کنید.")
+#             flash("Please verify the code.")
 #         elif code == req.phone_verification_code:
 #             print(req.phone_verification_code, "req.phone_verification_code")
 #             req.phone_verified = True
 #             req.phone_verification_code = None
 #             db.session.commit()
-#             flash("✅ شماره موبایل تأیید شد.")
+#             flash("✅ Mobile number verified.")
 #             return redirect(url_for('users.payment_confirmation'))
 #         else:
-#             flash("کد نامعتبر است.")
+#             flash("Invalid code.")
 #
-#     # Send کد (اگر قبلاً Send نشده باشد)
+#     # Send code (if not already sent)
 #     if not req.phone_verification_code:
 #         print(req.phone_verification_code, "creation")
 #         code = str(random.randint(100000, 999999))
 #         req.phone_verification_code = code
 #         db.session.commit()
 #         try:
-#             send_sms(current_user.phone, f"کد تأیید: {code}")
-#             flash("کد تأیید Send شد.")
+#             send_sms(current_user.phone, f"Verification code: {code}")
+#             flash("Verification code sent.")
 #         except Exception as e:
-#             flash("Send کد با مشکل مواجه شد.")
+#             flash("Code sending encountered an issue.")
 #             current_app.logger.error(f"SMS failed: {e}")
 #
 #     return render_template('users/verify_phone.html', req=req)
@@ -383,8 +383,8 @@ def send_sms(phone, message):
 # @login_required
 # def verify_phone():
 #     if not current_user.phone or not current_user.phone.strip():
-#         flash("❌ لطفاً ابتدا شماره موبایل خود را در Profile خود واReject کنید.")
-#         return redirect(url_for('users.profile'))  # یا صفحه Edit Profile
+#         flash("❌ Please first verify your mobile number in your profile.")
+#         return redirect(url_for('users.profile'))  # یا page Edit Profile
 #
 #     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
 #
@@ -398,49 +398,49 @@ def send_sms(phone, message):
 #         db.session.commit()
 #
 #     if req.phone_verified:
-#         flash("✅ شماره موبایل شما قبلاً تأیید شده است.")
+#         flash("✅ Your mobile number is already confirmed.")
 #         return redirect(url_for('users.profile'))
 #
 #     if request.method == 'POST':
-#         # بررسی Send مجدد کد
+#         # Check resend code
 #         if 'resend' in request.form:
-#             # Delete کد Previous
+#             # Delete previous code
 #             code = str(random.randint(100000, 999999))
 #             req.phone_verification_code = code
 #             db.session.commit()
 #             try:
 #                 print("send_sms_function")
-#                 send_sms(current_user.phone, f"کد تأیید: {code}")
-#                 flash("کد New Send شد.")
+#                 send_sms(current_user.phone, f"Verification code: {code}")
+#                 flash("New code sent.")
 #             except Exception as e:
 #                 current_app.logger.error(f"SMS failed: {e}")
-#                 flash("❌ Send کد با مشکل مواجه شد.")
+#                 flash("❌ Code sending encountered an issue.")
 #             return redirect(url_for('users.verify_phone'))
 #
-#         # بررسی تأیید کد
+#         # Check code verification
 #         code = request.form.get('code', '').strip()
 #         if not code:
-#             flash("لطفاً کد را واReject کنید.")
+#             flash("Please verify the code.")
 #         elif code == req.phone_verification_code:
 #             req.phone_verified = True
 #             req.phone_verification_code = None
 #             db.session.commit()
-#             flash("✅ شماره موبایل successfully تأیید شد.")
+#             flash("✅ Mobile number successfully verified.")
 #             return redirect(url_for('users.payment_confirmation'))
 #         else:
-#             flash("❌ کد نامعتبر است.")
+#             flash("❌ Invalid code.")
 #
-#     # Send اولیه کد (اگر قبلاً Send نشده باشد)
+#     # Send first code (if not already sent)
 #     if not req.phone_verification_code:
 #         code = str(random.randint(100000, 999999))
 #         req.phone_verification_code = code
 #         db.session.commit()
 #         try:
-#             send_sms(current_user.phone, f"کد تأیید: {code}")
-#             flash("کد تأیید to شماره شما Send شد.")
+#             send_sms(current_user.phone, f"Verification code: {code}")
+#             flash("Verification code sent to your number.")
 #         except Exception as e:
 #             current_app.logger.error(f"SMS failed: {e}")
-#             flash("❌ Send کد با مشکل مواجه شد.")
+#             flash("❌ Code sending encountered an issue.")
 #
 #     return render_template('users/verify_phone.html', req=req)
 
@@ -448,25 +448,25 @@ def send_sms(phone, message):
 @login_required
 def verify_phone():
     if not current_user.phone or not current_user.phone.strip():
-        flash("❌ لطفاً ابتدا شماره موبایل خود را در Profile خود واReject کنید.")
+        flash("❌ Please first verify your mobile number in your profile.")
         return redirect(url_for('users.profile'))
 
     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
 
-    # اگر درخواستی وجود نداReject، یک درخواست New با Status draft ایجاد کن
+    # اگر requestی وجود نداReject، یک request New با Status draft ایجاد کن
     if not req:
         req = PremiumRequest(
             user_id=current_user.id,
             requested_phone=current_user.phone,
-            status='draft',  # ✅ تغییر از 'pending' to 'draft'
+            status='draft',  # ✅ change of 'pending' to 'draft'
             submitted_at=datetime.now(tehran_tz)
         )
         db.session.add(req)
         db.session.commit()
 
-    # اگر شماره قبلاً تأیید شده، to مرحله بعد برو
+    # اگر شماره agoاً Confirmed، to مرحله later برو
     if req.phone_verified:
-        flash("✅ شماره موبایل شما قبلاً تأیید شده است.")
+        flash("✅ Your mobile number is already confirmed.")
         return redirect(url_for('users.verify_email'))  # ✅ to Email برو، نه payment_confirmation
 
     if request.method == 'POST':
@@ -475,36 +475,36 @@ def verify_phone():
             req.phone_verification_code = code
             db.session.commit()
             try:
-                send_sms(current_user.phone, f"کد تأیید: {code}")
-                flash("کد New Send شد.")
+                send_sms(current_user.phone, f"Verification code: {code}")
+                flash("New code sent.")
             except Exception as e:
                 current_app.logger.error(f"SMS failed: {e}")
-                flash("❌ Send کد با مشکل مواجه شد.")
+                flash("❌ Code sending encountered an issue.")
             return redirect(url_for('users.verify_phone'))
 
         code = request.form.get('code', '').strip()
         if not code:
-            flash("لطفاً کد را واReject کنید.")
+            flash("Please verify the code.")
         elif code == req.phone_verification_code:
             req.phone_verified = True
             req.phone_verification_code = None
             db.session.commit()
-            flash("✅ شماره موبایل successfully تأیید شد.")
-            return redirect(url_for('users.verify_email'))  # ✅ بعد از تأیید شماره، to Email برو
+            flash("✅ Mobile number successfully verified.")
+            return redirect(url_for('users.verify_email'))  # ✅ later of تأیید شماره، to Email برو
         else:
-            flash("❌ کد نامعتبر است.")
+            flash("❌ Invalid code.")
 
-    # Send اولیه کد
+    # Send firstیه کد
     if not req.phone_verification_code:
         code = str(random.randint(100000, 999999))
         req.phone_verification_code = code
         db.session.commit()
         try:
-            send_sms(current_user.phone, f"کد تأیید: {code}")
-            flash("کد تأیید to شماره شما Send شد.")
+            send_sms(current_user.phone, f"Verification code: {code}")
+            flash("Verification code sent to your number.")
         except Exception as e:
             current_app.logger.error(f"SMS failed: {e}")
-            flash("❌ Send کد با مشکل مواجه شد.")
+            flash("❌ Code sending encountered an issue.")
 
     return render_template('users/verify_phone.html', req=req)
 
@@ -515,7 +515,7 @@ def verify_phone():
 
 
 # -------------------------------
-# تأیید Email (صفحه Show)
+# Verify email (page Show)
 # -------------------------------
 @users_bp.route('/verify_email')
 @login_required
@@ -541,10 +541,10 @@ def verify_email():
         # print('not req.email_verification_token')
         if send_email_verification(current_user):
             # print('....... send_email_verification')
-            flash("Email تأیید Send شد.")
+            flash("Verification email sent.")
         else:
             print('....... ❌❌')
-            flash("❌ Send Email با Error مواجه شد.")
+            flash("❌ Email sending encountered an error.")
             return render_template('users/verify_email.html', req=req)
 
     return render_template('users/verify_email.html', req=req)
@@ -566,14 +566,14 @@ def send_email_verification(user):
     confirm_url = url_for('users.confirm_email', token=token, _external=True)
 
     html_body = f"""
-    <h2>سلام {user.username}!</h2>
-    <p>برای تکمیل فرآیند ارتقاء to Premium User، Email خود را تأیید کنید:</p>
-    <p><a href="{confirm_url}">✅ تأیید Email</a></p>
-    <p>این لینک پس از 24 ساعت منقضی می‌شود.</p>
+    <h2>hello {user.username}!</h2>
+    <p>برای تکمیل فرآیند upgrade to Premium User، Email خود را تأیید کنید:</p>
+    <p><a href="{confirm_url}">✅ Verify email</a></p>
+    <p>این لینک پس of 24 hour منقضی می‌شود.</p>
     """
 
     msg = Message(
-        subject="✅ تأیید Email - فرآیند ارتقاء",
+        subject="✅ Verify email - فرآیند upgrade",
         recipients=[user.email],
         html=html_body,
         sender=current_app.config.get('MAIL_DEFAULT_SENDER')
@@ -587,7 +587,7 @@ def send_email_verification(user):
 
 
 # -------------------------------
-# تأیید توکن Email
+# تأیید token Email
 # -------------------------------
 @users_bp.route('/confirm_email/<token>')
 @login_required
@@ -600,7 +600,7 @@ def confirm_email(token):
         flash("❌ لینک منقضی شده است.")
         return redirect(url_for('users.verify_email'))
     except BadSignature:
-        flash("❌ لینک نامعتبر است.")
+        flash("❌ Invalid link.")
         return redirect(url_for('users.upgrade_to_premium'))
 
     if email != current_user.email:
@@ -609,13 +609,13 @@ def confirm_email(token):
 
     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
     if not req:
-        flash("❌ درخواستی یافت نشد.")
+        flash("❌ Request not found.")
         return redirect(url_for('users.upgrade_to_premium'))
 
     if not req.email_verified:
         req.email_verified = True
         req.email_verification_token = None
         db.session.commit()
-        flash("✅ Email تأیید شد.")
+        flash("✅ Email verified.")
 
     return redirect(url_for('users.upload_documents'))

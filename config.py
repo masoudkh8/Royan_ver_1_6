@@ -41,14 +41,14 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_PASSWORD= 'jcdhiqoktqtindfg'
     
-    # Settings قیمت‌ها
-    PREMIUM_PRICE_USD = 10000  # قیمت ارتقاء to Premium User to دلار
-    SUBSCRIPTION_ANNUAL_IRR = 1200000  # Annual Subscription مجله to تومان
-    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # اشتراک شش ماهه مجله to تومان
+    # Price settings
+    PREMIUM_PRICE_USD = 10000  # Premium user upgrade price in USD
+    SUBSCRIPTION_ANNUAL_IRR = 1200000  # Annual magazine subscription in Tomans
+    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # Six-month magazine subscription in Tomans
     
-    # Settings آپلود فایل مجله
+    # Magazine file upload settings
     UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
     MAGAZINE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'magazines')
-    MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # حداکثر حجم فایل 50 مگابایت
+    MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # Maximum file size 50 مگابایت
     ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}
 

@@ -1,0 +1,299 @@
+================================================================================
+CLEAN TRANSLATABLE TEXTS FOR USERS (PERSIAN/ARABIC)
+Total Unique User-Facing Items: 188
+Files Scanned: 19
+================================================================================
+
+1. (جدول خالی است)
+2. )
+
+            # ✅ افزودن و ذNoه در یک تراکنش Unit
+            db.session.add(order)
+            db.session.add(notification)
+            db.session.commit()
+
+            flash(
+3. )
+
+# Show داده‌های هر جدول
+print(
+4. )
+
+# فرم Annual Subscription
+@magazine_bp.route(
+5. )
+
+# فرم Request Advertisement
+@magazine_bp.route(
+6. )
+######################################TEST
+
+# Show Roleه
+@users_bp.route(
+7. ) }}</button>
+                    </div>
+                `;
+
+                // کلیک روی پورت → حرکت to موقعیت
+                item.addEventListener(
+8. ))
+
+
+# -------------------------------
+# Reject Order تCenter Seller
+# -------------------------------
+@users_bp.route(
+9. ))
+
+
+# ---------------------------------------
+# مشاهده Details درخواست
+# ---------------------------------------
+@admin_bp.route(
+10. ))
+
+        except Exception as e:
+            db.session.rollback()  # ⚠️ بازگRejectانی تراکنش در صورت Error
+            print(f
+11. ))
+
+# # آپلود مدارک
+@users_bp.route(
+12. ))
+
+# ---------------------------------------
+# Inactive‌سازی User
+# ---------------------------------------
+@admin_bp.route(
+13. ))
+
+# فرم Request Sponsorship
+@magazine_bp.route(
+14. ))  # ✅ بعد از تأیید شماره، to Email برو
+        else:
+            flash(
+15. )))
+
+
+
+# صفحه Login
+@admin_bp.route(
+16. )))
+
+
+# ---------------------------------------
+# Active‌سازی User
+# ---------------------------------------
+@admin_bp.route(
+17. );
+            }
+        }
+
+        // بررسی تم ذNoه شده
+        document.addEventListener(
+18. );
+            }
+        }
+    }
+
+    // شروع Roleه
+    document.addEventListener(
+19. ,  # ✅ تغییر از
+20. , // Active‌سازی حالت تیره با کلاس
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+21. , err));
+        }
+
+        // Show/پنهان کRejectن آیکون‌ها بر اساس تم
+        document.addEventListener(
+22. .وب سرویس Message کوتاه کاوه نگار
+23. ;
+        }
+
+        // ✅ اسلایدر خودکار لوگوهای همکاران
+        document.addEventListener(
+24. ;
+        });
+    }
+
+    // اضافه کRejectن پورت New
+    document.getElementById(
+25. ></span>-->
+
+<!--                &lt;!&ndash; بالون Chat (اختیاری: اگر می‌خوای حالت
+26. >ایجاد Admin</button>
+    </form>
+27. >تأیید Email</a></p>
+    <p>این لینک پس از 1 ساعت منقضی می‌شود.</p>
+    <p>If you didn
+28. >✅ تأیید Email</a></p>
+    <p>این لینک پس از 24 ساعت منقضی می‌شود.</p>
+29. Access denied: فقط Users ویژه
+30. Chat سریع
+31. Email تأیید Send شد.
+32. Endpoint جایگزین برای تغییر زبان - قابل دسترسی با نام root.change_language
+33. Error در Send Messageک: {e}
+34. Error در درخواست شبکه: {e}
+35. Errorی HTTP: {response.status_code}
+36. Errorی HTTP: {response.status_code}, پاسخ: {response.text}
+37. Home مجله - Show شماره‌های موجود
+38. Info حساب شرکت
+39. Place Order با اعتبارسنجی کامل و امن
+40. Product را واReject کنید.
+41. Quantity نامعتبر است.
+42. Send شد
+43. Send کد با مشکل مواجه شد.
+44. Status پاسخ: {response.status_code}
+45. User {req.user.username} یک درخواست New Send کRejectه است.
+46. Username برای Admin اول
+47. \n✅ فایل {file}:
+48. \n❌ فایل {file}: Error - {e}
+49. \n📄 فایل‌های .py موجود: {py_files}
+50. login_manager.init_app(app)
+
+    # Settings Email (مثال با Gmail)
+    app.config[
+51. successfully ایجاد شد.
+52. {% block title %}مارکت صادرات{% endblock %}
+53. {var} نوع: {type(obj).__name__}
+54. }).addTo(map);
+
+        // 🎯 کلیک روی Roleه → Show و پر کRejectن Coordinates
+        map.on(
+55. آپلود رسید پRejectاخت
+56. آیبان (IBAN):
+57. استان، شهر، خیابان، پلاک، Unit، کد پستی
+58. العربية
+59. ایجاد Admin
+60. ایجاد First User Admin در سیستم
+61. این شماره هنوز منتشر نشده است.
+62. این لینک پس از 1 ساعت منقضی می‌شود.
+63. این لینک پس از 24 ساعت منقضی می‌شود.
+64. برای تأیید آدرس Email خود، Click the link below:
+65. برای تکمیل فرآیند ارتقاء to Premium User، Email خود را تأیید کنید:
+66. تأیید Email
+67. تأیید Email برای ارتقاء to Premium User
+68. تبریک! Upgrade request to Premium User
+69. تزریق متغیرهای زبان و قیمت‌ها to تمام تمپلیت‌ها
+70. تغییر زبان User
+71. تغییر زبان User و ذNoه در session
+72. ثبت Request Advertisement در مجله
+73. ثبت Request Sponsorship
+74. ثبت نام Annual Subscription
+75. دانلود فایل دیجیتال مجله
+76. رسید پRejectاخت دریافت شد. در حال بررسی...
+77. سلام {user.username}!
+78. سوئیفت (SWIFT):
+79. شروع Chat با Support
+80. شماره حساب:
+81. شماره موبایل خالی است.
+82. شناسه پورت باید یک عدد مثبت باشد.
+83. علامت‌گذاری to عنوان Send شده
+84. علامت‌گذاری to عنوان تحویل داده شده
+85. فایل مجله یافت نشد.
+86. فرمت شماره نامعتبر: {phone}
+87. قبلاً استفاده شده است.
+88. قبلاً گرفته شده است.
+89. لطفاً فیلدهای الزامی را پر کنید.
+90. لطفاً کد را واReject کنید.
+91. مTon پاسخ: {response.text}
+92. متغیرهای پیدا شده: {found}
+93. مجله تصویر
+94. محاسto قیمت کل
+95. محاسto قیمت کل: quantity * price
+96. مدارک successfully آپلود شدند.
+97. مدل Annual Subscription مجله
+98. مدل Info کلی مجله
+99. مدل Request Advertisement در مجله
+100. مدل Request Sponsorship
+101. مدل شماره‌های مجله
+102. موفق
+103. نام بانک:
+104. نام صاحب حساب:
+105. نامشخص
+106. نامعتبر
+107. پاسخ سرور: {json_resp}
+108. پورت deleted.
+109. پورت successfully بروزرسانی شد.
+110. پورت اضافه شد.
+111. کاوه‌نگار Error داد: {json_resp[
+112. کد New Send شد.
+113. کد تأیید Send شد.
+114. کد تأیید to شماره شما Send شد.
+115. کد تأیید شما: {code}
+116. کد تأیید: {code}
+117. کد نامعتبر است.
+118. ⚠️ این Order قبلاً تأیید یا rejectedه است.
+119. ⚠️ این Order قبلاً تغییر Status داده است.
+120. ⚠️ درخواست شما در حال بررسی است.
+121. ✅ Email تأیید شد.
+122. ✅ Messageک successfully Send شد.
+123. ✅ Messageک to {phone} Send شد.
+124. ✅ Messageک to {phone} successfully Send شد.
+125. ✅ Order successfully ثبت شد.
+126. ✅ Order تأیید شد و Notification Send گRejectید.
+127. ✅ Order تأیید و Notification to خریدار Send شد.
+128. ✅ Order و Notification successfully ثبت شد.
+129. ✅ Profile بروزرسانی شد.
+130. ✅ Upgrade request شما تأیید شد.
+131. ✅ تأیید Email
+132. ✅ تأیید Email - فرآیند ارتقاء
+133. ✅ شما قبلاً You are now a premium user.
+134. ✅ شماره موبایل successfully تأیید شد.
+135. ✅ شماره موبایل تأیید شد.
+136. ✅ مسیر /users/test کار می‌کنه!
+137. ✉️ Message Send شد.
+138. ❌ AmootSMS Error داد: {error_msg}
+139. ❌ AmootSMS Error داد: {json_resp.get(
+140. ❌ Error در Send Email: {e}
+141. ❌ Error در Send Messageک: {e}
+142. ❌ Error در Send to {phone}: {result.get(
+143. ❌ Errorی غیرمنتظره: {e}
+144. ❌ Errorی پایگاه داده: {e}
+145. ❌ Errorی کلی در Send Messageک: {e}
+146. ❌ Errorیی در Place Order رخ داد. لطفاً again تلاش کنید.
+147. ❌ Errorیی در ارتباط با سرویس Ship Tracking رخ داد.
+148. ❌ Errorیی رخ داد.
+149. ❌ Errorیی رخ داد. لطفاً again تلاش کنید.
+150. ❌ Password باید حداقل 8 کاراکتر داشته باشد.
+151. ❌ Seller موReject نظر یافت نشد.
+152. ❌ Send Email با Error مواجه شد.
+153. ❌ Send کد با مشکل مواجه شد.
+154. ❌ Status HTTP ناموفق: {response.status_code}
+155. ❌ Status پاسخ نامعتبر: {response.status_code}
+156. ❌ User انتخابی Seller نیست.
+157. ❌ Username باید حداقل 3 کاراکتر داشته باشد.
+158. ❌ Your upgrade request has been rejected. می‌توانید again تلاش کنید.
+159. ❌ آدرس Email نامعتبر است.
+160. ❌ ایجاد Admin Inactive است.
+161. ❌ این حساب Inactive است.
+162. ❌ این لینک برای شما نیست.
+163. ❌ داده‌ای برای این Ship یافت نشد.
+164. ❌ داده‌های دریافتی نامعتبر هسTonد.
+165. ❌ درخواست to AmootSMS تایم‌اوت خوReject.
+166. ❌ درخواست to سرور زمان‌بندی شد (Timeout).
+167. ❌ درخواست to سرور زمان‌بندی شد. لطفاً again تلاش کنید.
+168. ❌ درخواستی یافت نشد.
+169. ❌ دسترسی غیرمجاز
+170. ❌ دسترسی غیرمجاز.
+171. ❌ دسترسی فقط برای Users ویژه مجاز است.
+172. ❌ فقط Users ویژه می‌توانند to Roleه دسترسی داشته باشند.
+173. ❌ فقط برای Sellers قابل دسترسی است.
+174. ❌ لطفاً ابتدا شماره موبایل خود را در Profile خود واReject کنید.
+175. ❌ لطفاً مبدأ و Destination را انتخاب کنید.
+176. ❌ لینک منقضی شده است.
+177. ❌ لینک نامعتبر است.
+178. ❌ مشکل در اتصال to سرور (ممکن است Filter باشد یا سرور خاموش).
+179. ❌ مشکل در اتصال to سرور AmootSMS (اتصال قطع یا Filter).
+180. ❌ پاسخ JSON نامعتبر: {response.text[:500]}
+181. ❌ پاسخ JSON نامعتبر: {response.text}
+182. ❌ کد نامعتبر است.
+183. 👋 successfully Outside شدید.
+184. 💳 پRejectاخت هزینه ارتقاء
+185. 📤 [TEST] Messageک to {phone}: {message}
+186. 🔍 بررسی ساختار پروژه
+187. 🔔 درخواست New ارتقاء to Premium User
+188. 🗑️ حساب شما deleted.

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1e293b" />
-    <title>{% block title %}مارکت صادرات{% endblock %}</title>
+    <title>{% block title %}Export Market{% endblock %}</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,7 @@
         //     <p className="mt-2 font-medium">Edit Profile</p>
         // </a>
         tailwind.config = {
-            darkMode: 'class', // Active‌سازی حالت تیره با کلاس
+            darkMode: 'class', // Active‌سofی حالت تیره با کلاس
             theme: {
                 extend: {
                     fontFamily: {
@@ -38,7 +38,7 @@
             }
         };
 
-        // Management تم تیره
+        // Management theme تیره
         function toggleDarkMode() {
             const html = document.getElementById('html-root');
             const isDark = html.classList.contains('dark');
@@ -52,7 +52,7 @@
             }
         }
 
-        // بررسی تم ذNoه شده
+        // بررسی theme ذNoه شده
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             const html = document.getElementById('html-root');
@@ -94,7 +94,7 @@
 <!--    {% if current_user.is_authenticated %}-->
 <!--        {% set unread_count = current_user.unread_notifications_count %}-->
 <!--        <a href="{{ url_for('users.notifications') }}" class="relative text-white hover:text-yellow-200 transition">-->
-<!--            <svg>...</svg>  &lt;!&ndash; آیکون 🔔 &ndash;&gt;-->
+<!--            <svg>...</svg>  &lt;!&ndash; Icon 🔔 &ndash;&gt;-->
 <!--            {% if unread_count > 0 %}-->
 <!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full animate-pulse">-->
 <!--                    {{ unread_count if unread_count < 10 else '9+' }}-->
@@ -114,7 +114,7 @@
             <h1 class="text-xl font-bold">🌍 {{ _('ExportMarket') }}</h1>
 
             <div class="flex items-center space-x-4 space-x-reverse">
-                <!-- انتخاب زبان -->
+                <!-- Language selection -->
                 <select onchange="if(this.value) window.location='{{ url_for('set_language', lang_code='') }}'+this.value" 
                         class="text-gray-800 text-xs px-2 py-1 rounded focus:outline-none">
                     {% for code, name in supported_languages.items() %}
@@ -168,7 +168,7 @@
 <!--                    </svg>-->
 <!--                    <p class="mt-2 font-medium">Edit Profile</p>-->
 <!--                </button>-->
-                <!-- دکمه تغییر تم -->
+                <!-- Theme change button -->
                 <button onclick="toggleDarkMode()" class="text-white hover:text-yellow-200 transition">
                     <svg id="light-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -178,7 +178,7 @@
                     </svg>
                 </button>
 
-                <!-- آیکون Notifications -->
+                <!-- Notifications icon -->
                 {% if current_user.is_authenticated %}
                     {% set unread_count = current_user.unread_notifications_count %}
                     <a href="{{ url_for('users.notifications') }}" class="relative hover:text-yellow-200 transition">
@@ -215,7 +215,7 @@
         </div>
     </header>
 
-    <!-- محتوا -->
+    <!-- Content -->
     <main class="container mx-auto p-4 mt-6">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -243,7 +243,7 @@
                 .catch(err => console.log('SW not registered:', err));
         }
 
-        // Show/پنهان کRejectن آیکون‌ها بر اساس تم
+        // Show/پنهان کRejectن Icons بر اساس theme
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.getElementById('html-root');
             const lightIcon = document.getElementById('light-icon');
@@ -268,11 +268,11 @@
                 updateIcons();
             };
             
-            // تغییر Direction صفحه بر اساس زبان
+            // change Direction page بر اساس language
             updatePageDirection();
         });
         
-        // تابع تغییر Direction صفحه (RTL/LTR)
+        // تابع change Direction page (RTL/LTR)
         function updatePageDirection() {
             const currentLang = '{{ current_lang }}';
             const html = document.getElementById('html-root');
@@ -289,50 +289,50 @@
             }
         }
     </script>
-        <!-- دکمه Chat ثابت در گوشه Bottom سمت Right -->
+        <!-- Chat button ثابت در گوشه Bottom سمت Right -->
 <!--    <div class="fixed bottom-6 left-6 z-50">-->
 <!--        {% if support_user %}-->
 <!--            <a href="{{ url_for('users.chat', receiver_id = support_user.id) }}"-->
 <!--               class="relative bg-green-600 hover:bg-green-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300"-->
-<!--               aria-label="Chat سریع">-->
-<!--                &lt;!&ndash; آیکون Chat &ndash;&gt;-->
+<!--               aria-label="Quick chat">-->
+<!--                &lt;!&ndash; Chat icon &ndash;&gt;-->
 <!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
 <!--                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
 <!--                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />-->
 <!--                </svg>-->
 
-<!--                &lt;!&ndash; نشانگر آنلاین (اختیاری) &ndash;&gt;-->
+<!--                &lt;!&ndash; Online indicator (Optional) &ndash;&gt;-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping"></span>-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
 <!--            </a>-->
 <!--        {% endif %}-->
 <!--    </div>-->
-    <!-- دکمه Chat ثابت در گوشه Bottom سمت Left -->
+    <!-- Chat button ثابت در گوشه Bottom سمت Left -->
 <!--    <div class="fixed bottom-8 left-8 z-50">-->
 <!--        {% if support_user %}-->
 <!--            <a href="{{ url_for('users.chat', receiver_id=support_user.id) }}"-->
 <!--               class="relative z-50 overflow-visible bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-105 hover:origin-center hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-purple-300"-->
-<!--               aria-label="شروع Chat با Support">-->
+<!--               aria-label="Start chat with support">-->
 
-<!--                &lt;!&ndash; آیکون Chat مدرن: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
+<!--                &lt;!&ndash; Modern chat icon: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
 <!--&lt;!&ndash;                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">&ndash;&gt;-->
-<!--&lt;!&ndash;                    &lt;!&ndash; سر ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; Robot head &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <circle cx="12" cy="8" r="4" class="stroke-white fill-blue-500" />&ndash;&gt;-->
 
 <!--&lt;!&ndash;                    &lt;!&ndash; چشم Right &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <circle cx="10" cy="7" r="1" fill="white" />&ndash;&gt;-->
 <!--&lt;!&ndash;                    &lt;!&ndash; چشم Left &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <circle cx="14" cy="7" r="1" fill="white" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    &lt;!&ndash; لبخند &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; Smile &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M9 11a3 3 0 0 1 6 0" stroke="white" stroke-width="2" fill="none" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    &lt;!&ndash; بدن ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; Robot body &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <rect x="8" y="12" width="8" height="6" rx="3" class="stroke-white fill-blue-500" />&ndash;&gt;-->
 
 <!--&lt;!&ndash;                    &lt;!&ndash; دست Right &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" stroke-width="2" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; Surrounding teeth &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"&ndash;&gt;-->
 <!--&lt;!&ndash;                          stroke="white" stroke-width="1.5" opacity="0.8" />&ndash;&gt;-->
 <!--&lt;!&ndash;                </svg>&ndash;&gt;-->
@@ -342,11 +342,11 @@
 <!--                          class="stroke-white fill-blue-500" />-->
 <!--                    <path d="M12 10v4M8 12h8" stroke="white" stroke-width="2" />-->
 <!--                </svg>-->
-<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                &lt;!&ndash; Online indicator (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping opacity-75"></span>-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
 
-<!--                &lt;!&ndash; بالون Chat (اختیاری: اگر می‌خوای حالت "Message New" نشون بده) &ndash;&gt;-->
+<!--                &lt;!&ndash; Chat balloon (Optional: اگر می‌خوای حالت "Message New" نشون بده) &ndash;&gt;-->
 <!--                &lt;!&ndash;-->
 <!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">-->
 <!--                    1-->
@@ -355,21 +355,21 @@
 <!--            </a>-->
 <!--        {% endif %}-->
 <!--    </div>-->
-<!-- دکمه Chat — نسخه ایمن -->
+<!-- Chat button — Safe version -->
 
 
 
- <!-- دکمه Chat ثابت در گوشه Bottom سمت Left -->
+ <!-- Chat button ثابت در گوشه Bottom سمت Left -->
 <!--    <div class="fixed bottom-6 left-6 z-50">-->
 <!--        {% if support_user %}-->
 <!--            <a href="{{ url_for('users.chat', receiver_id=support_user.id) }}">-->
 <!--&lt;!&ndash;                class="relative bg-gradient-to-r from-blue-60 hover:from-blue-700 hover:to-purple-700 p-4&ndash;&gt;-->
 <!--&lt;!&ndash;                  transition-all duration-300 transform hover:scale-105  "&ndash;&gt;-->
-<!--&lt;!&ndash;               aria-label="شروع Chat با Support">&ndash;&gt;-->
+<!--&lt;!&ndash;               aria-label="Start chat with support">&ndash;&gt;-->
 
-<!--&lt;!&ndash;                 آیکون Chat مدرن: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
+<!--&lt;!&ndash;                 Modern chat icon: دایره با ایموجی و دندانه‌ها (مثل ربات هوشمند) &ndash;&gt;-->
 <!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                    &lt;!&ndash; سر ربات &ndash;&gt;-->
+<!--                    &lt;!&ndash; Robot head &ndash;&gt;-->
 <!--                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">-->
 <!--                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />-->
 <!--                    </svg>-->
@@ -379,22 +379,22 @@
 <!--                    <circle cx="10" cy="7" r="2" fill="red" />-->
 <!--                    &lt;!&ndash; چشم Left &ndash;&gt;-->
 <!--                    <circle cx="14" cy="7" r="2" fill="red" />-->
-<!--                    &lt;!&ndash; لبخند &ndash;&gt;-->
+<!--                    &lt;!&ndash; Smile &ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M9 11a3 3 0 0 1 6 0" stroke="black" stroke-width="2" fill="blue-500" />&ndash;&gt;-->
 
-<!--                    &lt;!&ndash; بدن ربات &ndash;&gt;-->
+<!--                    &lt;!&ndash; Robot body &ndash;&gt;-->
 <!--&lt;!&ndash;                    <rect x="8" y="12" width="8" height="6" rx="3" class="animate-pulse stroke-red fill-blue-500" />&ndash;&gt;-->
 
 <!--&lt;!&ndash;                    <circle cx="12" cy="14" r="1" fill="white" class="" />&ndash;&gt;-->
 <!--&lt;!&ndash;                    &lt;!&ndash; دست Right &ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" stroke-width="2" />&ndash;&gt;-->
 
-<!--                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;-->
+<!--                    &lt;!&ndash; Surrounding teeth &ndash;&gt;-->
 <!--&lt;!&ndash;                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"&ndash;&gt;-->
 <!--&lt;!&ndash;                          stroke="red" stroke-width="1.5" opacity="0.8"  />&ndash;&gt;-->
 <!--                </svg>-->
 
-<!--   &lt;!&ndash; آیکون &ndash;&gt;-->
+<!--   &lt;!&ndash; Icon &ndash;&gt;-->
 <!--&lt;!&ndash;                <svg class="h-8 w-8 drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor">&ndash;&gt;-->
 <!--&lt;!&ndash;                    <circle cx="12" cy="8" r="4" class="fill-blue-500" stroke="white" />&ndash;&gt;-->
 <!--&lt;!&ndash;                    <circle cx="10" cy="7" r="1" fill="white" />&ndash;&gt;-->
@@ -404,11 +404,11 @@
 <!--&lt;!&ndash;                    <path d="M12 12v6m3-3H9" stroke="white" />&ndash;&gt;-->
 <!--&lt;!&ndash;                </svg>&ndash;&gt;-->
 
-<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                &lt;!&ndash; Online indicator (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4 animate-ping opacity-75"></span>-->
 <!--                <span class="absolute -top-1 -right-1 bg-green-400 border-2 border-white rounded-full w-4 h-4"></span>-->
 
-<!--                &lt;!&ndash; بالون Chat (اختیاری: اگر می‌خوای حالت "Message New" نشون بده) &ndash;&gt;-->
+<!--                &lt;!&ndash; Chat balloon (Optional: اگر می‌خوای حالت "Message New" نشون بده) &ndash;&gt;-->
 <!--                &lt;!&ndash;-->
 <!--                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">-->
 <!--                    1-->
@@ -419,20 +419,20 @@
 <!--    </div>-->
 
 
-    <!-- دکمه Chat حرفه‌ای -->
+    <!-- Professional chat button -->
     <div class="fixed bottom-6 left-6 z-50">
         <a href="{{ url_for('users.chat') }}"
 
             class="focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- بالون Chat -->
+              <!-- Chat balloon -->
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                     class="fill-white stroke-blue-600" />
-              <!-- علامت + درون بالون (Chat New) -->
+              <!-- + sign inside balloon (Chat New) -->
 
               <line x1="12" y1="10" x2="12" y2="14" stroke="blue" stroke-width="1" />
               <line x1="10" y1="12" x2="14" y2="12" stroke="blue" stroke-width="1" />
-              <!-- نقطه آنلاین -->
+              <!-- Online dot -->
     <!--              <circle cx="18" cy="6" r="2" class="fill-green-500 stroke-white " />-->
               <span class="absolute bg-green-500 rounded-full w-4 h-4 animate-ping"></span>
             </svg>

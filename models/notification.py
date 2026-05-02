@@ -8,12 +8,12 @@ class Notification(db.Model):
     __tablename__ = 'notifications'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # کسی که Notification رو دریافت می‌کند
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # کسی که Notification رو receive می‌کند
     message = db.Column(db.String(200), nullable=False)
     is_read = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now(tehran_tz))
 
-    # رابطه
+    # Relationship
     user = db.relationship('User', back_populates='notifications')
 
     def __repr__(self):

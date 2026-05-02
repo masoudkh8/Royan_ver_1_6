@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
-    <!-- هدر مجله -->
+    <!-- Magazine header -->
     <div class="max-w-7xl mx-auto mb-12 text-center">
         <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in">
             {{ _('Imazheh Visual Magazine') }}
@@ -14,7 +14,7 @@
             {{ _('Specialized reference for international trade, maritime transport and logistics') }}
         </p>
 
-        <!-- دکمه‌های اقدام -->
+        <!-- Action buttons -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
             <a href="{{ url_for('magazine.sponsorship_request') }}"
                class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg">
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <!-- شماره‌های مجله -->
+    <!-- Magazine issues -->
     <div class="max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             {{ _('Published Issues') }}
@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for issue in issues %}
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
-                <!-- تصویر جلد -->
+                <!-- Cover image -->
                 <div class="relative h-64 bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center">
                     {% if issue.cover_image_url %}
                     <img src="{{ issue.cover_image_url }}" alt="{{ issue.title }}" class="w-full h-full object-cover">
@@ -66,7 +66,7 @@
                         {{ issue.title }}
                     </h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                        {{ issue.description or _('Description of this issue will be added soon.') }}
+                        {{ issue.description or _('Notes of this issue will be added soon.') }}
                     </p>
 
                     <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
@@ -74,7 +74,7 @@
                         <span>{{ issue.download_count }} {{ _('Downloads') }}</span>
                     </div>
 
-                    <!-- دکمه دانلود -->
+                    <!-- Download button -->
                     <a href="{{ url_for('magazine.download_issue', issue_id=issue.id) }}"
                        class="block w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-center py-3 rounded-lg font-medium transition-all transform hover:scale-105 shadow-md">
                         <div class="flex items-center justify-center gap-2">

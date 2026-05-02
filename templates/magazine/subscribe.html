@@ -1,22 +1,22 @@
 <!-- templates/magazine/subscribe.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}Annual Subscription - مجله تصویر{% endblock %}
+{% block title %}Annual Subscription - Tasvir Magazine{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
-        <!-- هدر -->
+        <!-- Header -->
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Annual Subscription مجله تصویر
+                Annual Subscription Tasvir Magazine
             </h1>
             <p class="text-lg text-gray-600 dark:text-gray-300">
-                برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید
+                To receive print and digital magazine versions, please fill out the form below
             </p>
         </div>
 
-        <!-- کارت‌های اشتراک -->
+        <!-- Subscription cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-green-500">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ _('Annual Subscription') }}</h3>
@@ -39,13 +39,13 @@
             </div>
         </div>
 
-        <!-- فرم -->
+        <!-- Form -->
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8">
             <form method="POST" action="{{ url_for('magazine.subscribe') }}" class="space-y-6">
-                <!-- نام و نام خانوادگی -->
+                <!-- Full name -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        نام و نام خانوادگی <span class="text-red-500">*</span>
+                        Full name <span class="text-red-500">*</span>
                     </label>
                     <input type="text" id="name" name="name" required
                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
@@ -60,29 +60,29 @@
                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
                 </div>
 
-                <!-- تلفن -->
+                <!-- Phone -->
                 <div>
                     <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        شماره تلفن <span class="text-red-500">*</span>
+                        Phone number <span class="text-red-500">*</span>
                     </label>
                     <input type="tel" id="phone" name="phone" required
                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
                 </div>
 
-                <!-- آدرس -->
+                <!-- address -->
                 <div>
                     <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        آدرس پستی کامل <span class="text-red-500">*</span>
+                        Complete postal address <span class="text-red-500">*</span>
                     </label>
                     <textarea id="address" name="address" rows="4" required
-                              placeholder="استان، شهر، خیابان، پلاک، Unit، کد پستی"
+                              placeholder="province، city، خیابان، پلاک، Unit، postal code"
                               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"></textarea>
                 </div>
 
-                <!-- نوع اشتراک -->
+                <!-- Subscription type -->
                 <div>
                     <label for="subscription_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        نوع اشتراک <span class="text-red-500">*</span>
+                        Subscription type <span class="text-red-500">*</span>
                     </label>
                     <select id="subscription_type" name="subscription_type" required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
@@ -94,7 +94,7 @@
                 <!-- دکمه Send -->
                 <button type="submit"
                         class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
-                    ثبت نام اشتراک
+                    Register subscription
                 </button>
             </form>
 
@@ -102,7 +102,7 @@
             <div class="mt-6 text-center">
                 <a href="{{ url_for('magazine.index') }}" 
                    class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium">
-                    ← Back to Home مجله
+                    ← Back to Home magazine
                 </a>
             </div>
         </div>

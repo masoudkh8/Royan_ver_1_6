@@ -6,23 +6,23 @@ from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
 
-# مسیرهای عمومی برای Show مجله
+# routeهای general برای Show magazine
 @magazine_bp.route('/')
 def index():
-    """Home مجله - Show شماره‌های موجود"""
+    """Home magazine - Show شماره‌های in stock"""
     issues = MagazineIssue.query.filter_by(is_published=True).order_by(MagazineIssue.issue_number.desc()).all()
     return render_template('magazine/index.html', issues=issues)
 
 @magazine_bp.route('/download/<int:issue_id>')
 def download_issue(issue_id):
-    """دانلود فایل دیجیتال مجله"""
+    """download file دیجیتال magazine"""
     issue = MagazineIssue.query.get_or_404(issue_id)
     
     if not issue.is_published:
-        flash('این شماره هنوز منتشر نشده است.', 'error')
+        flash('This issue is not yet published.', 'error')
         return redirect(url_for('magazine.index'))
     
-    # مسیر فایل را برگRejectانید
+    # route file را برگRejectانید
     file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'magazines', issue.file_path)
     
     if os.path.exists(file_path):
@@ -33,10 +33,10 @@ def download_issue(issue_id):
             download_name=f"imazheh-issue-{issue.issue_number}.pdf"
         )
     else:
-        flash('فایل مجله یافت نشد.', 'error')
+        flash('Magazine file not found.', 'error')
         return redirect(url_for('magazine.index'))
 
-# فرم Request Sponsorship
+# Form Request Sponsorship
 @magazine_bp.route('/sponsorship', methods=['GET', 'POST'])
 def sponsorship_request():
     """ثبت Request Sponsorship"""
@@ -48,7 +48,7 @@ def sponsorship_request():
         message = request.form.get('message')
         
         if not all([name, email, phone]):
-            flash('لطفاً فیلدهای الزامی را پر کنید.', 'error')
+            flash('Please fill in the required fields.', 'error')
             return redirect(url_for('magazine.sponsorship_request'))
         
         new_request = SponsorshipRequest(
@@ -67,10 +67,10 @@ def sponsorship_request():
     
     return render_template('magazine/sponsorship.html')
 
-# فرم Request Advertisement
+# Form Request Advertisement
 @magazine_bp.route('/advertisement', methods=['GET', 'POST'])
 def advertisement_request():
-    """ثبت Request Advertisement در مجله"""
+    """ثبت Request Advertisement در magazine"""
     if request.method == 'POST':
         name = request.form.get('name')
         company = request.form.get('company')
@@ -82,7 +82,7 @@ def advertisement_request():
         message = request.form.get('message')
         
         if not all([name, email, phone, ad_type]):
-            flash('لطفاً فیلدهای الزامی را پر کنید.', 'error')
+            flash('Please fill in the required fields.', 'error')
             return redirect(url_for('magazine.advertisement_request'))
         
         new_request = AdvertisementRequest(
@@ -104,10 +104,10 @@ def advertisement_request():
     
     return render_template('magazine/advertisement.html')
 
-# فرم Annual Subscription
+# Form Annual Subscription
 @magazine_bp.route('/subscribe', methods=['GET', 'POST'])
 def subscribe():
-    """ثبت نام Annual Subscription"""
+    """Register Annual Subscription"""
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -116,7 +116,7 @@ def subscribe():
         subscription_type = request.form.get('subscription_type')
         
         if not all([name, email, phone, address]):
-            flash('لطفاً فیلدهای الزامی را پر کنید.', 'error')
+            flash('Please fill in the required fields.', 'error')
             return redirect(url_for('magazine.subscribe'))
         
         new_subscription = Subscription(

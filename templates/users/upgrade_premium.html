@@ -5,7 +5,7 @@
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
     <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ _('Premium Upgrade Process') }}</h2>
 
-    <!-- نوار پیشرفت -->
+    <!-- Progress bar -->
     <div class="mt-4 mb-6">
         <div class="flex justify-between text-xs text-gray-600 mb-2">
             <span>{{ _('Start') }}</span>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <!-- Message Dateچه درخواست‌ها -->
+    <!-- Message Dateچه request‌ها -->
     {% if requests|length > 1 %}
         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 text-sm">
             <p>{{ _('You have previously requested %(count)s times.', count=requests|length) }}.</p>
@@ -48,9 +48,9 @@
         </div>
     {% endif %}
 
-    <!-- مراحل -->
+    <!-- Steps -->
     <div class="space-y-4">
-        <!-- مرحله 1: تأیید شماره موبایل -->
+        <!-- Step 1: Mobile number verification -->
         <div class="flex items-center">
             <div class="w-8 h-8 rounded-full
                 {% if req and req.phone_verified %}bg-green-500{% else %}bg-blue-600{% endif %}
@@ -65,7 +65,7 @@
             {% endif %}
         </div>
 
-        <!-- مرحله 2: تأیید Email -->
+        <!-- Step 2: Email verification -->
         <div class="flex items-center">
             {% if req and req.phone_verified %}
                 <a href="{{ url_for('users.verify_email') }}" class="flex items-center">
@@ -85,7 +85,7 @@
             {% endif %}
         </div>
 
-        <!-- مرحله 3: آپلود مدارک -->
+        <!-- Step 3: Upload documents -->
         <div class="flex items-center">
             {% if req and req.email_verified %}
                 <a href="{{ url_for('users.upload_documents') }}" class="flex items-center">
@@ -125,7 +125,7 @@
             {% endif %}
         </div>
 
-        <!-- مرحله 5: بررسی و تأیید نهایی -->
+        <!-- Step 5: Review and final approval -->
         <div class="flex items-center">
             {% if req and req.payment_receipt %}
                 <div class="w-8 h-8 rounded-full

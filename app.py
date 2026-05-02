@@ -15,7 +15,7 @@ from config import Config
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail ,Message
-from routes.users import users_bp  # ✅ درست
+from routes.users import users_bp  # ✅ correct
 from routes.admin import admin_bp
 from routes.users import root_bp
 from extensions import mail
@@ -27,7 +27,7 @@ migrate = Migrate()
 login_manager = LoginManager()
 babel = Babel()
 
-# لیست زبان‌های Support شده (16 زبان اصلی دنیا)
+# List of supported languages (16 main world languages)
 SUPPORTED_LANGUAGES = {
     'fa': 'Persian',
     'en': 'English',
@@ -48,7 +48,7 @@ SUPPORTED_LANGUAGES = {
 }
 
 
-# تابع برای خواندن دیتاست JSON و ذNoه در پایگاه داده
+# Function to read JSON dataset and store in database
 def load_ports_from_dataset(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -60,11 +60,11 @@ def load_ports_from_dataset(file_path):
             country = data[key].get("country")
             latitude = data[key].get('lat')
             longitude = data[key].get('long')
-            # بررسی وجود مقادیر ضروری
+            # Check for required values
             if not name or not country or latitude is None or longitude is None:
                 print(f"Invalid data: {data[key]}")
                 continue
-                # بررسی تکراری نبودن Port
+                # Check for duplicate Port
             new_port = Port(name=name,country=country, latitude=float(latitude), longitude=float(longitude))
             db.session.add(new_port)
             db.session.commit()
@@ -87,35 +87,35 @@ def create_app():
 
     app.config.from_object(Config)
 
-    # دیتابیس
+    # Database
     db.init_app(app)
 
-    # احراز هویت
+    # Authentication
 
     migrate.init_app(app, db)
     login_manager.login_view = 'users.login'
     login_manager.login_message = "Please log in."
     login_manager.init_app(app)
 
-    # Settings Email (مثال با Gmail)
+    # Settings Email (example with Gmail)
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'masoudkhalaj8@gmail.com'
-    app.config['MAIL_PASSWORD'] = config.Config.MAIL_PASSWORD  # از رمز واقعی استفاده نکنید
+    app.config['MAIL_PASSWORD'] = config.Config.MAIL_PASSWORD  # Do not use real password in production
     app.config['MAIL_DEFAULT_SENDER'] = 'masoudkhalaj8@gmail.com'
 
-    # Settings Babel برای چندزبانه‌سازی
-    app.config['BABEL_DEFAULT_LOCALE'] = 'fa'  # زبان پیش‌فرض Persian
+    # Settings Babel for internationalization
+    app.config['BABEL_DEFAULT_LOCALE'] = 'fa'  # default language Persian
     app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
     
     def get_locale():
         """Select language based on session or User header"""
         from flask import session, request
-        # اولویت با زبانی است که User انتخاب کRejectه
+        # Priority is given to the language selected by the user
         if 'lang' in session:
             return session['lang']
-        # اگر User زبانی انتخاب نکRejectه، از Accept-Language مرورگر استفاده کن
+        # If user does not select a language, use browser's Accept-Language
         return request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys(), 'fa')
     
     babel.init_app(app, locale_selector=get_locale)
@@ -132,7 +132,7 @@ def create_app():
 
     @app.context_processor
     def inject_language_vars():
-        """تزریق متغیرهای زبان و قیمت‌ها to تمام تمپلیت‌ها"""
+        """Inject language variables and prices to all templates"""
         from flask import session, request
         current_lang = session.get('lang', 'fa')
         return {
@@ -146,11 +146,11 @@ def create_app():
 
     @app.route('/set_language/<lang_code>')
     def set_language(lang_code):
-        """تغییر زبان User و ذNoه در session"""
+        """Change user language and save in session"""
         from flask import session, redirect, request
         if lang_code in SUPPORTED_LANGUAGES:
             session['lang'] = lang_code
-        # Back to صفحه Previous یا Home
+        # Back to previous page or Home
         return redirect(request.referrer or url_for('root.index'))
 
     @login_manager.user_loader
@@ -160,7 +160,7 @@ def create_app():
     from routes.users import auth
     from routes.magazine import magazine_bp
 
-    # ثبت بلوپرینت
+    # Register blueprint
     app.register_blueprint(users_bp, url_prefix='/users')
     app.register_blueprint(root_bp, url_prefix='/')
     app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -168,12 +168,12 @@ def create_app():
 
 
     @app.cli.command("create-admin")
-    @click.option('--username', prompt='Username Admin', help='Username برای Admin اول')
-    @click.option('--email', prompt='Email Admin', help='Email Admin')
-    @click.option('--password', prompt='Password Admin', hide_input=True, confirmation_prompt=True,
-                  help='Password Admin')
+    @click.option('--username', prompt='Admin Username', help='Username for first Admin')
+    @click.option('--email', prompt='Admin Email', help='Email for Admin')
+    @click.option('--password', prompt='Admin Password', hide_input=True, confirmation_prompt=True,
+                  help='Password for Admin')
     def create_admin(username, email, password):
-        """ایجاد First User Admin در سیستم"""
+        """Create first Admin user in the system"""
         with app.app_context():
             if User.query.filter_by(role=Role.ADMIN, is_active=True).first():
                 click.echo(click.style("❌ An Admin already exists.", fg='red'))
@@ -183,20 +183,20 @@ def create_app():
             email = email.strip().lower()
 
             if len(username) < 3:
-                click.echo(click.style("❌ Username باید حداقل 3 کاراکتر داشته باشد.", fg='red'))
+                click.echo(click.style("❌ Username must have at least 3 characters.", fg='red'))
                 return
             if '@' not in email:
-                click.echo(click.style("❌ آدرس Email نامعتبر است.", fg='red'))
+                click.echo(click.style("❌ Email address is invalid.", fg='red'))
                 return
             if len(password) < 8:
-                click.echo(click.style("❌ Password باید حداقل 8 کاراکتر داشته باشد.", fg='red'))
+                click.echo(click.style("❌ Password must have at least 8 characters.", fg='red'))
                 return
 
             if User.query.filter_by(username=username, is_active=True).first():
-                click.echo(click.style(f"❌ Username '{username}' قبلاً گرفته شده است.", fg='red'))
+                click.echo(click.style(f"❌ Username '{username}' is already taken.", fg='red'))
                 return
             if User.query.filter_by(email=email, is_active=True).first():
-                click.echo(click.style(f"❌ Email '{email}' قبلاً استفاده شده است.", fg='red'))
+                click.echo(click.style(f"❌ Email '{email}' is already in use.", fg='red'))
                 return
 
             try:
@@ -212,21 +212,21 @@ def create_app():
                 )
                 db.session.add(user)
                 db.session.commit()
-                click.echo(click.style(f"✅ Admin '{username}' successfully ایجاد شد.", fg='green'))
+                click.echo(click.style(f"✅ Admin '{username}' created successfully.", fg='green'))
             except Exception as e:
                 db.session.rollback()
-                click.echo(click.style(f"❌ Errorی پایگاه داده: {e}", fg='red'))
+                click.echo(click.style(f"❌ Database error: {e}", fg='red'))
 
 
-    # ایجاد دیتابیس
+    # Create database
     with app.app_context():
 
-        # مسیر فایل دیتاست
-        # dataset_file = 'static/files/ports.json'  # فایل JSON حاوی Info پورت‌ها
+        # Dataset file path
+        # dataset_file = 'static/files/ports.json'  # JSON file containing port information
         # load_ports_from_dataset(dataset_file)
 
         db.create_all()
-        print("✅ دیتابیس و جداول ایجاد شدند.")
+        print("✅ Database and tables created.")
 
     return app
 

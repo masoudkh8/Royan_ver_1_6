@@ -10,15 +10,15 @@ def send_email_verification(user):
     verify_url = url_for('users.confirm_email', token=token, _external=True)
 
     html_body = f"""
-    <h2>تبریک! Upgrade request to Premium User</h2>
-    <p>برای تأیید آدرس Email خود، Click the link below:</p>
-    <p><a href="{verify_url}" style="color: #007BFF;">تأیید Email</a></p>
-    <p>این لینک پس از 1 ساعت منقضی می‌شود.</p>
+    <h2>Congratulations! Upgrade request to Premium User</h2>
+    <p>برای تأیید address Email خود، Click the link below:</p>
+    <p><a href="{verify_url}" style="color: #007BFF;">Verify email</a></p>
+    <p>این لینک پس of 1 hour منقضی می‌شود.</p>
     <p>If you didn't request this, please ignore this email.</p>
     """
 
     msg = Message(
-        subject="تأیید Email برای ارتقاء to Premium User",
+        subject="Verify email برای upgrade to Premium User",
         recipients=[user.email],
         html=html_body
     )

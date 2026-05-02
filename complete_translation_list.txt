@@ -1,0 +1,2331 @@
+================================================================================
+COMPLETE LIST OF TRANSLATABLE TEXTS (PERSIAN/ARABIC)
+Total Unique Items: 504
+Files Scanned: 42
+================================================================================
+
+1. #
+#     # فرمت شماره: Delete صفر اول
+#     if phone.startswith(
+2. #
+#     # ————————— آدرس API —————————
+#     url =
+3. #
+#     # ————————— داده‌ها to فرمت فرم —————————
+#     data = {
+#
+4. #
+#     # ————————— هدرها —————————
+#     headers = {
+#
+5. #
+#     id = db.Column(db.Integer, primary_key=True)
+#     product = db.Column(db.String(100), nullable=False)  # مثلاً Wheat, Rice
+#     quantity_tons = db.Column(db.Float, nullable=False)  # کمیت to Ton
+#     price_per_ton = db.Column(db.Float, nullable=False)  # قیمت هر Ton (دلار)
+#     total_price = db.Column(db.Float, nullable=False)    # محاسto: quantity * price
+#
+#     # پورت مبدأ و Destination
+#     origin_port = db.Column(db.String(100), nullable=False)
+#     destination_port = db.Column(db.String(100), nullable=False)
+#
+#     # Description
+#     notes = db.Column(db.Text, nullable=True)
+#
+#     # Order status
+#     status = db.Column(SqlEnum(OrderStatus), default=OrderStatus.PENDING)
+#
+#     # روابط با Users
+#     buyer_id = db.Column(db.Integer, db.ForeignKey(
+6. #     #     self.status = OrderStatus.DELIVERED
+#     #     self.delivered_at = datetime.utcnow()
+
+
+
+
+
+
+# models/order.py
+from . import db
+from datetime import datetime
+import pytz
+from enum import Enum
+from sqlalchemy import Enum as SqlEnum
+
+# Tonظیم منطقه زمانی تهران
+tehran_tz = pytz.timezone(
+7. #     }
+#
+#     try:
+#         # Send درخواست POST
+#         response = requests.post(url, data=data, headers=headers, timeout=10)
+#
+#         # چاپ Status و پاسخ
+#         print(f
+8. # -------------------------------
+# ثبت نام
+# -------------------------------
+@users_bp.route(
+9. # Cancel شده
+#
+# class Order(db.Model):
+#     __tablename__ =
+10. # Settings Babel برای چندزبانه‌سازی
+    app.config[
+11. # Settings قیمت‌ها
+    PREMIUM_PRICE_USD = 10000  # قیمت ارتقاء to Premium User to دلار
+    SUBSCRIPTION_ANNUAL_IRR = 1200000  # Annual Subscription مجله to تومان
+    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # اشتراک شش ماهه مجله to تومان
+    
+    # Settings آپلود فایل مجله
+    UPLOAD_FOLDER = os.path.join(basedir,
+12. # تأیید شده
+#     IN_TRANSIT =
+13. # تحویل داده شده
+#     CANCELLED =
+14. # توکن شخصی شما در AmootSMS
+#     MESSAGE =
+15. # خالی = Send Urgent | فرمت پیشنهادی:
+16. # در انتظار تأیید
+#     CONFIRMED =
+17. # در حال حمل
+#     DELIVERED =
+18. # زبان پیش‌فرض Persian
+    app.config[
+19. # شماره Destination — بدون صفر اول
+#     SEND_DATE_TIME =
+20. # فایل JSON حاوی Info پورت‌ها
+        # load_ports_from_dataset(dataset_file)
+
+        db.create_all()
+        print(
+21. # یا شماره اختصاصی شما
+#     MOBILES =
+22. # ← کلید API خودت رو اینجا واReject کن
+#     url =
+23. %}
+
+{% block title %}Annual Subscription - مجله تصویر{% endblock %}
+
+{% block content %}
+<div class=
+24. %}
+
+{% block title %}پRejectاخت هزینه ارتقاء{% endblock %}
+
+{% block content %}
+<div class=
+25. %}
+            <!-- Seller می‌تونه با یه خریدار یا بروکر Chat کنه -->
+            {% if broker %}
+                <a href=
+26. %}
+            <!-- بروکر می‌تونه با یه User خاص Chat کنه -->
+            <a href=
+27. %}
+            <!-- فرض: خریدار می‌خواد با First Seller Chat کنه -->
+            {% if seller %}
+                <a href=
+28. (جدول خالی است)
+29. )
+
+            # ✅ افزودن و ذNoه در یک تراکنش Unit
+            db.session.add(order)
+            db.session.add(notification)
+            db.session.commit()
+
+            flash(
+30. )
+
+    # GET یا Error: Show فرم
+    return render_template(
+31. )
+
+    # Send اولیه کد
+    if not req.phone_verification_code:
+        code = str(random.randint(100000, 999999))
+        req.phone_verification_code = code
+        db.session.commit()
+        try:
+            send_sms(current_user.phone, f
+32. )
+
+# --- تابع کمکی: Notification to Admin ---
+def notify_admin_of_new_request(req):
+    from flask_mail import Message
+    from app import mail  # فرض می‌کنیم mail Tonظیم شده
+
+    admins = User.query.filter_by(role=
+33. )
+
+# Show داده‌های هر جدول
+print(
+34. )
+
+# فرم Annual Subscription
+@magazine_bp.route(
+35. )
+
+# فرم Request Advertisement
+@magazine_bp.route(
+36. )
+
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, logout_user, login_required, current_user
+
+from models import Message, Notification
+from models.user import db, User, Role
+from models.port import Port
+
+from routes.users import users_bp,root_bp
+
+# مسیر تغییر زبان
+@root_bp.route(
+37. )
+
+from flask import current_app
+from extensions import mail
+from kavenegar import *
+
+
+# سریالایزر برای توکن Email
+def get_serializer():
+
+    return URLSafeTimedSerializer(current_app.secret_key)
+
+
+# # Send کد تأیید to موبایل (با Kavenegar)
+# import requests
+# import json
+#
+# def send_sms(phone, message):
+#     api_key =
+38. )
+
+from functools import wraps
+from flask import request, flash, redirect, url_for, render_template
+from flask_login import login_user
+from models.user import User
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import admin_bp
+
+
+
+# ---------------------------------------
+# Decorator: فقط Admin دسترسی داشته باشه
+# ---------------------------------------
+
+@admin_bp.route(
+39. )
+                continue
+                # بررسی تکراری نبودن Port
+            new_port = Port(name=name,country=country, latitude=float(latitude), longitude=float(longitude))
+            db.session.add(new_port)
+            db.session.commit()
+        print(
+40. )
+            # بررسی وجود مقادیر ضروری
+            if not name or not country or latitude is None or longitude is None:
+                print(f
+41. )
+            ]
+        }
+    </script>
+
+    <!-- پلاگین RTL برای Tailwind -->
+    <script src=
+42. )
+        return False
+
+    # حالت دیباگ: فقط لاگ بزن
+   #
+43. )
+    MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # حداکثر حجم فایل 50 مگابایت
+    ALLOWED_EXTENSIONS = {
+44. )
+#
+#             # ✅ اعتبارسنجی Loginی
+#             if not username or not email or not password:
+#                 flash(
+45. )
+#
+#             # ✅ ایجاد Admin
+#             hashed = generate_password_hash(password)
+#             user = User(
+#                 username=username,
+#                 email=email,
+#                 password_hash=hashed,
+#                 role=Role.ADMIN,
+#                 is_premium=True,
+#                 is_active=True
+#             )
+#
+#             db.session.add(user)
+#             db.session.commit()
+#
+#             flash(
+46. )
+#
+#             # ✅ بررسی تکراری بودن
+#             if User.query.filter_by(username=username, is_active=True).first():
+#                 flash(
+47. )
+#
+#         # چک کRejectن وجود Seller
+#         seller = User.query.get(seller_id)
+#         if not seller or seller.role != Role.SELLER:
+#             flash(
+48. )
+#
+#     # GET: Show فرم
+#     return render_template(
+49. )
+#     # اگر درخواستی نداشت، یکی بساز
+#     if not req:
+#         req = PremiumRequest(
+#             user_id=current_user.id,
+#             requested_phone = current_user.phone,
+#             status=
+50. )
+# #
+# #     # فرض: خریدار = User فعلی
+# #     buyer_id = current_user.id
+# #
+# #     # Seller: فعلاً دستی (در آینده از Search انتخاب بشه)
+# #     # برای تست: First Seller در دیتابیس
+# #     seller = User.query.filter_by(role=Role.SELLER).first()
+# #     if not seller:
+# #         flash(
+51. )
+# @login_required
+# def my_orders():
+#     # تمام Ordersیی که User خریدار یا Seller یا بروکر آن است
+#     orders = Order.query.filter(
+#         (Order.buyer_id == current_user.id) |
+#         (Order.seller_id == current_user.id) |
+#         (Order.broker_id == current_user.id)
+#     ).order_by(Order.created_at.desc()).all()
+#     return render_template(
+52. )
+# @login_required
+# def seller_orders():
+#     # فقط اگر User Seller باشد
+#     if current_user.role != Role.SELLER:
+#         flash(
+53. )
+######################################TEST
+
+# Show Roleه
+@users_bp.route(
+54. )
+@login_required
+def notifications():
+    # خواندن All Notifications
+    notifs = Notification.query.filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
+
+    # علامت‌گذاری to عنوان Read
+    for n in notifs:
+        if not n.is_read:
+            n.is_read = True
+    db.session.commit()
+
+    return render_template(
+55. )
+@login_required
+def upgrade_to_premium():
+    # Latest request from User
+    req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
+    # دریافت تمام درخواست‌ها برای Show Dateچه
+    requests = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(
+        PremiumRequest.submitted_at.desc()).all()
+
+    if req:
+        if req.status ==
+56. )
+cursor = conn.cursor()
+
+# لیست جداول
+print(
+57. )  # pending, approved, rejected
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # رابطه با User
+    user = db.relationship(
+58. )  # pending, approved, rejected
+    submitted_at = Column(DateTime, default=datetime.now(tehran_tz))
+    reviewed_at = Column(DateTime ,default=datetime.now(tehran_tz))
+    notes = Column(Text)
+
+    # رابطه
+    # user = db.relationship(
+59. )  # pending, paid, failed
+    price = db.Column(db.Numeric(10, 2))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # رابطه با User
+    user = db.relationship(
+60. )  # فقط 5 Rejectیف اول
+        rows = cursor.fetchall()
+        if rows:
+            # نام ستون‌ها
+            columns = [desc[0] for desc in cursor.description]
+            print(
+61. ) }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش Advertisements -->
+    <section class=
+62. ) }}
+                    </button>
+                </div>
+            </form>
+
+            <!-- لینک Back -->
+            <div class=
+63. ) }}
+                    </button>
+                </form>
+
+                <!-- Show Errorها -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div class=
+64. ) }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Info شماره -->
+                <div class=
+65. ) }}
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- بخش شرکت‌های همکار با اسلایدر چرخشی -->
+    <section class=
+66. ) }}
+                </a>
+            </div>
+        </div>
+
+        <!-- فوتر -->
+        <div class=
+67. ) }}
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- بخش اصلی (هیرو) -->
+    <section class=
+68. ) }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش خدمات -->
+    <section class=
+69. ) }}
+                </button>
+            </div>
+
+            <!-- لینک Register -->
+            <div class=
+70. ) }}
+            </a>
+        </div>
+    </div>
+
+    <!-- شماره‌های مجله -->
+    <div class=
+71. ) }}
+            </a>
+        </div>
+    </form>
+
+    <!-- Send مجدد کد -->
+    <p class=
+72. ) }}
+            </a>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class=
+73. ) }}
+            </a>
+        </div>
+    {% else %}
+        <!-- Chat محتوا فقط برای Users ویژه -->
+        <div class=
+74. ) }}
+            </button>
+        </div>
+    </form>
+
+    <!-- لینک Login -->
+    <p class=
+75. ) }}
+            </button>
+        </form>
+
+        <!-- Show Coordinates کلیک -->
+        <div id=
+76. ) }}
+            </button>
+        </form>
+    </p>
+
+    <!-- راهنما امنیتی -->
+    <p class=
+77. ) }}
+            </p>
+
+            <!-- اسلایدر چرخشی -->
+            <div class=
+78. ) }}
+            </p>
+        </div>
+
+        <!-- فرم -->
+        <div class=
+79. ) }}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Message Dateچه درخواست‌ها -->
+    {% if requests|length > 1 %}
+        <div class=
+80. ) }}
+        </a>
+
+    </div>
+
+    <!-- جدول Users -->
+    <div class=
+81. ) }}
+        </a>
+    </div>
+
+    <!-- جدول درخواست‌ها -->
+    <div class=
+82. ) }}
+        </div>
+    </div>
+
+    <!-- Roleه -->
+    <div id=
+83. ) }}
+        </p>
+
+        <!-- دکمه‌های اقدام -->
+        <div class=
+84. ) }}
+    </a>
+    {% endif %}
+
+
+
+    <!-- لینک Logout -->
+    <div class=
+85. ) }}
+    </p>
+
+    <!-- دکمه‌ها -->
+    <div class=
+86. ) }} <strong>{{ current_user.phone }}</strong>.
+    </p>
+
+    <!-- فرم تأیید کد -->
+    <form method=
+87. ) }} {{ receiver.username }} 🌟</h3>
+                    </div>
+
+                    <!-- Dateچه Messages -->
+                    <div class=
+88. ) }} 🌟</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- آیکون‌های سریع -->
+    <div class=
+89. ) }})</option>
+                    </select>
+                </div>
+
+                <!-- دکمه Send -->
+                <button type=
+90. ) }}: ${port.country}`);
+                markers[port.id] = marker;
+
+                // ایجاد آیتم لیست
+                const item = document.createElement(
+91. ) }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوا -->
+    <main class=
+92. ) }}</a>
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Date‌ها -->
+        <div class=
+93. ) }}</a>
+            {% endif %}
+        </div>
+
+        <!-- مرحله 2: تأیید Email -->
+        <div class=
+94. ) }}</button>
+                    </div>
+                `;
+
+                // کلیک روی پورت → حرکت to موقعیت
+                item.addEventListener(
+95. ) }}</div>
+                    </div>
+                    {% endif %}
+
+                    <!-- نشان New -->
+                    {% if issue.publish_date and issue.publish_date.strftime(
+96. ) }}</h1>
+        </div>
+    </header>
+
+    <!-- محتوای اصلی -->
+    <div class=
+97. ) }}</h2>
+
+    <!-- Show Messagesی flash -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class=
+98. ) }}</h2>
+
+    <!-- آمار -->
+    <div class=
+99. ) }}</h2>
+
+    <!-- نوار پیشرفت -->
+    <div class=
+100. ) }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- فرم -->
+        <div class=
+101. ) }}</option>
+                    </select>
+                </div>
+
+                <!-- اندازه -->
+                <div>
+                    <label for=
+102. ) }}</option>
+            </select>
+        </div>
+
+        <!-- نام شرکت -->
+        <div>
+            <label class=
+103. ) }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- فرم Send Message -->
+                    <form method=
+104. ) }}</p>
+                </div>
+
+                <!-- کارت 2 -->
+                <div class=
+105. ) }}</p>
+                </div>
+
+                <!-- کارت 3 -->
+                <div class=
+106. ) }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش ویدیوی آموزشی -->
+    <section class=
+107. ) }}</p>
+            </div>
+        {% endif %}
+
+
+        <!-- دکمه Roleه برای Users ویژه -->
+        {% if current_user.is_premium %}
+            <a href=
+108. ) }}</p>
+            {% endif %}
+        </div>
+
+        <!-- دکمه‌های Actions -->
+        <div class=
+109. ) }}</p>
+        </div>
+
+        <!-- فرم Login -->
+        <div class=
+110. ) }}</p>
+        </div>
+
+        <!-- فرم Login -->
+        <form class=
+111. ) }}</p>
+        </div>
+    </footer>
+
+
+    <!-- دارک مود جاوااسکریپت -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.getElementById(
+112. ) }}</span>
+                    </div>
+
+                    <!-- دکمه دانلود -->
+                    <a href=
+113. ) }}</span>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <!-- مدارک آپلود شده -->
+        <div class=
+114. ) }}</span>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- مراحل -->
+    <div class=
+115. ) }}</span>
+            {% endif %}
+        </div>
+
+        <!-- مرحله 3: آپلود مدارک -->
+        <div class=
+116. ) }}</span>
+            {% endif %}
+        </div>
+
+        <!-- مرحله 4: پRejectاخت -->
+        <div class=
+117. ) }}</span>
+            {% endif %}
+        </div>
+
+        <!-- مرحله 5: بررسی و تأیید نهایی -->
+        <div class=
+118. ) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- صفحه‌بندی -->
+    {% if users.pages > 1 %}
+    <div class=
+119. ) }}{% endblock %}
+
+{% block content %}
+<!-- سایدبار Left و Roleه -->
+<div class=
+120. ))
+
+
+    # ایجاد دیتابیس
+    with app.app_context():
+
+        # مسیر فایل دیتاست
+        # dataset_file =
+121. ))
+
+
+# -------------------------------
+# Reject Order تCenter Seller
+# -------------------------------
+@users_bp.route(
+122. ))
+
+
+# ---------------------------------------
+# مشاهده Details درخواست
+# ---------------------------------------
+@admin_bp.route(
+123. ))
+
+
+# تابع Notification Insideی (مثال ساده)
+def send_notification(user, message):
+    # در عمل: ذNoه در جدول Notifications
+    print(f
+124. ))
+
+            # ✅ اعتبارسنجی Seller
+            if not seller_id_str.isdigit():
+                flash(
+125. ))
+
+            # ✅ اعتبارسنجی کمیت و قیمت
+            try:
+                quantity = float(quantity_str)
+                price = float(price_str)
+                if quantity <= 0 or price <= 0:
+                    raise ValueError
+            except (ValueError, TypeError):
+                flash(
+126. ))
+
+            # ✅ تعیین بروکر (فقط اگر Premium User باشد)
+            broker_id = current_user.id if current_user.is_premium else None
+
+            # ✅ ایجاد Order
+            order = Order(
+                product=product,
+                quantity_tons=quantity,
+                price_per_ton=price,
+                origin_port=origin_port,
+                destination_port=destination_port,
+                notes=notes,
+                buyer_id=current_user.id,
+                seller_id=seller.id,
+                broker_id=broker_id,
+                status=OrderStatus.PENDING
+            )
+            order.calculate_total()
+
+            # ✅ Send Notification to Seller
+            from models.notification import Notification
+            notification = Notification(
+                user_id=seller.id,
+                message=f
+127. ))
+
+        except Exception as e:
+            db.session.rollback()  # ⚠️ بازگRejectانی تراکنش در صورت Error
+            print(f
+128. ))
+
+    # GET: Show فرم — فقط Sellers
+    sellers = User.query.filter_by(role=Role.SELLER, is_active=True).all()
+    return render_template(
+129. ))
+
+    # Send `req` to تمپلیت
+    return render_template(
+130. ))
+
+    # فقط در صورت POST و دریافت IMO
+    if request.method ==
+131. ))
+
+    # لیست Users (فقط ویژه‌ها)
+    users = User.query.filter(
+        User.id != current_user.id,
+        User.is_premium == True
+    ).all()
+
+    receiver_id = request.args.get(
+132. ))
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+    from routes.users import auth
+    from routes.magazine import magazine_bp
+
+    # ثبت بلوپرینت
+    app.register_blueprint(users_bp, url_prefix=
+133. ))
+
+    if order.status == OrderStatus.PENDING:
+        order.status = OrderStatus.CONFIRMED
+        order.confirmed_at = datetime.now(tehran_tz)
+
+        # Send Notification to خریدار
+        from models.notification import Notification
+        notification = Notification(
+            user_id=order.buyer_id,
+            message=f
+134. ))
+
+    req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
+
+    # اگر درخواستی وجود نداReject، یک درخواست New با Status draft ایجاد کن
+    if not req:
+        req = PremiumRequest(
+            user_id=current_user.id,
+            requested_phone=current_user.phone,
+            status=
+135. ))
+
+    user = User.query.get_or_404(user_id)
+    username = user.username
+
+    # Delete Upgrade request اگر وجود داشت
+    req = PremiumRequest.query.filter_by(user_id=user.id).first()
+    if req:
+        db.session.delete(req)
+
+    user.is_active = False
+    # db.session.delete(user)
+    db.session.commit()
+    print(current_user.id , current_user.username)
+    flash(f
+136. ))
+
+# # آپلود مدارک
+@users_bp.route(
+137. ))
+
+# ---------------------------------------
+# Inactive‌سازی User
+# ---------------------------------------
+@admin_bp.route(
+138. ))
+
+# فرم Request Sponsorship
+@magazine_bp.route(
+139. ))
+
+def admin_required(f):
+    @wraps(f)  # ✅ این خط مشکل رو حل می‌کنه
+    def decorated_function(*args, **kwargs):
+        # ✅ اول چک کن User واrejectedه باشد
+        if not current_user.is_authenticated:
+            flash(
+140. ))
+    
+    # مسیر فایل را برگRejectانید
+    file_path = os.path.join(current_app.config[
+141. ))
+    # ادامه منطق
+
+    # محاسto تعداد Ordersی در انتظار (فقط برای Seller)
+    pending_orders = 0
+    if current_user.role == Role.SELLER :
+        from models.order import OrderStatus
+        pending_orders = Order.query.filter_by(seller_id=current_user.id, status=OrderStatus.PENDING).count()
+
+
+    support_user = User.query.filter_by(username=
+142. ))
+    return redirect(next_url)
+
+# routes/users/routes.py یا app.py
+@root_bp.route(
+143. ))
+#
+#         # ایجاد Order
+#         order = Order(
+#             product=product,
+#             quantity_tons=quantity,
+#             price_per_ton=price,
+#             origin_port=origin_port,
+#             destination_port=destination_port,
+#             notes=notes,
+#             buyer_id=current_user.id,
+#             seller_id=seller.id,
+#             status=OrderStatus.PENDING
+#         )
+#         order.calculate_total()
+#
+#         db.session.add(order)
+#        # db.session.commit()
+#
+#         # Send Notification to Seller
+#         notification = Notification(
+#             user_id=seller.id,
+#             message=f
+144. ))
+#
+#         # بررسی تأیید کد
+#         code = request.form.get(
+145. ))
+#
+#     # Send لیست Sellers to تمپلیت
+#     sellers = User.query.filter_by(role=Role.SELLER).all()
+#     return render_template(
+146. ))
+#
+#     # دریافت Ordersیی که این User Seller آن است و هنوز تأیید نشده
+#     orders = Order.query.filter_by(seller_id=current_user.id).order_by(Order.created_at.desc()).all()
+#
+#     return render_template(
+147. ))
+#
+#     # ✅ 2. (اختیاری) Active‌سازی با متغیر محیطی — برای امنیت More
+#     if not current_app.config.get(
+148. ))
+#
+#     if order.status == OrderStatus.PENDING:
+#         order.status = OrderStatus.CONFIRMED
+#         order.confirmed_at = datetime.now(tehran_tz)
+#
+#         # 📢 Send Notification to خریدار
+#         notification = Notification(
+#             user_id=order.buyer_id,
+#             message=f
+149. ))
+# #
+# #     # بروکر: اگر Premium User باشه، خودش بروکر هست
+# #     broker_id = current_user.id if current_user.is_premium else None
+# #
+# #     # ایجاد Order
+# #     order = Order(
+# #         product=product,
+# #         quantity_tons=quantity,
+# #         price_per_ton=price,
+# #         origin_port=origin_port,
+# #         destination_port=destination_port,
+# #         notes=notes,
+# #         buyer_id=buyer_id,
+# #         seller_id=seller.id,
+# #         broker_id=broker_id,
+# #         status=OrderStatus.PENDING
+# #     )
+# #     order.calculate_total()  # محاسto قیمت کل
+# #
+# #     db.session.add(order)
+# #     db.session.commit()
+# #
+# #     flash(f
+150. ))  # یا صفحه Edit Profile
+#
+#     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
+#
+#     if not req:
+#         req = PremiumRequest(
+#             user_id=current_user.id,
+#             requested_phone=current_user.phone,
+#             submitted_at=datetime.utcnow()
+#         )
+#         db.session.add(req)
+#         db.session.commit()
+#
+#     if req.phone_verified:
+#         flash(
+151. ))  # ✅ to Email برو، نه payment_confirmation
+
+    if request.method ==
+152. ))  # ✅ بعد از تأیید شماره، to Email برو
+        else:
+            flash(
+153. )))
+
+
+
+# صفحه Login
+@admin_bp.route(
+154. )))
+
+
+# ---------------------------------------
+# Active‌سازی User
+# ---------------------------------------
+@admin_bp.route(
+155. ), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now(tehran_tz))
+    is_read = db.Column(db.Boolean, default=False)
+
+    # رابطه‌ها
+    sender = db.relationship(
+156. ), nullable=False)
+    issue_number = db.Column(db.Integer, nullable=False)  # شماره نشریه
+    title = db.Column(db.String(200), nullable=False)  # عنوان شماره
+    description = db.Column(db.Text)  # Description شماره
+    cover_image_url = db.Column(db.String(500))  # URL تصویر جلد
+    file_url = db.Column(db.String(500), nullable=False)  # URL فایل PDF برای دانلود
+    file_size = db.Column(db.String(50))  # حجم فایل
+    publish_date = db.Column(db.Date, nullable=False)  # Date انتشار
+    is_published = db.Column(db.Boolean, default=False)  # Status انتشار
+    download_count = db.Column(db.Integer, default=0)  # تعداد دانلود
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def __repr__(self):
+        return f
+157. ), nullable=False)
+    requested_phone = db.Column(db.String(15), nullable=False)
+    # Status مراحل
+    phone_verified = Column(Boolean, default=False)
+    email_verified = Column(Boolean, default=False)
+    docs_verified = Column(Boolean, default=False)
+    payment_verified = Column(Boolean, default=False)
+
+    # کد تأیید
+    phone_verification_code = Column(String(6))
+    email_verification_token = Column(String(120))
+
+    # آپلود مدارک
+    passport_file = Column(String(200))
+    license_file = Column(String(200))
+    payment_receipt = Column(String(200))
+
+    # Status کلی
+    status = Column(String(20), default=
+158. ), nullable=False)  # کسی که Notification رو دریافت می‌کند
+    message = db.Column(db.String(200), nullable=False)
+    is_read = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.now(tehran_tz))
+
+    # رابطه
+    user = db.relationship(
+159. ), nullable=True)
+
+    # Date‌ها — استفاده از lambda برای ارزیابی در زمان اجرا
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(tehran_tz))
+    updated_at = db.Column(db.DateTime, default=lambda: datetime.now(tehran_tz), onupdate=lambda: datetime.now(tehran_tz))
+    shipped_at = db.Column(db.DateTime, nullable=True)
+    delivered_at = db.Column(db.DateTime, nullable=True)
+
+    # رابطه‌ها
+    buyer = db.relationship(
+160. ), nullable=True)
+    full_name = db.Column(db.String(200), nullable=False)
+    company_name = db.Column(db.String(200))
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    ad_type = db.Column(db.String(50))  # نوع تبلیغ: full_page, half_page, quarter_page, etc.
+    message = db.Column(db.Text)
+    status = db.Column(db.String(50), default=
+161. ), nullable=True)
+    full_name = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    address = db.Column(db.Text)  # آدرس پستی برای Send نسخه چاپی
+    subscription_type = db.Column(db.String(50), default=
+162. ), nullable=True)
+#
+#     # Date‌ها
+#     created_at = db.Column(db.DateTime, default=datetime.now(tehran_tz))
+#     updated_at = db.Column(db.DateTime, default=datetime.now(tehran_tz), onupdate=datetime.now(tehran_tz))
+#     shipped_at = db.Column(db.DateTime,default=datetime.now(tehran_tz) ,nullable=True)
+#     delivered_at = db.Column(db.DateTime,default=datetime.now(tehran_tz) ,nullable=True)
+#
+#     # رابطه معکوس (برای دسترسی آسان)
+#     buyer = db.relationship(
+163. ), nullable=True)  # اگر User لاگین کRejectه باشد
+    full_name = db.Column(db.String(200), nullable=False)
+    company_name = db.Column(db.String(200))  # نام شرکت
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    message = db.Column(db.Text)  # Message و Description
+    status = db.Column(db.String(50), default=
+164. ).strip()
+
+            # ✅ اعتبارسنجی فیلدها
+            if not product:
+                flash(
+165. ).strip()
+
+        # اعتبارسنجی
+        if not imo or not imo.isdigit() or len(imo) != 7:
+            flash(
+166. ).value = lng;
+        });
+
+        loadPorts();
+    }
+
+    // Loading پورت‌ها از API
+    async function loadPorts() {
+        try {
+            const res = await fetch(
+167. ):  # جداول Insideی SQLite را نادیده بگیر
+        print(f
+168. );
+
+            // اگر اسلایدر وجود نداشت، Error نده
+            if (!slider) return;
+
+            let position = 0;
+            const maxScroll = slider.scrollWidth / 2; // نصف طول
+            const speed = 0.5; // Speed حرکت
+
+            function animateSlider() {
+                position -= speed;
+                if (position <= -maxScroll) {
+                    position = 0; // حلقه بی‌نهایت
+                }
+                slider.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(animateSlider);
+            }
+
+            // شروع اسلایدر
+            animateSlider();
+
+            // توقف هنگام ماوس‌اوور
+            slider.addEventListener(
+169. );
+                updateIcons();
+            };
+            
+            // تغییر Direction صفحه بر اساس زبان
+            updatePageDirection();
+        });
+        
+        // تابع تغییر Direction صفحه (RTL/LTR)
+        function updatePageDirection() {
+            const currentLang =
+170. );
+            ports = await res.json();
+
+            // پاک کRejectن Previous‌ها
+            Object.values(markers).forEach(m => map.removeLayer(m));
+            markers = {};
+            const list = document.getElementById(
+171. );
+            }
+        }
+
+        // بررسی تم ذNoه شده
+        document.addEventListener(
+172. );
+            }
+        }
+    </script>
+        <!-- دکمه Chat ثابت در گوشه Bottom سمت Right -->
+<!--    <div class=
+173. );
+            }
+        }
+    }
+
+    // Delete پورت
+    async function deletePort(portId) {
+        if (confirm(
+174. );
+            }
+        }
+    }
+
+    // شروع Roleه
+    document.addEventListener(
+175. );
+            });
+        }
+    }
+    </script>
+
+<!--    &lt;!&ndash; Inside نوار Topاااااااااااا &ndash;&gt;-->
+<!--    {% if current_user.is_authenticated %}-->
+<!--        {% set unread_count = current_user.unread_notifications_count %}-->
+<!--        <a href=
+176. );
+        }
+    });
+
+    // Edit پورت
+    async function editPort(portId) {
+        const port = ports.find(p => p.id === portId);
+        const name = prompt(
+177. );
+        }
+    });
+</script>
+{% endif %}
+
+<!-- اگر Premium User نیست -->
+{% if not current_user.is_premium %}
+<div class=
+178. )}: ${lng}`;
+
+            // پر کRejectن فرم
+            document.getElementById(
+179. * 50)
+
+# لیست فایل‌های پایتون در روت
+py_files = [f for f in os.listdir(
+180. ,
+                        }
+                    }
+                }
+            }
+        };
+
+        // Management تم تیره
+        function toggleDarkMode() {
+            const html = document.getElementById(
+181. ,
+        users=users,
+        status_filter=status_filter,
+        total_active=total_active,
+        total_inactive=total_inactive
+    )
+# ---------------------------------------
+# تغییر User role
+# ---------------------------------------
+@admin_bp.route(
+182. ,
+#             submitted_at=datetime.utcnow()
+#         )
+#         db.session.add(req)
+#         db.session.commit()
+#
+#     # حالا req وجود داReject، ادامه منطق تأیید کد
+#     if req.phone_verified:
+#         flash(
+183. ,  # ✅ تغییر از
+184. , // Active‌سازی حالت تیره با کلاس
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+185. , None)
+#
+#     # اگر Coordinates وجود داشته باشه، to صفحه‌ی Roleه Send می‌کنیم
+#     return render_template(
+186. , current_year=datetime.now().year)
+
+# پRejectازش Login
+@admin_bp.route(
+187. , err));
+        }
+
+        // Show/پنهان کRejectن آیکون‌ها بر اساس تم
+        document.addEventListener(
+188. , function(e) {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+
+            // Show در سایدبار
+            document.getElementById(
+189. , is_active=True).first()
+
+    if not support_user:
+        # اگر وجود نداشت، First Seller رو بذار
+        support_user = User.query.filter_by(role=Role.SELLER, is_active=True).first()
+
+
+    seller = User.query.filter_by(role=Role.SELLER, is_active=True).first()
+    buyer = User.query.filter_by(role=Role.BUYER, is_active=True).first()
+    broker = User.query.filter_by(role=Role.BROKER, is_premium=True, is_active=True).first()
+
+    return render_template(
+190. , orders=orders)
+
+
+# -------------------------------
+# Show Ordersی Seller
+# -------------------------------
+@users_bp.route(
+191. , orders=orders)
+
+
+# -------------------------------
+# تأیید Order تCenter Seller
+# -------------------------------
+@users_bp.route(
+192. , orders=orders)
+#
+#
+#
+#
+# # Show Ordersی دریافتی (Seller)
+# @users_bp.route(
+193. , receiver_id=receiver.id))
+
+    # دریافت Messages
+    messages = []
+    if receiver:
+        messages = Message.query.filter(
+            ((Message.sender_id == current_user.id) & (Message.receiver_id == receiver.id)) |
+            ((Message.sender_id == receiver.id) & (Message.receiver_id == current_user.id))
+        ).order_by(Message.created_at.asc()).all()
+
+        # علامت‌گذاری Messagesی دریافتی to عنوان Read
+        for m in messages:
+            if m.receiver_id == current_user.id and not m.is_read:
+                m.is_read = True
+        db.session.commit()
+
+    return render_template(
+194. , req=req)
+
+
+
+
+
+
+
+# -------------------------------
+# تأیید Email (صفحه Show)
+# -------------------------------
+@users_bp.route(
+195. , req=req)
+
+
+
+#Bottomی اوکیه فقط pending میره
+# @users_bp.route(
+196. , req=req)
+
+
+# ---------------------------------------
+# Delete User (با احتیاط)
+# ---------------------------------------
+@admin_bp.route(
+197. , req=req)
+
+
+# Send Email تأیید
+def send_email_verification(user):
+
+    print(
+198. , req=req)
+
+# تأیید نهایی
+@users_bp.route(
+199. , req=req)
+
+# پRejectاخت و آپلود رسید
+@users_bp.route(
+200. , req=req, requests=requests)
+
+# شروع فرآیند (ایجاد درخواست New)
+@users_bp.route(
+201. , requests=requests, status_filter=status_filter)
+
+
+# ---------------------------------------
+# تأیید Upgrade request
+# ---------------------------------------
+@admin_bp.route(
+202. , sellers=sellers)
+
+
+# -------------------------------
+# Show Ordersی User
+# -------------------------------
+@users_bp.route(
+203. , type=int)
+    receiver = User.query.get(receiver_id) if receiver_id else None
+
+    # ✅ اگر گیرنده وجود نداشته باشه یا ویژه نباشه
+    if receiver and not receiver.is_premium:
+        flash(
+204. , user=current_user)
+
+
+
+
+# -------------------------------
+# Delete حساب
+# -------------------------------
+@users_bp.route(
+205. , users=users, receiver=receiver, messages=messages)
+
+
+
+
+
+
+
+from flask import g
+
+@users_bp.app_context_processor
+def inject_support_user():
+    if current_user.is_authenticated:
+        # مثلاً Seller اول یا User با username=
+206. .format(api_key)
+#
+#     # فرمت شماره باید 10 رقمی و بدون صفر اول باشد (مثلاً 9123456789)
+#     if phone.startswith(
+207. .وب سرویس Message کوتاه کاوه نگار
+208. />
+                    </svg>
+                </button>
+
+                <!-- آیکون Notifications -->
+                {% if current_user.is_authenticated %}
+                    {% set unread_count = current_user.unread_notifications_count %}
+                    <a href=
+209. />
+              <!-- علامت + درون بالون (Chat New) -->
+
+              <line x1=
+210. />
+              <!-- نقطه آنلاین -->
+    <!--              <circle cx=
+211. />
+    <title>{% block title %}مارکت صادرات{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src=
+212. />&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; بدن ربات &ndash;&gt;-->
+<!--&lt;!&ndash;                    <rect x=
+213. />&ndash;&gt;-->
+
+<!--                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+214. />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; بدن ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <rect x=
+215. />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; دست Right &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+216. />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; دندانه‌های دور &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+217. />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    &lt;!&ndash; چشم Right &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx=
+218. />&ndash;&gt;-->
+<!--                </svg>-->
+
+<!--   &lt;!&ndash; آیکون &ndash;&gt;-->
+<!--&lt;!&ndash;                <svg class=
+219. />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; دست Right &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+220. />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; لبخند &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+221. />&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; چشم Left &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx=
+222. />&ndash;&gt;-->
+<!--&lt;!&ndash;                </svg>&ndash;&gt;-->
+
+<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                <span class=
+223. />-->
+
+<!--                    &lt;!&ndash; چشم Right &ndash;&gt;-->
+<!--                    <circle cx=
+224. />-->
+<!--                    &lt;!&ndash; لبخند &ndash;&gt;-->
+<!--&lt;!&ndash;                    <path d=
+225. />-->
+<!--                    &lt;!&ndash; چشم Left &ndash;&gt;-->
+<!--                    <circle cx=
+226. />-->
+<!--                </svg>-->
+
+<!--                &lt;!&ndash; نشانگر آنلاین (اختیاری) &ndash;&gt;-->
+<!--                <span class=
+227. />-->
+<!--                </svg>-->
+<!--                &lt;!&ndash; نشانگر آنلاین (دو لایه: درخشش و دایره ثابت) &ndash;&gt;-->
+<!--                <span class=
+228. :
+        query = query.filter_by(is_active=False)
+
+    users = query.order_by(User.id.desc()).paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False
+    )
+
+    # ✅ محاسto تعداد در بک‌اند
+    total_active = User.query.filter_by(is_active=True).count()
+    total_inactive = User.query.filter_by(is_active=False).count()
+
+    return render_template(
+229. :
+        try:
+            # دریافت و اعتبارسنجی Loginی
+            product = request.form.get(
+230. :
+#         # بررسی Send مجدد کد
+#         if
+231. : MOBILES
+#
+#     }
+#
+#     # فقط اگر بخواهی با تأNo Send کنی
+#     if SEND_DATE_TIME:
+#         data[
+232. : { opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- آیکون‌ها -->
+    <link rel=
+233. ;
+
+            ports.forEach(port => {
+                const lat = port.location[0];
+                const lng = port.location[1];
+
+                // ایجاد مارکر
+                const marker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup(`<b>${port.name}</b><br>{{ _(
+234. ;
+            }
+        }
+
+        // Loading تم ذNoه شده
+        if (localStorage.theme ===
+235. ;
+        }
+
+        // ✅ اسلایدر خودکار لوگوهای همکاران
+        document.addEventListener(
+236. ;
+        }
+    }
+
+    // Filter پورت‌ها
+    function filterPorts() {
+        const filter = document.getElementById(
+237. ;
+        });
+    }
+
+    // اضافه کRejectن پورت New
+    document.getElementById(
+238. </p>
+                {% endif %}
+
+                <!-- دکمه‌های تأیید/Reject (فقط برای Status pending) -->
+                {% if order.status.value ==
+239. <h2>تبریک! Upgrade request to Premium User</h2>
+    <p>برای تأیید آدرس Email خود، Click the link below:</p>
+    <p><a href=
+240. <h2>سلام {user.username}!</h2>
+    <p>برای تکمیل فرآیند ارتقاء to Premium User، Email خود را تأیید کنید:</p>
+    <p><a href=
+241. >
+
+
+    <!-- دکمه Back -->
+    <a href=
+242. >
+
+                    <!-- مجموعه دوم (تکرار برای حلقه بی‌درنگ) -->
+                    <img src=
+243. >
+
+        <!-- Product و کمیت -->
+        <div class=
+244. >
+
+        <!-- فرم Login IMO -->
+        <div class=
+245. >
+
+        <!-- لوگو و عنوان -->
+        <div class=
+246. >
+
+        <!-- لیست پورت‌ها با اسکرول مستقل -->
+        <div id=
+247. >
+
+        <!-- هدر -->
+        <div class=
+248. >
+
+        <!-- کپی پاسپورت -->
+        <div class=
+249. >
+
+    <!-- آیکون -->
+    <div class=
+250. >
+
+    <!-- دکمه دارک مود -->
+    <button onclick=
+251. >
+
+    <!-- سایدبار Left -->
+    <div id=
+252. >
+
+    <!-- نوار Top -->
+    <header class=
+253. >
+
+    <!-- هدر -->
+    <div class=
+254. >
+
+    <!-- هدر -->
+    <header class=
+255. >
+
+    <!-- هدر User -->
+    <div class=
+256. >
+
+    <!-- هدر و دکمه Back -->
+    <div class=
+257. >
+
+  <!-- دکمه Back -->
+    <a href=
+258. >
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <!-- Roleه و Details -->
+        <div class=
+259. >
+                        <!-- تغییر Role -->
+                        <form method=
+260. >
+                        آدرس پستی کامل <span class=
+261. >
+                        شماره تلفن <span class=
+262. >
+                        نام و نام خانوادگی <span class=
+263. >
+                        نوع اشتراک <span class=
+264. >
+                    <!-- مجموعه اول -->
+                    <img src=
+265. >
+                    ثبت نام اشتراک
+                </button>
+            </form>
+
+            <!-- Back -->
+            <div class=
+266. >
+                <!-- انتخاب زبان -->
+                <select onchange=
+267. >
+                <!-- تصویر جلد -->
+                <div class=
+268. >
+                <!-- نام و نام خانوادگی -->
+                <div>
+                    <label for=
+269. >
+                <!-- کارت 1 -->
+                <div class=
+270. >
+                </div>
+
+                <!-- آدرس -->
+                <div>
+                    <label for=
+271. >
+                </div>
+
+                <!-- تلفن -->
+                <div>
+                    <label for=
+272. >
+                </div>
+
+                <!-- دکمه Login -->
+                <div class=
+273. >
+                </div>
+
+                <!-- مدت زمان -->
+                <div>
+                    <label for=
+274. >
+                </div>
+
+                <!-- نام شرکت -->
+                <div>
+                    <label for=
+275. >
+                </div>
+
+                <!-- نوع تبلیغ -->
+                <div>
+                    <label for=
+276. >
+                </div>
+            </div>
+
+            <!-- دکمه Login -->
+            <div>
+                <button type=
+277. >
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش مجله تصویر -->
+    <section class=
+278. >
+                Annual Subscription مجله تصویر
+            </h1>
+            <p class=
+279. >
+                آپلود رسید و Send
+            </button>
+            <a href=
+280. >
+                برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید
+            </p>
+        </div>
+
+        <!-- کارت‌های اشتراک -->
+        <div class=
+281. >
+                عکس یا فایل PDF رسید پRejectاخت خود را آپلود کنید.
+            </p>
+            <input type=
+282. >
+              <!-- بالون Chat -->
+              <path d=
+283. >
+            <!-- Message Success یا Error -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class=
+284. >
+            <!-- Roleه -->
+            {% if latitude and longitude %}
+                <div id=
+285. >
+            <!-- لیست Users ویژه -->
+            <div class=
+286. >
+            </div>
+        </div>
+
+        <!-- قیمت -->
+        <div>
+            <label class=
+287. >
+            <p><strong>نام بانک:</strong> Bank of America</p>
+            <p><strong>شماره حساب:</strong> 1234567890</p>
+            <p><strong>نام صاحب حساب:</strong> Royan International Co.</p>
+            <p><strong>آیبان (IBAN):</strong> US1234567890123456789012</p>
+            <p><strong>سوئیفت (SWIFT):</strong> BOFAUS3N</p>
+        </div>
+    </div>
+
+    <form method=
+288. >
+          <!-- فقط برای Seller: فرم اضافه کRejectن -->
+
+
+
+        <!-- عنوان -->
+        <h2 class=
+289. >
+        <!-- مرحله 1: تأیید شماره موبایل -->
+        <div class=
+290. >
+        <!-- نام شرکت -->
+        <div>
+            <label class=
+291. >
+        <!-- هدر -->
+        <div class=
+292. >
+        </div>
+
+        <!-- تلفن -->
+        <div>
+            <label class=
+293. >
+        </div>
+
+        <!-- دکمه ثبت نام -->
+        <div class=
+294. >
+        </div>
+
+        <!-- دکمه‌ها -->
+        <div class=
+295. >
+        </div>
+
+        <!-- لایسنس شرکت -->
+        <div class=
+296. >
+        </div>
+
+        <!-- پورت مبدأ و Destination -->
+        <div class=
+297. >
+    <!-- هدر مجله -->
+    <div class=
+298. >&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; سر ربات &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <circle cx=
+299. >({{ u.role.value }})</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- صفحه Chat -->
+            <div class=
+300. >-->
+<!--                    &lt;!&ndash; سر ربات &ndash;&gt;-->
+<!--                    <svg xmlns=
+301. >-->
+<!--                    1-->
+<!--                </span>-->
+<!--                &ndash;&gt;-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+
+    <!-- دکمه Chat حرفه‌ای -->
+    <div class=
+302. >-->
+<!--                    1-->
+<!--                </span>-->
+<!--                &ndash;&gt;-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!-- دکمه Chat — نسخه ایمن -->
+
+
+
+ <!-- دکمه Chat ثابت در گوشه Bottom سمت Left -->
+<!--    <div class=
+303. >-->
+<!--            <svg>...</svg>  &lt;!&ndash; آیکون 🔔 &ndash;&gt;-->
+<!--            {% if unread_count > 0 %}-->
+<!--                <span class=
+304. ></div>
+
+                <!-- جدول Details -->
+                <div class=
+305. ></div>
+</div>
+
+<!-- فقط اگر Premium User بود، اسکریپت اجرا شود -->
+{% if current_user.is_premium %}
+<!-- Leaflet CSS & JS -->
+<link rel=
+306. ></i>
+    </button>
+
+    <!-- هدر -->
+    <header class=
+307. ></script>
+
+    <!-- Settings Tailwind برای RTL -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+308. ></script>
+
+<script>
+    let map, markers = {}, ports = [];
+
+    // ایجاد Roleه
+    function initMap() {
+        map = L.map(
+309. ></span>-->
+
+<!--                &lt;!&ndash; بالون Chat (اختیاری: اگر می‌خوای حالت
+310. ></span>-->
+<!--            </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+    <!-- دکمه Chat ثابت در گوشه Bottom سمت Left -->
+<!--    <div class=
+311. ></textarea>
+                </div>
+
+                <!-- دکمه Send -->
+                <button type=
+312. ></textarea>
+                </div>
+
+                <!-- نوع اشتراک -->
+                <div>
+                    <label for=
+313. ></textarea>
+        </div>
+
+        <!-- دکمه Send -->
+        <div class=
+314. >Edit Profile</p>-->
+<!--                </button>-->
+                <!-- دکمه تغییر تم -->
+                <button onclick=
+315. >Info حساب شرکت</h3>
+        <div class=
+316. >{{ pending_requests }}</p>
+        </div>
+    </div>
+
+    <!-- لینک‌های سریع -->
+    <div class=
+317. >آپلود رسید پRejectاخت</h3>
+            <p class=
+318. >ایجاد Admin</button>
+    </form>
+319. >تأیید Email</a></p>
+    <p>این لینک پس از 1 ساعت منقضی می‌شود.</p>
+    <p>If you didn
+320. >✅ تأیید Email</a></p>
+    <p>این لینک پس از 24 ساعت منقضی می‌شود.</p>
+321. >💳 پRejectاخت هزینه ارتقاء</h2>
+
+    <div class=
+322. Access denied: فقط Users ویژه
+323. Chat سریع
+324. Email تأیید Send شد.
+325. Endpoint جایگزین برای تغییر زبان - قابل دسترسی با نام root.change_language
+326. Error در Send Messageک: {e}
+327. Error در درخواست شبکه: {e}
+328. Errorی HTTP: {response.status_code}
+329. Errorی HTTP: {response.status_code}, پاسخ: {response.text}
+330. Home مجله - Show شماره‌های موجود
+331. Info حساب شرکت
+332. Place Order با اعتبارسنجی کامل و امن
+333. Product را واReject کنید.
+334. Quantity نامعتبر است.
+335. Send شد
+336. Send کد با مشکل مواجه شد.
+337. Status پاسخ: {response.status_code}
+338. User {req.user.username} یک درخواست New Send کRejectه است.
+339. Username برای Admin اول
+340. \n✅ فایل {file}:
+341. \n❌ فایل {file}: Error - {e}
+342. \n📄 فایل‌های .py موجود: {py_files}
+343. ]
+        # اگر User زبانی انتخاب نکRejectه، از Accept-Language مرورگر استفاده کن
+        return request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys(),
+344. ] = config.Config.MAIL_PASSWORD  # از رمز واقعی استفاده نکنید
+    app.config[
+345. ] = lang_code
+        # Back to صفحه Previous یا Home
+        return redirect(request.referrer or url_for(
+346. ] = lang_code
+    # برگشت to صفحه Previous
+    next_url = request.args.get(
+347. ])
+# @login_required
+# def vessel_finder():
+#     # دریافت Coordinates از پارامترهای URL
+#     imo = get_imo(int)
+#     url = f
+348. ])
+# def create_first_admin():
+#     # ✅ 1. بررسی: آیا Admin وجود داReject؟
+#     if User.query.filter_by(role=Role.ADMIN, is_active=True).first():
+#         flash(
+349. ])
+@login_required
+def chat():
+    # ✅ فقط Users ویژه می‌تونن Chat کنن
+    if not current_user.is_premium:
+        flash(
+350. ])
+@login_required
+def get_ports():
+    # فقط Users ویژه می‌تونن ببینن
+    if not current_user.is_premium:
+        return jsonify({
+351. ])
+@login_required
+def start_upgrade():
+    # همیشه یک درخواست New ایجاد می‌کنیم
+    req = PremiumRequest(user_id=current_user.id)
+    db.session.add(req)
+    db.session.commit()
+
+    flash(
+352. ])  # دریافت از فرم
+#         notes = request.form.get(
+353. ].strip()
+        if content:
+            # ایجاد Message
+            msg = Message(
+                sender_id=current_user.id,
+                receiver_id=receiver.id,
+                content=content
+            )
+            db.session.add(msg)
+            db.session.commit()
+
+            # ✅ Send Notification to گیرنده
+            notification = Notification(
+                user_id=receiver.id,
+                message=f
+354. from flask import session, request
+        # اولویت با زبانی است که User انتخاب کRejectه
+        if
+355. id = db.Column(db.Integer, primary_key=True)
+    product = db.Column(db.String(100), nullable=False)
+    quantity_tons = db.Column(db.Float, nullable=False)
+    price_per_ton = db.Column(db.Float, nullable=False)
+    total_price = db.Column(db.Float, nullable=False)  # محاسto شده
+
+    origin_port = db.Column(db.String(100), nullable=False)
+    destination_port = db.Column(db.String(100), nullable=False)
+    notes = db.Column(db.Text, nullable=True)
+
+    status = db.Column(SqlEnum(OrderStatus), default=OrderStatus.PENDING)
+
+    # 🔑 کلیدهای Outsideی — نام جدول درست:
+356. in request.form:
+#             # Delete کد Previous
+#             code = str(random.randint(100000, 999999))
+#             req.phone_verification_code = code
+#             db.session.commit()
+#             try:
+#                 print(
+357. login_manager.init_app(app)
+
+    # Settings Email (مثال با Gmail)
+    app.config[
+358. submitted_at=datetime.now(tehran_tz)
+        )
+        db.session.add(req)
+        db.session.commit()
+
+    # اگر شماره قبلاً تأیید شده، to مرحله بعد برو
+    if req.phone_verified:
+        flash(
+359. successfully ایجاد شد.
+360. {% block title %}مارکت صادرات{% endblock %}
+361. {% if current_lang == code %}selected{% endif %}>
+                            {{ name }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <!-- دکمه Back to Profile -->
+
+                {% if current_user.role == Role.ADMIN %}
+                    <div>
+                        <a href=
+362. {% if user.role.value == role %}selected{% endif %}>
+                                    {{ role }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+
+                        <!-- Active/Inactive کRejectن -->
+                        {% if user.id != current_user.id %}
+                            {% if user.is_active %}
+                                <form method=
+363. {var} نوع: {type(obj).__name__}
+364. }
+
+
+# تابع برای خواندن دیتاست JSON و ذNoه در پایگاه داده
+def load_ports_from_dataset(file_path):
+    try:
+        with open(file_path,
+365. }), 403
+
+    # ✅ چک کRejectن اینکه port_id عددی باشه
+    if not port_id.isdigit():
+        return jsonify({
+366. }).addTo(map);
+
+        // 🎯 کلیک روی Roleه → Show و پر کRejectن Coordinates
+        map.on(
+367. },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (result.message) {
+                alert(result.message);
+                loadPorts(); // بروزرسانی
+                this.reset();
+            } else {
+                alert(
+368. }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Description اختیاری -->
+        <div>
+            <label class=
+369. }}</p>
+        </div>
+
+        <!-- Status مراحل -->
+        <div class=
+370. آپلود رسید پRejectاخت
+371. آیبان (IBAN):
+372. استان، شهر، خیابان، پلاک، Unit، کد پستی
+373. العربية
+374. ایجاد Admin
+375. ایجاد First User Admin در سیستم
+376. این شماره هنوز منتشر نشده است.
+377. این لینک پس از 1 ساعت منقضی می‌شود.
+378. این لینک پس از 24 ساعت منقضی می‌شود.
+379. برای تأیید آدرس Email خود، Click the link below:
+380. برای تکمیل فرآیند ارتقاء to Premium User، Email خود را تأیید کنید:
+381. تأیید Email
+382. تأیید Email برای ارتقاء to Premium User
+383. تبریک! Upgrade request to Premium User
+384. تزریق متغیرهای زبان و قیمت‌ها to تمام تمپلیت‌ها
+385. تغییر زبان User
+386. تغییر زبان User و ذNoه در session
+387. ثبت Request Advertisement در مجله
+388. ثبت Request Sponsorship
+389. ثبت نام Annual Subscription
+390. دانلود فایل دیجیتال مجله
+391. رسید پRejectاخت دریافت شد. در حال بررسی...
+392. سلام {user.username}!
+393. سوئیفت (SWIFT):
+394. شروع Chat با Support
+395. شماره حساب:
+396. شماره موبایل خالی است.
+397. شناسه پورت باید یک عدد مثبت باشد.
+398. علامت‌گذاری to عنوان Send شده
+399. علامت‌گذاری to عنوان تحویل داده شده
+400. فایل مجله یافت نشد.
+401. فرمت شماره نامعتبر: {phone}
+402. قبلاً استفاده شده است.
+403. قبلاً گرفته شده است.
+404. لطفاً فیلدهای الزامی را پر کنید.
+405. لطفاً کد را واReject کنید.
+406. مTon پاسخ: {response.text}
+407. متغیرهای پیدا شده: {found}
+408. مجله تصویر
+409. محاسto قیمت کل
+410. محاسto قیمت کل: quantity * price
+411. مدارک successfully آپلود شدند.
+412. مدل Annual Subscription مجله
+413. مدل Info کلی مجله
+414. مدل Request Advertisement در مجله
+415. مدل Request Sponsorship
+416. مدل شماره‌های مجله
+417. موفق
+418. نام بانک:
+419. نام صاحب حساب:
+420. نامشخص
+421. نامعتبر
+422. نشون بده) &ndash;&gt;-->
+<!--                &lt;!&ndash;-->
+<!--                <span class=
+423. پاسخ سرور: {json_resp}
+424. پورت deleted.
+425. پورت successfully بروزرسانی شد.
+426. پورت اضافه شد.
+427. کاوه‌نگار Error داد: {json_resp[
+428. کد New Send شد.
+429. کد تأیید Send شد.
+430. کد تأیید to شماره شما Send شد.
+431. کد تأیید شما: {code}
+432. کد تأیید: {code}
+433. کد نامعتبر است.
+434. ⚠️ این Order قبلاً تأیید یا rejectedه است.
+435. ⚠️ این Order قبلاً تغییر Status داده است.
+436. ⚠️ درخواست شما در حال بررسی است.
+437. ✅ Email تأیید شد.
+438. ✅ Messageک successfully Send شد.
+439. ✅ Messageک to {phone} Send شد.
+440. ✅ Messageک to {phone} successfully Send شد.
+441. ✅ Order successfully ثبت شد.
+442. ✅ Order تأیید شد و Notification Send گRejectید.
+443. ✅ Order تأیید و Notification to خریدار Send شد.
+444. ✅ Order و Notification successfully ثبت شد.
+445. ✅ Profile بروزرسانی شد.
+446. ✅ Upgrade request شما تأیید شد.
+447. ✅ تأیید Email
+448. ✅ تأیید Email - فرآیند ارتقاء
+449. ✅ شما قبلاً You are now a premium user.
+450. ✅ شماره موبایل successfully تأیید شد.
+451. ✅ شماره موبایل تأیید شد.
+452. ✅ مسیر /users/test کار می‌کنه!
+453. ✉️ Message Send شد.
+454. ❌ AmootSMS Error داد: {error_msg}
+455. ❌ AmootSMS Error داد: {json_resp.get(
+456. ❌ Error در Send Email: {e}
+457. ❌ Error در Send Messageک: {e}
+458. ❌ Error در Send to {phone}: {result.get(
+459. ❌ Errorی غیرمنتظره: {e}
+460. ❌ Errorی پایگاه داده: {e}
+461. ❌ Errorی کلی در Send Messageک: {e}
+462. ❌ Errorیی در Place Order رخ داد. لطفاً again تلاش کنید.
+463. ❌ Errorیی در ارتباط با سرویس Ship Tracking رخ داد.
+464. ❌ Errorیی رخ داد.
+465. ❌ Errorیی رخ داد. لطفاً again تلاش کنید.
+466. ❌ Password باید حداقل 8 کاراکتر داشته باشد.
+467. ❌ Seller موReject نظر یافت نشد.
+468. ❌ Send Email با Error مواجه شد.
+469. ❌ Send کد با مشکل مواجه شد.
+470. ❌ Status HTTP ناموفق: {response.status_code}
+471. ❌ Status پاسخ نامعتبر: {response.status_code}
+472. ❌ User انتخابی Seller نیست.
+473. ❌ Username باید حداقل 3 کاراکتر داشته باشد.
+474. ❌ Your upgrade request has been rejected. می‌توانید again تلاش کنید.
+475. ❌ آدرس Email نامعتبر است.
+476. ❌ ایجاد Admin Inactive است.
+477. ❌ این حساب Inactive است.
+478. ❌ این لینک برای شما نیست.
+479. ❌ داده‌ای برای این Ship یافت نشد.
+480. ❌ داده‌های دریافتی نامعتبر هسTonد.
+481. ❌ درخواست to AmootSMS تایم‌اوت خوReject.
+482. ❌ درخواست to سرور زمان‌بندی شد (Timeout).
+483. ❌ درخواست to سرور زمان‌بندی شد. لطفاً again تلاش کنید.
+484. ❌ درخواستی یافت نشد.
+485. ❌ دسترسی غیرمجاز
+486. ❌ دسترسی غیرمجاز.
+487. ❌ دسترسی فقط برای Users ویژه مجاز است.
+488. ❌ فقط Users ویژه می‌توانند to Roleه دسترسی داشته باشند.
+489. ❌ فقط برای Sellers قابل دسترسی است.
+490. ❌ لطفاً ابتدا شماره موبایل خود را در Profile خود واReject کنید.
+491. ❌ لطفاً مبدأ و Destination را انتخاب کنید.
+492. ❌ لینک منقضی شده است.
+493. ❌ لینک نامعتبر است.
+494. ❌ مشکل در اتصال to سرور (ممکن است Filter باشد یا سرور خاموش).
+495. ❌ مشکل در اتصال to سرور AmootSMS (اتصال قطع یا Filter).
+496. ❌ پاسخ JSON نامعتبر: {response.text[:500]}
+497. ❌ پاسخ JSON نامعتبر: {response.text}
+498. ❌ کد نامعتبر است.
+499. 👋 successfully Outside شدید.
+500. 💳 پRejectاخت هزینه ارتقاء
+501. 📤 [TEST] Messageک to {phone}: {message}
+502. 🔍 بررسی ساختار پروژه
+503. 🔔 درخواست New ارتقاء to Premium User
+504. 🗑️ حساب شما deleted.

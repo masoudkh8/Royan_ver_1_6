@@ -4,16 +4,16 @@
 {% block title %}{{ _('Ports Map') }}{% endblock %}
 
 {% block content %}
-<!-- سایدبار Left و Roleه -->
+<!-- سایدcargo Left و Roleه -->
 <div class="flex h-screen bg-gray-50">
 
-    <!-- سایدبار Left -->
+    <!-- سایدcargo Left -->
     <div id="sidebar" class="w-1/4 bg-white p-4 border-r border-gray-200 flex flex-col h-screen">
-          <!-- فقط برای Seller: فرم اضافه کRejectن -->
+          <!-- Only for seller: Add product form -->
 
 
 
-        <!-- عنوان -->
+        <!-- Title -->
         <h2 class="text-xl font-bold text-gray-800 mb-4">{{ _('📌 Ports List') }}</h2>
 
         <!-- Filter -->
@@ -21,7 +21,7 @@
                class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 text-sm"
                onkeyup="filterPorts()">
 
-        <!-- لیست پورت‌ها با اسکرول مستقل -->
+        <!-- Ports list with independent scroll -->
         <div id="port-list" class="flex-1 overflow-y-auto space-y-2 max-h-64">
             <p class="text-gray-500 text-sm">{{ _('Loading...') }}</p>
         </div>
@@ -73,10 +73,10 @@
             const lat = e.latlng.lat.toFixed(6);
             const lng = e.latlng.lng.toFixed(6);
 
-            // Show در سایدبار
+            // Show در سایدcargo
             document.getElementById('coordinates-display').innerText = `${_('Lat')}: ${lat}, ${_('Lng')}: ${lng}`;
 
-            // پر کRejectن فرم
+            // پر کRejectن Form
             document.getElementById('new-port-latitude').value = lat;
             document.getElementById('new-port-longitude').value = lng;
         });
@@ -84,7 +84,7 @@
         loadPorts();
     }
 
-    // Loading پورت‌ها از API
+    // Loading پورت‌ها of API
     async function loadPorts() {
         try {
             const res = await fetch('{{ url_for("users.get_ports") }}');
@@ -101,12 +101,12 @@
                 const lat = port.location[0];
                 const lng = port.location[1];
 
-                // ایجاد مارکر
+                // Create marker
                 const marker = L.marker([lat, lng]).addTo(map)
                     .bindPopup(`<b>${port.name}</b><br>{{ _('Country') }}: ${port.country}`);
                 markers[port.id] = marker;
 
-                // ایجاد آیتم لیست
+                // Create list item
                 const item = document.createElement('div');
                 item.className = 'port-item bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:bg-gray-50 cursor-pointer flex justify-between items-center';
                 item.setAttribute('data-id', port.id);
@@ -121,7 +121,7 @@
                     </div>
                 `;
 
-                // کلیک روی پورت → حرکت to موقعیت
+                // Click on port → حرکت to location
                 item.addEventListener('click', () => {
                     map.setView([lat, lng], 13);
                     marker.openPopup();
@@ -168,7 +168,7 @@
             const result = await res.json();
             if (result.message) {
                 alert(result.message);
-                loadPorts(); // بروزرسانی
+                loadPorts(); // Update
                 this.reset();
             } else {
                 alert("{{ _('Error:') }} " + result.error);
@@ -222,7 +222,7 @@
         }
     }
 
-    // شروع Roleه
+    // start Roleه
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof L !== 'undefined') {
             initMap();

@@ -7,7 +7,7 @@
 <div class="max-w-6xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
     <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('📊 Admin Dashboard') }}</h2>
 
-    <!-- آمار -->
+    <!-- Statistics -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="p-6 bg-blue-50 rounded-lg text-center border border-blue-100">
             <h3 class="text-lg font-semibold text-blue-800">{{ _('Total Users') }}</h3>
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <!-- لینک‌های سریع -->
+    <!-- Quick links -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href="{{ url_for('admin.manage_users') }}" class="block p-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-center font-semibold transition">
             {{ _('🔧 Manage Users') }}

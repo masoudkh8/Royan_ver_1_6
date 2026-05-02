@@ -1,0 +1,266 @@
+=== ALL TRANSLATABLE TEXTS FOR MULTI-LANGUAGE SUPPORT ===
+Total: 255 unique translatable strings
+
+=== NOTES ===
+- These texts need translation for multi-language support
+- Keep dynamic variables like %(var)s, {{ var }}, etc. unchanged
+- Keep HTML tags and emojis unchanged
+- Keep format specifiers like %Y-%m-%d, %H:%M unchanged
+
+=== TRANSLATABLE TEXTS ===
+
+1. %(arrow)s Back to Magazine Home
+2. %(count)d New
+3. &copy; {{ current_year }} {{ _('Your Company. All rights reserved.') }}
+4. +98 912 345 6789
+5. 24/7 Support
+6. Are you sure you want to confirm this order?
+7. Are you sure you want to deactivate this user?
+8. Are you sure you want to reject this order?
+9. Are you sure?
+10. Buyer:
+11. Buyer: %(buyer)s | Seller: %(seller)s
+12. Company / Brand Name
+13. Company / Organization Name
+14. Company License:
+15. Company:
+16. Conversation with:
+17. Country:
+18. Date:
+19. Destination:
+20. Email:
+21. Enjoy our exclusive features!
+22. Error:
+23. Have an account?
+24. Location:
+25. New country:
+26. New latitude:
+27. New longitude:
+28. New name:
+29. New!
+30. Only <strong>Premium</strong> users can use the chat system.
+31. Order #%(id)s
+32. Origin:
+33. Passport Copy:
+34. Payment Receipt:
+35. Premium?
+36. Publish Date:
+37. Rejected on %(date)s
+38. Request %(num)s:
+39. Review Time:
+40. Reviewed At:
+41. Security & Identity Verification
+42. Shipped:
+43. Submitted At:
+44. This order has already been %(status)s.
+45. To complete the upgrade process, please upload the following documents:
+46. Username:
+47. You have previously requested %(count)s times.
+48. \n]{3,})\s*
+49. admin@company.com
+50. ali@example.com
+51. e.g.: 21x29 cm
+52. e.g.: 9679593
+53. {% endif %}
+54. {{ '%(quantity)s tons %(product)s | %(price)s USD', quantity=order.quantity_tons, product=order.product, price='{:,.0f}'.format(order.total_price) }}
+55. {{ '{:,}'.format(SUBSCRIPTION_ANNUAL_IRR) }} {{ _('Tomans') }}
+56. {{ '{:,}'.format(SUBSCRIPTION_SEMI_ANNUAL_IRR) }} {{ _('Tomans') }}
+57. {{ _('%(arrow)s Back to Magazine Home', arrow='←' if current_user.language == 'fa' else '→') }}
+58. {{ _('%(count)d New', count=pending_orders) }}
+59. {{ _('24/7 Support') }}
+60. {{ _('Buyer: %(buyer)s | Seller: %(seller)s', buyer=order.buyer.username, seller=order.seller.username) }}
+61. {{ _('Company / Brand Name') }}
+62. {{ _('Company / Organization Name') }}
+63. {{ _('Conversation with:') }} {{ receiver.username }} 🌟
+64. {{ _('Enjoy our exclusive features!') }}
+65. {{ _('New!') }}
+66. {{ _('Order #%(id)s', id=order.id) }}
+67. {{ _('Payment Amount') }}: {{ '{:,}'.format(PREMIUM_PRICE_USD) }} {{ _('USD') }}
+68. {{ _('Payment') }} {{ '{:,}'.format(PREMIUM_PRICE_USD) }} {{ _('USD') }}
+69. {{ _('Premium') }} 🌟
+70. {{ _('Publish Date:') }} {{ issue.publish_date.strftime('%Y/%m/%d') if issue.publish_date else _('Unknown') }}
+71. {{ _('Rejected on %(date)s', date=r.submitted_at.strftime('%Y/%m/%d')) }}
+72. {{ _('Security & Identity Verification') }}
+73. {{ _('This order has already been %(status)s.', status=_('confirmed') if order.status.value == 'confirmed' else _('rejected')) }}.
+74. {{ _('To complete the upgrade process, please upload the following documents:') }}
+75. {{ _('You have previously requested %(count)s times.', count=requests|length) }}.
+76. {{ _('← Back to Home Page') }}
+77. {{ _('← Back to Magazine Home') }}
+78. {{ _('⏳ Verification code expires after 10 minutes.') }}
+79. {{ _('⚠️ Chat Access') }}
+80. {{ _('✅ Approve Request') }}
+81. {{ _('✅ Paid') }}
+82. {{ _('✅ Payment Receipt Received') }}
+83. {{ _('✅ Step Status') }}
+84. {{ _('✅ Verified') }}
+85. {{ _('✅ Yes') }}
+86. {{ _('✏️ Edit Profile') }}
+87. {{ _('❌ No') }}
+88. {{ _('❌ Not Paid') }}
+89. {{ _('❌ Not Verified') }}
+90. {{ _('❌ Reject Request') }}
+91. {{ _('➕ Add New Port') }}
+92. {{ _('🌍 Vessel Finder') }}
+93. {{ _('🌟 Upgrade to Premium') }}
+94. {{ _('👤 User Information') }}
+95. {{ _('📂 Premium Upgrade Requests') }}
+96. {{ _('📂 Premium User Upgrade Requests') }}
+97. {{ _('📄 Upgrade Request Details') }}
+98. {{ _('📊 Admin Dashboard') }}
+99. {{ _('📌 Ports List') }}
+100. {{ _('📎 Upload Documents') }}
+101. {{ _('📎 Uploaded Documents') }}
+102. {{ _('📝 Place New Order') }}
+103. {{ _('📝 Register in Market') }}
+104. {{ _('📦 My Orders') }}
+105. {{ _('📬 Email Verification') }}
+106. {{ _('📱 Verify Phone Number') }}
+107. {{ _('🔍 Search Vessel') }}
+108. {{ _('🔐 Admin Panel') }}
+109. {{ _('🔒 Restricted Access') }}
+110. {{ _('🔧 Manage Users') }}
+111. {{ n.created_at.strftime('%d/%m/%Y %H:%M') }}
+112. {{ order.created_at.strftime('%d/%m/%Y') }}
+113. {{ req.reviewed_at.strftime('%Y/%m/%d - %H:%M') }}
+114. {{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}
+115. {{ req.user.company_name or '—' }}
+116. {{ req.user.country or '—' }}
+117. {{ user.role.name }} | {{ user.country }}
+118. © 1403 {{ _('Rayan Company') }} | {{ _('All Rights Reserved') }}
+119. استان، شهر، خیابان، پلاک، Unit، کد پستی
+120. این لینک پس از 1 ساعت منقضی می‌شود.
+121. این لینک پس از 24 ساعت منقضی می‌شود.
+122. برای تأیید آدرس Email خود، Click the link below:
+123. برای تکمیل فرآیند ارتقاء to Premium User، Email خود را تأیید کنید:
+124. برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید
+125. تبریک! Upgrade request to Premium User
+126. سلام {user.username}!
+127. فرآیند ارتقاء شروع شد. لطفاً شماره موبایل خود را تأیید کنید.
+128. لطفاً فیلدهای الزامی را پر کنید.
+129. لطفاً کد را واReject کنید.
+130. ← Back to Home Page
+131. ← Back to Home مجله
+132. ← Back to Magazine Home
+133. ⏳ Verification code expires after 10 minutes.
+134. ⚠️ Chat Access
+135. ⚠️ این Order قبلاً تأیید یا rejectedه است.
+136. ⚠️ این Order قبلاً تغییر Status داده است.
+137. ⚠️ درخواست شما در حال بررسی است.
+138. ✅ Admin اول successfully ایجاد شد.
+139. ✅ Approve Request
+140. ✅ Email تأیید شد.
+141. ✅ Order successfully ثبت شد.
+142. ✅ Order تأیید شد و Notification Send گRejectید.
+143. ✅ Order تأیید و Notification to خریدار Send شد.
+144. ✅ Order و Notification successfully ثبت شد.
+145. ✅ Paid
+146. ✅ Payment Receipt Received
+147. ✅ Profile بروزرسانی شد.
+148. ✅ Registration successful! Please log in.
+149. ✅ Step Status
+150. ✅ Verified
+151. ✅ Welcome!
+152. ✅ Welcome, Admin!
+153. ✅ Yes
+154. ✅ {{ _('Approved') }}
+155. ✅ {{ _('Paid') }}
+156. ✅ {{ _('Uploaded') }}
+157. ✅ {{ _('Verified') }}
+158. ✅ تأیید Email
+159. ✅ شما قبلاً You are now a premium user.
+160. ✅ شماره موبایل successfully تأیید شد.
+161. ✅ شماره موبایل تأیید شد.
+162. ✅ شماره موبایل شما قبلاً تأیید شده است.
+163. ✉️ Message Send شد.
+164. ✏️ Edit Profile
+165. ❌ Access denied.
+166. ❌ Access denied: Only admins can access this page.
+167. ❌ Access denied: Only admins can log in.
+168. ❌ Access restricted: Only premium users can chat.
+169. ❌ Access restricted: Sellers only
+170. ❌ An Admin already exists.
+171. ❌ Email already in use.
+172. ❌ Email or Password is incorrect.
+173. ❌ Errorیی در Place Order رخ داد. لطفاً again تلاش کنید.
+174. ❌ Errorیی در ارتباط با سرویس Ship Tracking رخ داد.
+175. ❌ Errorیی رخ داد.
+176. ❌ Errorیی رخ داد. لطفاً again تلاش کنید.
+177. ❌ Invalid role.
+178. ❌ No
+179. ❌ Not Paid
+180. ❌ Not Verified
+181. ❌ Password must be at least 8 characters.
+182. ❌ Please enter a valid 7-digit IMO number.
+183. ❌ Please log in first.
+184. ❌ Quantity یا قیمت نامعتبر است.
+185. ❌ Reject Request
+186. ❌ Seller معتبر نیست.
+187. ❌ Seller موReject نظر یافت نشد.
+188. ❌ Seller نامعتبر است.
+189. ❌ Send Email با Error مواجه شد.
+190. ❌ Send کد با مشکل مواجه شد.
+191. ❌ User انتخابی Seller نیست.
+192. ❌ Username already taken.
+193. ❌ Username must be at least 3 characters.
+194. ❌ You cannot deactivate an Admin.
+195. ❌ You cannot deactivate another Admin.
+196. ❌ You cannot deactivate yourself.
+197. ❌ You cannot delete yourself.
+198. ❌ {{ _('Rejected') }}
+199. ❌ ایجاد Admin Inactive است.
+200. ❌ این Premium User نیست و نمی‌توانید با او Chat کنید.
+201. ❌ این حساب Inactive است.
+202. ❌ این لینک برای شما نیست.
+203. ❌ تمام فیلدها الزامی هسTonد.
+204. ❌ داده‌ای برای این Ship یافت نشد.
+205. ❌ داده‌های دریافتی نامعتبر هسTonد.
+206. ❌ درخواست to سرور زمان‌بندی شد. لطفاً again تلاش کنید.
+207. ❌ درخواستی یافت نشد.
+208. ❌ دسترسی غیرمجاز
+209. ❌ دسترسی غیرمجاز.
+210. ❌ دسترسی فقط برای Users ویژه مجاز است.
+211. ❌ فقط Users ویژه می‌توانند to Roleه دسترسی داشته باشند.
+212. ❌ فقط برای Sellers قابل دسترسی است.
+213. ❌ لطفاً Product name را واReject کنید.
+214. ❌ لطفاً ابتدا شماره موبایل خود را در Profile خود واReject کنید.
+215. ❌ لطفاً مبدأ و Destination را انتخاب کنید.
+216. ❌ لینک منقضی شده است.
+217. ❌ لینک نامعتبر است.
+218. ❌ هیچ Seller‌ای یافت نشد.
+219. ❌ کد نامعتبر است.
+220. ➕ Add New Port
+221. 🌍 Vessel Finder
+222. 🌍 {{ _('ExportMarket') }}
+223. 🌍 {{ _('Port Finder') }}
+224. 🌍 {{ _('Vessel Finder') }}
+225. 🌟 Upgrade to Premium
+226. 🌟 {{ _('Upgrade to Premium User') }}
+227. 👋 successfully Outside شدید.
+228. 👤 User Information
+229. 💬 {{ _('Chat with Broker') }}
+230. 💬 {{ _('Chat with Seller') }}
+231. 💬 {{ _('Enter Chat') }}
+232. 💬 {{ _('Start Chat') }}
+233. 💳 Payment:
+234. 💳 پRejectاخت هزینه ارتقاء
+235. 📂 Premium Upgrade Requests
+236. 📂 Premium User Upgrade Requests
+237. 📄 Overall Status:
+238. 📄 Upgrade Request Details
+239. 📊 Admin Dashboard
+240. 📌 Ports List
+241. 📎 Upload Documents
+242. 📎 Uploaded Documents
+243. 📝 Place New Order
+244. 📝 Register in Market
+245. 📦 My Orders
+246. 📧 Email Verification:
+247. 📬 Email Verification
+248. 📱 Phone Verification:
+249. 📱 Verify Phone Number
+250. 🔍 Search Vessel
+251. 🔐 Admin Panel
+252. 🔒 Restricted Access
+253. 🔧 Manage Users
+254. 🗑️ حساب شما deleted.
+255. 🛒 {{ _('Manage Orders') }}
