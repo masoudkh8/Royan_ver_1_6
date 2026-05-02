@@ -1,0 +1,648 @@
+================================================================================
+لیست کامل لغات و جملات نیازمند ترجمه برای چندزبانه کردن اپلیکیشن
+پروژه: سیستم مدیریت تجارت بین‌المللی رایان (Rayan Company)
+================================================================================
+
+توجه: این لیست شامل تمام رشته‌های متنی در مدل‌ها، روت‌ها، تمپلیت‌ها و پیام‌های ناتیفیکیشن است که باید به زبان‌های مختلف ترجمه شوند.
+
+================================================================================
+بخش ۱: پیام‌های فلاش (Flash Messages) - روت‌ها و کنترلرها
+================================================================================
+
+--- مسیرهای ادمین (routes/admin/routes.py) ---
+1. "❌ لطفاً ابتدا وارد شوید."
+2. "❌ دسترسی ممنوع: فقط ادمین می‌تواند به این صفحه دسترسی داشته باشد."
+3. "❌ نقش نامعتبر است."
+4. "✅ نقش کاربر {username} به '{role}' تغییر کرد."
+5. "✅ کاربر '{username}' با موفقیت به کاربر ویژه ارتقاء یافت."
+6. "❌ درخواست ارتقاء کاربر '{username}' رد شد."
+7. "❌ نمی‌توانید خودتان را حذف کنید."
+8. "✅ کاربر '{username}' با موفقیت حذف شد."
+9. "❌ نمی‌توانید خودتان را غیرفعال کنید."
+10. "❌ نمی‌توانید ادمین دیگر را غیرفعال کنید."
+11. "✅ کاربر '{username}' غیرفعال شد."
+12. "✅ کاربر '{username}' فعال شد."
+13. "✅ خوش آمدید، ادمین!"
+14. "❌ دسترسی ممنوع: فقط ادمین می‌تواند وارد شود."
+15. "❌ ایمیل یا رمز عبور نادرست است."
+
+--- مسیرهای کاربران (routes/users/routes.py) ---
+16. "❌ نام کاربری قبلاً گرفته شده."
+17. "❌ ایمیل قبلاً استفاده شده."
+18. "ادمین اول ایجاد شد."
+19. "✅ ثبت‌نام موفق! لطفاً وارد شوید."
+20. "✅ خوش آمدید!"
+21. "❌ ایمیل یا رمز عبور اشتباه است."
+22. "✅ پروفایل بروزرسانی شد."
+23. "🗑️ حساب شما حذف شد."
+24. "👋 با موفقیت خارج شدید."
+25. "❌ این حساب غیرفعال است."
+26. "محصول را وارد کنید."
+27. "مقدار نامعتبر است."
+28. "❌ فروشنده معتبر نیست."
+29. "✅ سفارش و اعلان با موفقیت ثبت شد."
+30. "❌ خطایی رخ داد."
+31. "❌ لطفاً نام محصول را وارد کنید."
+32. "❌ لطفاً مبدأ و مقصد را انتخاب کنید."
+33. "❌ مقدار یا قیمت نامعتبر است."
+34. "❌ فروشنده نامعتبر است."
+35. "❌ فروشنده مورد نظر یافت نشد."
+36. "❌ کاربر انتخابی فروشنده نیست."
+37. "✅ سفارش با موفقیت ثبت شد."
+38. "❌ خطایی در ثبت سفارش رخ داد. لطفاً دوباره تلاش کنید."
+39. "❌ فقط برای فروشندگان قابل دسترسی است."
+40. "❌ دسترسی غیرمجاز."
+41. "✅ سفارش تأیید شد و اعلان ارسال گردید."
+42. "⚠️ این سفارش قبلاً تأیید یا رد شده است."
+43. "🗑️ سفارش #{order_id} رد شد."
+44. "❌ دسترسی محدود: فقط کاربران ویژه می‌توانند چت کنند."
+45. "❌ این کاربر ویژه نیست و نمی‌توانید با او چت کنید."
+46. "✉️ پیام ارسال شد."
+47. "❌ دسترسی فقط برای کاربران ویژه مجاز است."
+48. "❌ لطفاً یک شناسه معتبر 7 رقمی (IMO) وارد کنید."
+49. "❌ داده‌ای برای این کشتی یافت نشد."
+50. "❌ درخواست به سرور زمان‌بندی شد. لطفاً دوباره تلاش کنید."
+51. "❌ خطایی در ارتباط با سرویس ردیابی کشتی رخ داد."
+52. "❌ داده‌های دریافتی نامعتبر هستند."
+53. "❌ فقط کاربران ویژه می‌توانند به نقشه دسترسی داشته باشند."
+54. "❌ دسترسی ممنوع: فقط کاربران ویژه"
+55. "❌ دسترسی ممنوع"
+56. "پورت اضافه شد."
+57. "شناسه پورت باید یک عدد مثبت باشد."
+58. "پورت با موفقیت بروزرسانی شد."
+59. "پورت حذف شد."
+60. "✅ شما قبلاً کاربر ویژه شدید."
+61. "⚠️ درخواست شما در حال بررسی است."
+62. "فرآیند ارتقاء شروع شد. لطفاً شماره موبایل خود را تأیید کنید."
+63. "مدارک با موفقیت آپلود شدند."
+64. "رسید پرداخت دریافت شد. در حال بررسی..."
+65. "❌ لطفاً ابتدا شماره موبایل خود را در پروفایل خود وارد کنید."
+66. "✅ شماره موبایل شما قبلاً تأیید شده است."
+67. "کد جدید ارسال شد."
+68. "❌ ارسال کد با مشکل مواجه شد."
+69. "لطفاً کد را وارد کنید."
+70. "✅ شماره موبایل با موفقیت تأیید شد."
+71. "❌ کد نامعتبر است."
+72. "کد تأیید ارسال شد."
+73. "ایمیل تأیید ارسال شد."
+74. "❌ ارسال ایمیل با خطا مواجه شد."
+75. "❌ لینک منقضی شده است."
+76. "❌ لینک نامعتبر است."
+77. "❌ این لینک برای شما نیست."
+78. "❌ درخواستی یافت نشد."
+79. "✅ ایمیل تأیید شد."
+
+--- مسیرهای مجله (routes/magazine/routes.py) ---
+80. "این شماره هنوز منتشر نشده است."
+81. "فایل مجله یافت نشد."
+82. "لطفاً فیلدهای الزامی را پر کنید."
+83. "درخواست اسپانسری شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+84. "درخواست تبلیغات شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+85. "اشتراک سالیانه شما با موفقیت ثبت شد. به زوری اطلاعات ارسال خواهد شد."
+
+================================================================================
+بخش ۲: تمپلیت‌ها - صفحه اصلی (templates/index.html)
+================================================================================
+
+86. "Rayan Company - International Trade Management System"
+87. "Rayan Company Logo"
+88. "Rayan Company"
+89. "Login"
+90. "Welcome to the International Trade Management System"
+91. "Rayan Company provides an intelligent platform that simplifies, secures, and brings transparency to the international trade process of buying, selling, and transporting goods."
+92. "Register"
+93. "Login to System"
+94. "Our Services"
+95. "Order Management"
+96. "Digital and real-time registration, tracking, and confirmation of orders."
+97. "Security & Identity Verification"
+98. "User identity verification, document approval, and transparent premium upgrade process."
+99. "24/7 Support"
+100. "Professional support via chat, call, and email throughout the week."
+101. "System Training Video"
+102. "Watch this video to learn how to use the international trade management system."
+103. "Your browser does not support video playback."
+104. "Cooperation with Reputable Companies"
+105. "We collaborate with large and reputable companies at national and international levels."
+106. "Partner Company 1" تا "Partner Company 6"
+107. "Image Magazine"
+108. "Specialized reference for international trade, maritime transport, and logistics"
+109. "To access the latest magazine issues, request sponsorship, advertising, and annual subscription, visit the magazine section."
+110. "Enter Magazine Section"
+111. "Annual Subscription"
+112. "Cooperate with Us"
+113. "You can also benefit from Rayan platform advantages to grow your business."
+114. "All Rights Reserved"
+115. "International Trade and Logistics Management System"
+
+================================================================================
+بخش ۳: تمپلیت‌ها - پایه (templates/base_pwa.html)
+================================================================================
+
+116. "ExportMarket"
+117. "Premium"
+118. "Install"
+119. "All rights reserved."
+
+================================================================================
+بخش ۴: تمپلیت‌ها - داشبورد کاربران (templates/users/dashboard.html)
+================================================================================
+
+120. "Dashboard"
+121. "Premium"
+122. "Edit Profile"
+123. "Orders"
+124. "View My Orders"
+125. "Manage Orders"
+126. "%(count)d New"
+127. "Chat with Seller"
+128. "Chat with Broker"
+129. "Start Chat"
+130. "Enter Chat"
+131. "Chat is only available for premium users."
+132. "Port Finder"
+133. "Vessel Finder"
+134. "Port Finder access is only available for premium users."
+135. "Vessel Finder access is only available for premium users."
+136. "Upgrade to Premium User"
+137. "Access to map, chat, and other exclusive features"
+138. "Start Upgrade Process"
+139. "You are a premium user"
+140. "Enjoy our exclusive features!"
+141. "Logout"
+
+================================================================================
+بخش ۵: تمپلیت‌ها - ورود (templates/users/login.html)
+================================================================================
+
+142. "Login to Account"
+143. "Welcome"
+144. "Login to International Export Market"
+145. "Email"
+146. "Password"
+147. "Don't have an account?"
+148. "Register Now"
+
+================================================================================
+بخش ۶: تمپلیت‌ها - ثبت‌نام (templates/users/register.html)
+================================================================================
+
+149. "Register"
+150. "📝 Register in Market"
+151. "Username"
+152. "e.g. ali_export"
+153. "Your Role"
+154. "Select..."
+155. "Buyer"
+156. "Seller"
+157. "Broker"
+158. "Company Name (Optional)"
+159. "Export Company"
+160. "Country"
+161. "Iran"
+162. "Phone (Optional)"
+163. "Have an account?"
+
+================================================================================
+بخش ۷: تمپلیت‌ها - ویرایش پروفایل (templates/users/edit_profile.html)
+================================================================================
+
+164. "Edit Profile"
+165. "✏️ Edit Profile"
+166. "Company Name"
+167. "Save Changes"
+168. "Back"
+
+================================================================================
+بخش ۸: تمپلیت‌ها - چت (templates/users/chat.html)
+================================================================================
+
+169. "⚠️ Chat Access"
+170. "Only <strong>Premium</strong> users can use the chat system."
+171. "🌟 Upgrade to Premium"
+172. "Chat"
+173. "Premium Contacts"
+174. "Conversation with:"
+175. "No messages sent yet."
+176. "Write your message..."
+177. "Send"
+178. "Select a premium contact to start chatting."
+
+================================================================================
+بخش ۹: تمپلیت‌ها - سفارش‌ها (templates/users/orders.html)
+================================================================================
+
+179. "My Orders"
+180. "Back to Profile"
+181. "📦 My Orders"
+182. "Order #%(id)s"
+183. "%(quantity)s tons %(product)s | %(price)s USD"
+184. "Buyer: %(buyer)s | Seller: %(seller)s"
+185. "Origin:"
+186. "Destination:"
+187. "Date:"
+188. "Shipped:"
+189. "You have not placed any orders yet."
+
+================================================================================
+بخش ۱۰: تمپلیت‌ها - ثبت سفارش (templates/users/place_order.html)
+================================================================================
+
+190. "Place New Order"
+191. "Complete your export or import order"
+192. "Product"
+193. "Wheat"
+194. "Rice"
+195. "Sugar"
+196. "Corn"
+197. "Steel"
+198. "Quantity (Tons)"
+199. "Price per Ton (USD)"
+200. "Origin Port"
+201. "e.g. Bandar Abbas"
+202. "Destination Port"
+203. "e.g. Jeddah"
+204. "Seller"
+205. "Notes (Optional)"
+206. "Payment terms, packaging, ..."
+207. "Place Order"
+
+================================================================================
+بخش ۱۱: تمپلیت‌ها - سفارش‌های فروشنده (templates/users/seller_orders.html)
+================================================================================
+
+208. "Seller Panel"
+209. "Received orders and their status"
+210. "Order #%(id)s"
+211. "Buyer:"
+212. "Company:"
+213. "Country:"
+214. "Are you sure you want to confirm this order?"
+215. "Confirm Order"
+216. "Are you sure you want to reject this order?"
+217. "Reject Order"
+218. "This order has already been %(status)s."
+219. "confirmed"
+220. "rejected"
+221. "No Orders Received"
+222. "No orders have been sent to you yet."
+
+================================================================================
+بخش ۱۲: تمپلیت‌ها - ارتقاء به کاربر ویژه (templates/users/upgrade_premium.html)
+================================================================================
+
+223. "Premium Upgrade Process"
+224. "Start"
+225. "Complete"
+226. "Your request has been submitted"
+227. "Ready for payment"
+228. "Ready to upload documents"
+229. "Ready for email verification"
+230. "Start by verifying your mobile number"
+231. "You have previously requested %(count)s times."
+232. "Request %(num)s:"
+233. "Rejected on %(date)s"
+234. "Approved"
+235. "Mobile Number Verification"
+236. "Verified"
+237. "Email Verification"
+238. "Upload Documents"
+239. "Uploaded"
+240. "Payment"
+241. "USD"
+242. "Paid"
+243. "Final Review and Approval"
+244. "Under Review"
+
+================================================================================
+بخش ۱۳: تمپلیت‌ها - آپلود مدارک (templates/users/upload_documents.html)
+================================================================================
+
+245. "Upload Documents"
+246. "📎 Upload Documents"
+247. "To complete the upgrade process, please upload the following documents:"
+248. "Passport Copy"
+249. "Upload a clear PDF or image of your passport."
+250. "Company License"
+251. "Upload your company registration document or business license."
+252. "Upload and Continue"
+
+================================================================================
+بخش ۱۴: تمپلیت‌ها - تأیید ایمیل (templates/users/verify_email.html)
+================================================================================
+
+253. "📬 Email Verification"
+254. "A verification email has been sent to"
+255. "Please click on the verification link. If you did not receive an email, check your spam folder."
+256. "Continue Steps"
+
+================================================================================
+بخش ۱۵: تمپلیت‌ها - تأیید شماره موبایل (templates/users/verify_phone.html)
+================================================================================
+
+257. "📱 Verify Phone Number"
+258. "Verification code sent to"
+259. "6-digit Code"
+260. "Verify Code"
+261. "Didn't receive the code?"
+262. "Resend Code"
+263. "⏳ Verification code expires after 10 minutes."
+
+================================================================================
+بخش ۱۶: تمپلیت‌ها - نقشه و پورت‌ها (templates/users/map.html)
+================================================================================
+
+264. "Ports Map"
+265. "📌 Ports List"
+266. "Filter by country..."
+267. "Loading..."
+268. "➕ Add New Port"
+269. "Port Name"
+270. "Country (e.g. IR)"
+271. "Latitude"
+272. "Longitude"
+273. "Add Port"
+274. "Click on the map to display coordinates"
+275. "Error loading ports"
+276. "Country"
+277. "Edit"
+278. "Delete"
+279. "Error loading."
+280. "Please fill all fields."
+281. "Error:"
+282. "Server communication error."
+283. "New name:"
+284. "New country:"
+285. "New latitude:"
+286. "New longitude:"
+287. "Edit error."
+288. "Are you sure?"
+289. "Delete error."
+290. "Leaflet.js not loaded"
+291. "🔒 Restricted Access"
+292. "Only premium users can access this map."
+293. "🌟 Upgrade to Premium"
+
+================================================================================
+بخش ۱۷: تمپلیت‌ها - ردیابی کشتی (templates/users/vessel_finder.html)
+================================================================================
+
+294. "Vessel Tracking - Vessel Finder"
+295. "🌍 Vessel Finder"
+296. "Search Vessel by IMO Number"
+297. "The IMO (International Maritime Organization) number is a unique 7-digit code assigned to each vessel."
+298. "IMO Number"
+299. "e.g.: 9679593"
+300. "🔍 Search Vessel"
+301. "Feature"
+302. "Value"
+303. "IMO"
+304. "MMSI"
+305. "Vessel Name"
+306. "Destination"
+307. "Unknown"
+308. "Speed (knot)"
+309. "ETA (Date of Arrival)"
+310. "Location:"
+
+================================================================================
+بخش ۱۸: تمپلیت‌ها - ناتیفیکیشن‌ها (templates/users/notifications.html)
+================================================================================
+
+311. "Notifications"
+312. "No notifications available."
+
+================================================================================
+بخش ۱۹: تمپلیت‌ها - تأیید پرداخت (templates/users/payment_confirmation.html)
+================================================================================
+
+313. "Send Payment Receipt"
+314. "✅ Payment Receipt Received"
+315. "Your upgrade request has been received. The management team will review your documents as soon as possible and notify you of the result via email."
+316. "Review Time:"
+317. "Usually between 24 to 48 business hours"
+318. "Contact Support"
+
+================================================================================
+بخش ۲۰: تمپلیت‌ها - ادمین - داشبورد (templates/admin/dashboard.html)
+================================================================================
+
+319. "Admin Dashboard"
+320. "📊 Admin Dashboard"
+321. "Total Users"
+322. "Premium Requests"
+323. "Pending Review"
+324. "🔧 Manage Users"
+325. "📂 Premium Upgrade Requests"
+
+================================================================================
+بخش ۲۱: تمپلیت‌ها - ادمین - ورود (templates/admin/login.html)
+================================================================================
+
+326. "Admin Login - Admin Panel"
+327. "🔐 Admin Panel"
+328. "Only for admin users"
+329. "Enter your password"
+330. "Login to Admin Panel"
+331. "← Back to Home Page"
+332. "Your Company. All rights reserved."
+
+================================================================================
+بخش ۲۲: تمپلیت‌ها - ادمین - مدیریت کاربران (templates/admin/manage_users.html)
+================================================================================
+
+333. "Manage Users"
+334. "🔧 Manage Users"
+335. "Active"
+336. "Inactive"
+337. "All"
+338. "Username"
+339. "Role"
+340. "Premium?"
+341. "Status"
+342. "Actions"
+343. "✅ Yes"
+344. "❌ No"
+345. "You"
+346. "No users found."
+347. "Previous"
+348. "Next"
+349. "Are you sure you want to deactivate this user?"
+350. "Deactivate"
+351. "Activate"
+
+================================================================================
+بخش ۲۳: تمپلیت‌ها - ادمین - درخواست‌های پریمیوم (templates/admin/premium_requests.html)
+================================================================================
+
+352. "Premium Upgrade Requests"
+353. "📂 Premium User Upgrade Requests"
+354. "New!"
+355. "Pending"
+356. "Approved"
+357. "Rejected"
+358. "User"
+359. "Submission Date"
+360. "View"
+361. "Approve"
+362. "Reject"
+363. "No requests found."
+
+================================================================================
+بخش ۲۴: تمپلیت‌ها - ادمین - مشاهده درخواست (templates/admin/view_premium_request.html)
+================================================================================
+
+364. "View Upgrade Request"
+365. "📄 Upgrade Request Details"
+366. "👤 User Information"
+367. "Username:"
+368. "Company:"
+369. "✅ Step Status"
+370. "📱 Phone Verification:"
+371. "❌ Not Verified"
+372. "📧 Email Verification:"
+373. "💳 Payment:"
+374. "❌ Not Paid"
+375. "📄 Overall Status:"
+376. "Pending Review"
+377. "📎 Uploaded Documents"
+378. "Not Uploaded"
+379. "View File"
+380. "Submitted At:"
+381. "Reviewed At:"
+382. "✅ Approve Request"
+383. "❌ Reject Request"
+
+================================================================================
+بخش ۲۵: تمپلیت‌ها - مجله (templates/magazine/*.html)
+================================================================================
+
+384. "Advertisement Request - Imazheh Magazine"
+385. "Advertisement Request in Imazheh Magazine"
+386. "To place an advertisement in the magazine, please complete the form below"
+387. "Full Name"
+388. "Company / Brand Name"
+389. "Ad Type"
+390. "Full Page"
+391. "Half Page"
+392. "Quarter Page"
+393. "Back Cover"
+394. "Inside Cover"
+395. "Advertising Banner"
+396. "Ad Size"
+397. "e.g.: 21x29 cm"
+398. "Publication Duration"
+399. "One Issue"
+400. "Three Issues"
+401. "Six Issues"
+402. "Annual (12 Issues)"
+403. "Message and Comments"
+404. "Submit Advertisement Request"
+405. "← Back to Magazine Home"
+406. "Imazheh Magazine"
+407. "Imazheh Visual Magazine"
+408. "Specialized reference for international trade, maritime transport and logistics"
+409. "Sponsorship Request"
+410. "Advertise in Magazine"
+411. "Annual Subscription"
+412. "Published Issues"
+413. "Magazine Issue"
+414. "Publish Date:"
+415. "Downloads"
+416. "Download Digital Version"
+417. "No issues have been published yet."
+418. "The first issue of the magazine will be available soon."
+419. "Sponsorship Request - Tasvir Magazine"
+420. "Tasvir Magazine Sponsorship Request"
+421. "To collaborate and sponsor the magazine, please complete the form below"
+422. "Company / Organization Name"
+423. "Message and Description"
+424. "Submit Sponsorship Request"
+425. "%(arrow)s Back to Magazine Home"
+426. "Tomans"
+427. "12 printed issues per year"
+428. "Access to digital version"
+429. "Free postal delivery"
+430. "Special event discounts"
+431. "Semi-Annual Subscription"
+432. "6 printed issues"
+433. "Annual"
+434. "Semi-Annual"
+
+================================================================================
+بخش ۲۶: مدل‌ها - کامنت‌ها و توضیحات (models/*.py)
+================================================================================
+
+435. "مدل اطلاعات کلی مجله"
+436. "مدل شماره‌های مجله"
+437. "شماره نشریه"
+438. "عنوان شماره"
+439. "توضیحات شماره"
+440. "URL تصویر جلد"
+441. "URL فایل PDF برای دانلود"
+442. "حجم فایل"
+443. "تاریخ انتشار"
+444. "وضعیت انتشار"
+445. "تعداد دانلود"
+446. "مدل درخواست اسپانسری"
+447. "مدل درخواست تبلیغات در مجله"
+448. "نوع تبلیغ"
+449. "مدل اشتراک سالیانه مجله"
+450. "آدرس پستی برای ارسال نسخه چاپی"
+451. "محاسبه قیمت کل: quantity * price"
+452. "علامت‌گذاری به عنوان ارسال شده"
+453. "علامت‌گذاری به عنوان تحویل داده شده"
+454. "در انتظار تأیید"
+455. "تأیید شده"
+456. "در حال حمل"
+457. "تحویل داده شده"
+458. "لغو شده"
+
+================================================================================
+بخش ۲۷: پیام‌های ناتیفیکیشن (Notification Messages)
+================================================================================
+
+459. "سفارش جدیدی از {username} دریافت کردید. (#{order.id})"
+460. "سفارش شما (#{order.id}) توسط {username} تأیید شد."
+461. "📩 پیام جدیدی از {username} دریافت کردید."
+462. "✅ درخواست ارتقاء شما تأیید شد."
+463. "❌ درخواست ارتقاء شما رد شد. می‌توانید دوباره تلاش کنید."
+464. "کد تأیید شما: {code}"
+465. "کد تأیید: {code}"
+
+================================================================================
+بخش ۲۸: ایمیل‌ها (Email Templates)
+================================================================================
+
+466. "تأیید ایمیل برای ارتقاء به کاربر ویژه"
+467. "تبریک! درخواست ارتقاء به کاربر ویژه"
+468. "برای تأیید آدرس ایمیل خود، روی لینک زیر کلیک کنید:"
+469. "تأیید ایمیل"
+470. "این لینک پس از ۱ ساعت منقضی می‌شود."
+471. "اگر شما این درخواست را نداده‌اید، این ایمیل را نادیده بگیرید."
+472. "🔔 درخواست جدید ارتقاء به کاربر ویژه"
+473. "کاربر {username} یک درخواست جدید ارسال کرده است."
+
+================================================================================
+بخش ۲۹: متفرقه (Miscellaneous)
+================================================================================
+
+474. "لطفاً وارد شوید." (login_manager.login_message)
+475. "Rayan Company" (نام شرکت)
+476. "ExportMarket" (نام بازار)
+477. "Image Magazine" / "Imazheh Magazine" / "Tasvir Magazine" (نام مجله)
+
+================================================================================
+تعداد کل آیتم‌های نیازمند ترجمه: ۴۷۷ مورد
+================================================================================
+
+نکات مهم:
+1. برخی از رشته‌ها دارای پارامترهای داینامیک مانند {username}, %(count)d, %(id)s هستند که باید در ترجمه حفظ شوند.
+2. برخی رشته‌ها حاوی کاراکترهای HTML مانند <strong>, <br>, <a> هستند که باید در ترجمه حفظ شوند.
+3. برخی رشته‌ها دارای اموجی (emoji) هستند که بهتر است در ترجمه حفظ شوند.
+4. فرمت‌های تاریخ و زمان باید با توجه به هر زبان تنظیم شوند.
+5. اعداد و ارزها (USD, Tomans) باید با توجه به هر زبان فرمت‌دهی شوند.
+
+================================================================================
+پایان لیست
+================================================================================

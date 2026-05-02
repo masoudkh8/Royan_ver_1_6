@@ -52,7 +52,7 @@
                     </div>
                     {% endif %}
 
-                    <!-- نشان جدید -->
+                    <!-- نشان New -->
                     {% if issue.publish_date and issue.publish_date.strftime('%Y-%m-%d') >= (now() - timedelta(days=30)).strftime('%Y-%m-%d') %}
                     <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
                         {{ _('New') }}
@@ -60,7 +60,7 @@
                     {% endif %}
                 </div>
 
-                <!-- اطلاعات شماره -->
+                <!-- Info شماره -->
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         {{ issue.title }}

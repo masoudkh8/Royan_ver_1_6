@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
     company_name = db.Column(db.String(100))
     country = db.Column(db.String(50))
     phone = db.Column(db.String(20))
-    is_active = db.Column(db.Boolean, default=True)  # ✅ فعال/غیرفعال
+    is_active = db.Column(db.Boolean, default=True)  # ✅ Active/Inactive
     is_premium = db.Column(db.Boolean, default=False)
     premium_since = db.Column(db.DateTime, default=None)
     premium_requests = db.relationship('PremiumRequest', back_populates='user', cascade='all, delete-orphan')

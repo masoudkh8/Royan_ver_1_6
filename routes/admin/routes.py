@@ -20,7 +20,7 @@ from . import admin_bp
 
 
 # ---------------------------------------
-# Decorator: فقط ادمین دسترسی داشته باشه
+# Decorator: فقط Admin دسترسی داشته باشه
 # ---------------------------------------
 
 @admin_bp.route('')
@@ -31,13 +31,13 @@ def admin_index():
 def admin_required(f):
     @wraps(f)  # ✅ این خط مشکل رو حل می‌کنه
     def decorated_function(*args, **kwargs):
-        # ✅ اول چک کن کاربر وارد شده باشد
+        # ✅ اول چک کن User واrejectedه باشد
         if not current_user.is_authenticated:
-            flash("❌ لطفاً ابتدا وارد شوید.")
+            flash("❌ Please log in first.")
             return redirect(url_for('users.login'))
         print(current_user.role)
         if  current_user.role != Role.ADMIN:
-            flash("❌ دسترسی ممنوع: فقط ادمین می‌تواند به این صفحه دسترسی داشته باشد.", "error")
+            flash("❌ Access denied: Only admins can access this page.", "error")
             return redirect(url_for('users.profile'))
         return f(*args, **kwargs)
 
@@ -45,7 +45,7 @@ def admin_required(f):
 
 
 # ---------------------------------------
-# داشبورد ادمین
+# Dashboard Admin
 # ---------------------------------------
 @admin_bp.route('/dashboard')
 @login_required
@@ -62,7 +62,7 @@ def dashboard():
 
 
 # ---------------------------------------
-# مدیریت کاربران
+# User Management
 # ---------------------------------------
 # @admin_bp.route('/users')
 # @admin_required
@@ -96,7 +96,7 @@ def manage_users():
         error_out=False
     )
 
-    # ✅ محاسبه تعداد در بک‌اند
+    # ✅ محاسto تعداد در بک‌اند
     total_active = User.query.filter_by(is_active=True).count()
     total_inactive = User.query.filter_by(is_active=False).count()
 
@@ -108,7 +108,7 @@ def manage_users():
         total_inactive=total_inactive
     )
 # ---------------------------------------
-# تغییر نقش کاربر
+# تغییر User role
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/role', methods=['POST'])
 @admin_required
@@ -117,19 +117,19 @@ def change_user_role(user_id):
     new_role = request.form.get('role')
 
     if not Role.has_value(new_role):
-        flash("❌ نقش نامعتبر است.", "error")
+        flash("❌ Invalid role.", "error")
     else:
         user.role = Role(new_role)
         # print(new_role)
         if new_role=="admin":
             user.is_premium=True
         db.session.commit()
-        flash(f"✅ نقش کاربر {user.username} به '{new_role}' تغییر کرد.", "success")
+        flash(f"✅ User role {user.username} to '{new_role}' changed.", "success")
     return redirect(url_for('admin.manage_users'))
 
 
 # ---------------------------------------
-# درخواست‌های ارتقاء به کاربر ویژه
+# Upgrade Requests to Premium User
 # ---------------------------------------
 @admin_bp.route('/premium_requests')
 @admin_required
@@ -149,7 +149,7 @@ def premium_requests():
 
 
 # ---------------------------------------
-# تأیید درخواست ارتقاء
+# تأیید Upgrade request
 # ---------------------------------------
 @admin_bp.route('/approve_premium/<int:req_id>', methods=['POST'])
 @admin_required
@@ -160,12 +160,12 @@ def approve_premium(req_id):
     req.user.is_premium = True
     db.session.commit()
 
-    flash(f"✅ کاربر '{req.user.username}' با موفقیت به کاربر ویژه ارتقاء یافت.", "success")
+    flash(f"✅ User '{req.user.username}' successfully upgraded to Premium User.", "success")
     return redirect(url_for('admin.premium_requests'))
 
 
 # ---------------------------------------
-# رد درخواست ارتقاء
+# Reject Upgrade request
 # ---------------------------------------
 @admin_bp.route('/reject_premium/<int:req_id>', methods=['POST'])
 @admin_required
@@ -175,12 +175,12 @@ def reject_premium(req_id):
     req.reviewed_at = datetime.now(tehran_tz)
     db.session.commit()
 
-    flash(f"❌ درخواست ارتقاء کاربر '{req.user.username}' رد شد.", "warning")
+    flash(f"❌ Upgrade request User '{req.user.username}' rejected.", "warning")
     return redirect(url_for('admin.premium_requests'))
 
 
 # ---------------------------------------
-# مشاهده جزئیات درخواست
+# مشاهده Details درخواست
 # ---------------------------------------
 @admin_bp.route('/premium_request/<int:req_id>')
 @admin_required
@@ -190,20 +190,20 @@ def view_premium_request(req_id):
 
 
 # ---------------------------------------
-# حذف کاربر (با احتیاط)
+# Delete User (با احتیاط)
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/delete', methods=['POST'])
 @admin_required
 def delete_user(user_id):
     Notification.query.filter_by(user_id=user_id).delete()
     if current_user.id == user_id:
-        flash("❌ نمی‌توانید خودتان را حذف کنید.", "error")
+        flash("❌ You cannot delete yourself.", "error")
         return redirect(url_for('admin.manage_users'))
 
     user = User.query.get_or_404(user_id)
     username = user.username
 
-    # حذف درخواست ارتقاء اگر وجود داشت
+    # Delete Upgrade request اگر وجود داشت
     req = PremiumRequest.query.filter_by(user_id=user.id).first()
     if req:
         db.session.delete(req)
@@ -212,7 +212,7 @@ def delete_user(user_id):
     # db.session.delete(user)
     db.session.commit()
     print(current_user.id , current_user.username)
-    flash(f"✅ کاربر '{username}' با موفقیت حذف شد.", "success")
+    flash(f"✅ User '{username}' successfully deleted.", "success")
     return redirect(url_for('admin.manage_users'))
 
 ####################3
@@ -223,13 +223,13 @@ def delete_user(user_id):
 #     user = User.query.get_or_404(user_id)
 #
 #     if user.role == Role.ADMIN:
-#         flash("❌ نمی‌توانید ادمین را غیرفعال کنید.")
+#         flash("❌ You cannot deactivate an Admin.")
 #         return redirect(url_for('admin.users_list'))
 #
 #     user.is_active = False
 #     db.session.commit()
 #
-#     flash(f"✅ کاربر {user.username} با موفقیت غیرفعال شد.")
+#     flash(f"✅ User {user.username} successfully deactivated.")
 #     return redirect(url_for('admin.users_list'))
 #
 # @admin_bp.route('/activate_user/<int:user_id>', methods=['POST'])
@@ -238,32 +238,32 @@ def delete_user(user_id):
 #     user = User.query.get_or_404(user_id)
 #     user.is_active = True
 #     db.session.commit()
-#     flash(f"✅ کاربر {user.username} دوباره فعال شد.")
+#     flash(f"✅ User {user.username} again activated.")
 #     return redirect(url_for('admin.users_list'))
 
 # ---------------------------------------
-# غیرفعال‌سازی کاربر
+# Inactive‌سازی User
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/deactivate', methods=['POST'])
 @admin_required
 def deactivate_user(user_id):
     if current_user.id == user_id:
-        flash("❌ نمی‌توانید خودتان را غیرفعال کنید.")
+        flash("❌ You cannot deactivate yourself.")
         return redirect(url_for('admin.manage_users'))
 
     user = User.query.get_or_404(user_id)
     if user.role == Role.ADMIN:
-        flash("❌ نمی‌توانید ادمین دیگر را غیرفعال کنید.")
+        flash("❌ You cannot deactivate another Admin.")
         return redirect(url_for('admin.manage_users'))
 
     user.is_active = False
     db.session.commit()
-    flash(f"✅ کاربر '{user.username}' غیرفعال شد.")
+    flash(f"✅ User '{user.username}' deactivated.")
     return redirect(url_for('admin.manage_users', status=request.args.get('status', 'active')))
 
 
 # ---------------------------------------
-# فعال‌سازی کاربر
+# Active‌سازی User
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/activate', methods=['POST'])
 @admin_required
@@ -271,17 +271,17 @@ def activate_user(user_id):
     user = User.query.get_or_404(user_id)
     user.is_active = True
     db.session.commit()
-    flash(f"✅ کاربر '{user.username}' فعال شد.")
+    flash(f"✅ User '{user.username}' activated.")
     return redirect(url_for('admin.manage_users', status=request.args.get('status', 'active')))
 
 
 
-# صفحه ورود
+# صفحه Login
 @admin_bp.route('/login')
 def login():
     return render_template('admin/login.html', current_year=datetime.now().year)
 
-# پردازش ورود
+# پRejectازش Login
 @admin_bp.route('/login', methods=['POST'])
 def login_post():
     email = request.form.get('email')
@@ -292,13 +292,13 @@ def login_post():
     if user and check_password_hash(user.password_hash, password):
         if user.role ==  Role.ADMIN:
             login_user(user)
-            flash("✅ خوش آمدید، ادمین!", "success")
+            flash("✅ Welcome, Admin!", "success")
             return redirect(url_for('admin.dashboard'))
         else:
             print(user.role)
             print(user)
-            flash("❌ دسترسی ممنوع: فقط ادمین می‌تواند وارد شود.", "error")
+            flash("❌ Access denied: Only admins can log in.", "error")
     else:
-        flash("❌ ایمیل یا رمز عبور نادرست است.", "error")
+        flash("❌ Email or Password is incorrect.", "error")
 
     return redirect(url_for('admin.login'))

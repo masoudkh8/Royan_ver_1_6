@@ -1,7 +1,7 @@
 <!-- templates/magazine/subscribe.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}اشتراک سالیانه - مجله تصویر{% endblock %}
+{% block title %}Annual Subscription - مجله تصویر{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
@@ -9,7 +9,7 @@
         <!-- هدر -->
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                اشتراک سالیانه مجله تصویر
+                Annual Subscription مجله تصویر
             </h1>
             <p class="text-lg text-gray-600 dark:text-gray-300">
                 برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید
@@ -51,10 +51,10 @@
                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
                 </div>
 
-                <!-- ایمیل -->
+                <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        ایمیل <span class="text-red-500">*</span>
+                        Email <span class="text-red-500">*</span>
                     </label>
                     <input type="email" id="email" name="email" required
                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all">
@@ -75,7 +75,7 @@
                         آدرس پستی کامل <span class="text-red-500">*</span>
                     </label>
                     <textarea id="address" name="address" rows="4" required
-                              placeholder="استان، شهر، خیابان، پلاک، واحد، کد پستی"
+                              placeholder="استان، شهر، خیابان، پلاک، Unit، کد پستی"
                               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"></textarea>
                 </div>
 
@@ -91,18 +91,18 @@
                     </select>
                 </div>
 
-                <!-- دکمه ارسال -->
+                <!-- دکمه Send -->
                 <button type="submit"
                         class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
                     ثبت نام اشتراک
                 </button>
             </form>
 
-            <!-- بازگشت -->
+            <!-- Back -->
             <div class="mt-6 text-center">
                 <a href="{{ url_for('magazine.index') }}" 
                    class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium">
-                    ← بازگشت به صفحه اصلی مجله
+                    ← Back to Home مجله
                 </a>
             </div>
         </div>

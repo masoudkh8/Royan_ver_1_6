@@ -6,7 +6,7 @@
 {% block content %}
 <div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6">
 
-    <!-- هدر کاربر -->
+    <!-- هدر User -->
     <div class="flex items-center space-x-4 space-x-reverse">
         <div class="bg-blue-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold">
             {{ user.username[0].upper() }}
@@ -60,21 +60,21 @@
 
 
         {% if current_user.role.value == 'buyer' %}
-            <!-- فرض: خریدار می‌خواد با اولین فروشنده چت کنه -->
+            <!-- فرض: خریدار می‌خواد با First Seller Chat کنه -->
             {% if seller %}
                 <a href="{{ url_for('users.chat', receiver_id=seller.id) }}" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                     💬 {{ _('Chat with Seller') }}
                 </a>
             {% endif %}
         {% elif current_user.role.value == 'seller' %}
-            <!-- فروشنده می‌تونه با یه خریدار یا بروکر چت کنه -->
+            <!-- Seller می‌تونه با یه خریدار یا بروکر Chat کنه -->
             {% if broker %}
                 <a href="{{ url_for('users.chat', receiver_id=broker.id) }}" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                     💬 {{ _('Chat with Broker') }}
                 </a>
             {% endif %}
         {% elif current_user.role.value == 'broker' %}
-            <!-- بروکر می‌تونه با یه کاربر خاص چت کنه -->
+            <!-- بروکر می‌تونه با یه User خاص Chat کنه -->
             <a href="{{ url_for('users.chat', receiver_id=1) }}" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                 💬 {{ _('Start Chat') }}
             </a>
@@ -91,7 +91,7 @@
         {% endif %}
 
 
-        <!-- دکمه نقشه برای کاربران ویژه -->
+        <!-- دکمه Roleه برای Users ویژه -->
         {% if current_user.is_premium %}
             <a href="{{ url_for('users.show_map') }}" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                 🌍 {{ _('Port Finder') }}
@@ -141,7 +141,7 @@
 
 
 
-    <!-- لینک خروج -->
+    <!-- لینک Logout -->
     <div class="mt-6 text-center">
         <a href="{{ url_for('users.logout') }}" class="text-red-500 hover:underline text-sm">
             {{ _('Logout') }}

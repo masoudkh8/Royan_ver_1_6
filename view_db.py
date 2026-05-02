@@ -10,13 +10,13 @@ tables = cursor.fetchall()
 for table in tables:
     print(f"  - {table[0]}")
 
-# نمایش داده‌های هر جدول
+# Show داده‌های هر جدول
 print("\n📝 داده‌های جداول:")
 for table in tables:
     table_name = table[0]
-    if not table_name.startswith('sqlite_'):  # جداول داخلی SQLite را نادیده بگیر
+    if not table_name.startswith('sqlite_'):  # جداول Insideی SQLite را نادیده بگیر
         print(f"\n--- {table_name} ---")
-        cursor.execute(f"SELECT * FROM {table_name} LIMIT 5")  # فقط ۵ ردیف اول
+        cursor.execute(f"SELECT * FROM {table_name} LIMIT 5")  # فقط 5 Rejectیف اول
         rows = cursor.fetchall()
         if rows:
             # نام ستون‌ها

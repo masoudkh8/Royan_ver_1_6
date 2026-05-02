@@ -12,7 +12,7 @@ print(f"\n📄 فایل‌های .py موجود: {py_files}")
 
 # بررسی هر فایل
 for file in py_files:
-    module_name = file[:-3]  # حذف .py
+    module_name = file[:-3]  # Delete .py
     try:
         spec = importlib.util.spec_from_file_location(module_name, file)
         module = importlib.util.module_from_spec(spec)
@@ -32,6 +32,6 @@ for file in py_files:
                 print(f"   {var} نوع: {type(obj).__name__}")
                 
     except Exception as e:
-        print(f"\n❌ فایل {file}: خطا - {e}")
+        print(f"\n❌ فایل {file}: Error - {e}")
 
 print("\n" + "=" * 50)
