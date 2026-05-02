@@ -4,7 +4,7 @@ from . import db
 from datetime import datetime
 
 class Magazine(db.Model):
-    """مدل اطلاعات کلی مجله"""
+    """مدل Info کلی مجله"""
     __tablename__ = 'magazines'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -30,12 +30,12 @@ class MagazineIssue(db.Model):
     magazine_id = db.Column(db.Integer, db.ForeignKey('magazines.id'), nullable=False)
     issue_number = db.Column(db.Integer, nullable=False)  # شماره نشریه
     title = db.Column(db.String(200), nullable=False)  # عنوان شماره
-    description = db.Column(db.Text)  # توضیحات شماره
+    description = db.Column(db.Text)  # Description شماره
     cover_image_url = db.Column(db.String(500))  # URL تصویر جلد
     file_url = db.Column(db.String(500), nullable=False)  # URL فایل PDF برای دانلود
     file_size = db.Column(db.String(50))  # حجم فایل
-    publish_date = db.Column(db.Date, nullable=False)  # تاریخ انتشار
-    is_published = db.Column(db.Boolean, default=False)  # وضعیت انتشار
+    publish_date = db.Column(db.Date, nullable=False)  # Date انتشار
+    is_published = db.Column(db.Boolean, default=False)  # Status انتشار
     download_count = db.Column(db.Integer, default=0)  # تعداد دانلود
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -45,21 +45,21 @@ class MagazineIssue(db.Model):
 
 
 class SponsorshipRequest(db.Model):
-    """مدل درخواست اسپانسری"""
+    """مدل Request Sponsorship"""
     __tablename__ = 'sponsorship_requests'
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)  # اگر کاربر لاگین کرده باشد
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)  # اگر User لاگین کRejectه باشد
     full_name = db.Column(db.String(200), nullable=False)
     company_name = db.Column(db.String(200))  # نام شرکت
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(20), nullable=False)
-    message = db.Column(db.Text)  # پیام و توضیحات
+    message = db.Column(db.Text)  # Message و Description
     status = db.Column(db.String(50), default='pending')  # pending, approved, rejected
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    # رابطه با کاربر
+    # رابطه با User
     user = db.relationship('User', backref=db.backref('sponsorship_requests', lazy=True))
     
     def __repr__(self):
@@ -67,7 +67,7 @@ class SponsorshipRequest(db.Model):
 
 
 class AdvertisementRequest(db.Model):
-    """مدل درخواست تبلیغات در مجله"""
+    """مدل Request Advertisement در مجله"""
     __tablename__ = 'advertisement_requests'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -82,7 +82,7 @@ class AdvertisementRequest(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    # رابطه با کاربر
+    # رابطه با User
     user = db.relationship('User', backref=db.backref('advertisement_requests', lazy=True))
     
     def __repr__(self):
@@ -90,7 +90,7 @@ class AdvertisementRequest(db.Model):
 
 
 class Subscription(db.Model):
-    """مدل اشتراک سالیانه مجله"""
+    """مدل Annual Subscription مجله"""
     __tablename__ = 'subscriptions'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -98,7 +98,7 @@ class Subscription(db.Model):
     full_name = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(20), nullable=False)
-    address = db.Column(db.Text)  # آدرس پستی برای ارسال نسخه چاپی
+    address = db.Column(db.Text)  # آدرس پستی برای Send نسخه چاپی
     subscription_type = db.Column(db.String(50), default='annual')  # annual, semi_annual
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
@@ -108,7 +108,7 @@ class Subscription(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    # رابطه با کاربر
+    # رابطه با User
     user = db.relationship('User', backref=db.backref('subscriptions', lazy=True))
     
     def __repr__(self):

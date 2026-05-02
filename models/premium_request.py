@@ -11,7 +11,7 @@ class PremiumRequest(db.Model):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     requested_phone = db.Column(db.String(15), nullable=False)
-    # وضعیت مراحل
+    # Status مراحل
     phone_verified = Column(Boolean, default=False)
     email_verified = Column(Boolean, default=False)
     docs_verified = Column(Boolean, default=False)
@@ -26,7 +26,7 @@ class PremiumRequest(db.Model):
     license_file = Column(String(200))
     payment_receipt = Column(String(200))
 
-    # وضعیت کلی
+    # Status کلی
     status = Column(String(20), default='pending')  # pending, approved, rejected
     submitted_at = Column(DateTime, default=datetime.now(tehran_tz))
     reviewed_at = Column(DateTime ,default=datetime.now(tehran_tz))

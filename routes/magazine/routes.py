@@ -6,10 +6,10 @@ from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
 
-# مسیرهای عمومی برای نمایش مجله
+# مسیرهای عمومی برای Show مجله
 @magazine_bp.route('/')
 def index():
-    """صفحه اصلی مجله - نمایش شماره‌های موجود"""
+    """Home مجله - Show شماره‌های موجود"""
     issues = MagazineIssue.query.filter_by(is_published=True).order_by(MagazineIssue.issue_number.desc()).all()
     return render_template('magazine/index.html', issues=issues)
 
@@ -22,7 +22,7 @@ def download_issue(issue_id):
         flash('این شماره هنوز منتشر نشده است.', 'error')
         return redirect(url_for('magazine.index'))
     
-    # مسیر فایل را برگردانید
+    # مسیر فایل را برگRejectانید
     file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'magazines', issue.file_path)
     
     if os.path.exists(file_path):
@@ -36,10 +36,10 @@ def download_issue(issue_id):
         flash('فایل مجله یافت نشد.', 'error')
         return redirect(url_for('magazine.index'))
 
-# فرم درخواست اسپانسری
+# فرم Request Sponsorship
 @magazine_bp.route('/sponsorship', methods=['GET', 'POST'])
 def sponsorship_request():
-    """ثبت درخواست اسپانسری"""
+    """ثبت Request Sponsorship"""
     if request.method == 'POST':
         name = request.form.get('name')
         company = request.form.get('company')
@@ -62,15 +62,15 @@ def sponsorship_request():
         db.session.add(new_request)
         db.session.commit()
         
-        flash('درخواست اسپانسری شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت.', 'success')
+        flash('Your sponsorship request has been successfully submitted. We will contact you soon.', 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/sponsorship.html')
 
-# فرم درخواست تبلیغات
+# فرم Request Advertisement
 @magazine_bp.route('/advertisement', methods=['GET', 'POST'])
 def advertisement_request():
-    """ثبت درخواست تبلیغات در مجله"""
+    """ثبت Request Advertisement در مجله"""
     if request.method == 'POST':
         name = request.form.get('name')
         company = request.form.get('company')
@@ -99,15 +99,15 @@ def advertisement_request():
         db.session.add(new_request)
         db.session.commit()
         
-        flash('درخواست تبلیغات شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت.', 'success')
+        flash('Your advertising request has been successfully submitted. We will contact you soon.', 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/advertisement.html')
 
-# فرم اشتراک سالیانه
+# فرم Annual Subscription
 @magazine_bp.route('/subscribe', methods=['GET', 'POST'])
 def subscribe():
-    """ثبت نام اشتراک سالیانه"""
+    """ثبت نام Annual Subscription"""
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -132,7 +132,7 @@ def subscribe():
         db.session.add(new_subscription)
         db.session.commit()
         
-        flash('اشتراک سالیانه شما با موفقیت ثبت شد. به زوری اطلاعات ارسال خواهد شد.', 'success')
+        flash('Your annual subscription has been successfully registered. Information will be sent soon.', 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/subscribe.html')

@@ -7,7 +7,7 @@
 <div class="max-w-7xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
     <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('🔧 Manage Users') }}</h2>
 
-    <!-- فیلتر وضعیت -->
+    <!-- Filter Status -->
     <div class="flex space-x-4 space-x-reverse mb-6 text-sm">
 
         <a href="{{ url_for('admin.manage_users', status='active', page=1) }}"
@@ -25,7 +25,7 @@
 
     </div>
 
-    <!-- جدول کاربران -->
+    <!-- جدول Users -->
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead class="bg-gray-50">
@@ -59,7 +59,7 @@
                         {% endif %}
                     </td>
                     <td class="py-3 px-4 text-sm space-y-2">
-                        <!-- تغییر نقش -->
+                        <!-- تغییر Role -->
                         <form method="POST" action="{{ url_for('admin.change_user_role', user_id=user.id) }}" class="inline">
                             <select name="role" onchange="this.form.submit()"
                                     class="text-sm border border-gray-300 rounded px-2 py-1">
@@ -71,7 +71,7 @@
                             </select>
                         </form>
 
-                        <!-- فعال/غیرفعال کردن -->
+                        <!-- Active/Inactive کRejectن -->
                         {% if user.id != current_user.id %}
                             {% if user.is_active %}
                                 <form method="POST" action="{{ url_for('admin.deactivate_user', user_id=user.id) }}"

@@ -8,7 +8,7 @@
     <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ _('📄 Upgrade Request Details') }}</h2>
 
     <div class="space-y-6">
-        <!-- اطلاعات کاربر -->
+        <!-- Info User -->
         <div class="p-4 bg-gray-50 rounded-lg">
             <h3 class="font-semibold text-gray-800">{{ _('👤 User Information') }}</h3>
             <p><strong>{{ _('Username:') }}</strong> {{ req.user.username }}</p>
@@ -17,7 +17,7 @@
             <p><strong>{{ _('Country:') }}</strong> {{ req.user.country or '—' }}</p>
         </div>
 
-        <!-- وضعیت مراحل -->
+        <!-- Status مراحل -->
         <div class="p-4 bg-blue-50 rounded-lg">
             <h3 class="font-semibold text-blue-800">{{ _('✅ Step Status') }}</h3>
             <ul class="space-y-2 text-sm">
@@ -65,7 +65,7 @@
             {% endif %}
         </div>
 
-        <!-- تاریخ‌ها -->
+        <!-- Date‌ها -->
         <div class="p-4 bg-gray-50 rounded-lg">
             <p><strong>{{ _('Submitted At:') }}</strong> {{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}</p>
             {% if req.reviewed_at %}
@@ -73,7 +73,7 @@
             {% endif %}
         </div>
 
-        <!-- دکمه‌های عملیات -->
+        <!-- دکمه‌های Actions -->
         <div class="flex gap-4 mt-6">
             <a href="{{ url_for('admin.premium_requests') }}" class="px-4 py-2 bg-gray-600 text-white rounded-lg text-sm">
                 {{ _('Back') }}

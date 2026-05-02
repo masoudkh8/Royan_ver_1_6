@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <!-- پیام تاریخچه درخواست‌ها -->
+    <!-- Message Dateچه درخواست‌ها -->
     {% if requests|length > 1 %}
         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 text-sm">
             <p>{{ _('You have previously requested %(count)s times.', count=requests|length) }}.</p>
@@ -65,7 +65,7 @@
             {% endif %}
         </div>
 
-        <!-- مرحله 2: تأیید ایمیل -->
+        <!-- مرحله 2: تأیید Email -->
         <div class="flex items-center">
             {% if req and req.phone_verified %}
                 <a href="{{ url_for('users.verify_email') }}" class="flex items-center">
@@ -105,7 +105,7 @@
             {% endif %}
         </div>
 
-        <!-- مرحله 4: پرداخت -->
+        <!-- مرحله 4: پRejectاخت -->
         <div class="flex items-center">
             {% if req and req.passport_file and req.license_file %}
                 <a href="{{ url_for('users.make_payment') }}" class="flex items-center">

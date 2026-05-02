@@ -27,9 +27,9 @@ migrate = Migrate()
 login_manager = LoginManager()
 babel = Babel()
 
-# لیست زبان‌های پشتیبانی شده (۱۶ زبان اصلی دنیا)
+# لیست زبان‌های Support شده (16 زبان اصلی دنیا)
 SUPPORTED_LANGUAGES = {
-    'fa': 'فارسی',
+    'fa': 'Persian',
     'en': 'English',
     'es': 'Español',
     'fr': 'Français',
@@ -44,11 +44,11 @@ SUPPORTED_LANGUAGES = {
     'tr': 'Türkçe',
     'hi': 'हिन्दी',
     'bn': 'বাংলা',
-    'ur': 'اردو'
+    'ur': 'Urdu'
 }
 
 
-# تابع برای خواندن دیتاست JSON و ذخیره در پایگاه داده
+# تابع برای خواندن دیتاست JSON و ذNoه در پایگاه داده
 def load_ports_from_dataset(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -64,7 +64,7 @@ def load_ports_from_dataset(file_path):
             if not name or not country or latitude is None or longitude is None:
                 print(f"Invalid data: {data[key]}")
                 continue
-                # بررسی تکراری نبودن بندر
+                # بررسی تکراری نبودن Port
             new_port = Port(name=name,country=country, latitude=float(latitude), longitude=float(longitude))
             db.session.add(new_port)
             db.session.commit()
@@ -80,7 +80,7 @@ def get_serializer():
 def create_app():
 
     # api = KavenegarAPI('5051786848506C45767269315634507077694A3157474E554B4E47775156385579774A38674E59587439633D')
-    # params = {'sender': '2000660110', 'receptor': '09178001811', 'message': '.وب سرویس پیام کوتاه کاوه نگار'}
+    # params = {'sender': '2000660110', 'receptor': '09178001811', 'message': '.وب سرویس Message کوتاه کاوه نگار'}
     # response = api.sms_send(params)
 
     app = Flask(__name__)
@@ -94,10 +94,10 @@ def create_app():
 
     migrate.init_app(app, db)
     login_manager.login_view = 'users.login'
-    login_manager.login_message = "لطفاً وارد شوید."
+    login_manager.login_message = "Please log in."
     login_manager.init_app(app)
 
-    # تنظیمات ایمیل (مثال با Gmail)
+    # Settings Email (مثال با Gmail)
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
@@ -105,17 +105,17 @@ def create_app():
     app.config['MAIL_PASSWORD'] = config.Config.MAIL_PASSWORD  # از رمز واقعی استفاده نکنید
     app.config['MAIL_DEFAULT_SENDER'] = 'masoudkhalaj8@gmail.com'
 
-    # تنظیمات Babel برای چندزبانه‌سازی
-    app.config['BABEL_DEFAULT_LOCALE'] = 'fa'  # زبان پیش‌فرض فارسی
+    # Settings Babel برای چندزبانه‌سازی
+    app.config['BABEL_DEFAULT_LOCALE'] = 'fa'  # زبان پیش‌فرض Persian
     app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
     
     def get_locale():
-        """انتخاب زبان بر اساس session یا header کاربر"""
+        """Select language based on session or User header"""
         from flask import session, request
-        # اولویت با زبانی است که کاربر انتخاب کرده
+        # اولویت با زبانی است که User انتخاب کRejectه
         if 'lang' in session:
             return session['lang']
-        # اگر کاربر زبانی انتخاب نکرده، از Accept-Language مرورگر استفاده کن
+        # اگر User زبانی انتخاب نکRejectه، از Accept-Language مرورگر استفاده کن
         return request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys(), 'fa')
     
     babel.init_app(app, locale_selector=get_locale)
@@ -132,7 +132,7 @@ def create_app():
 
     @app.context_processor
     def inject_language_vars():
-        """تزریق متغیرهای زبان و قیمت‌ها به تمام تمپلیت‌ها"""
+        """تزریق متغیرهای زبان و قیمت‌ها to تمام تمپلیت‌ها"""
         from flask import session, request
         current_lang = session.get('lang', 'fa')
         return {
@@ -146,11 +146,11 @@ def create_app():
 
     @app.route('/set_language/<lang_code>')
     def set_language(lang_code):
-        """تغییر زبان کاربر و ذخیره در session"""
+        """تغییر زبان User و ذNoه در session"""
         from flask import session, redirect, request
         if lang_code in SUPPORTED_LANGUAGES:
             session['lang'] = lang_code
-        # بازگشت به صفحه قبلی یا صفحه اصلی
+        # Back to صفحه Previous یا Home
         return redirect(request.referrer or url_for('root.index'))
 
     @login_manager.user_loader
@@ -168,35 +168,35 @@ def create_app():
 
 
     @app.cli.command("create-admin")
-    @click.option('--username', prompt='نام کاربری ادمین', help='نام کاربری برای ادمین اول')
-    @click.option('--email', prompt='ایمیل ادمین', help='ایمیل ادمین')
-    @click.option('--password', prompt='رمز عبور ادمین', hide_input=True, confirmation_prompt=True,
-                  help='رمز عبور ادمین')
+    @click.option('--username', prompt='Username Admin', help='Username برای Admin اول')
+    @click.option('--email', prompt='Email Admin', help='Email Admin')
+    @click.option('--password', prompt='Password Admin', hide_input=True, confirmation_prompt=True,
+                  help='Password Admin')
     def create_admin(username, email, password):
-        """ایجاد اولین کاربر ادمین در سیستم"""
+        """ایجاد First User Admin در سیستم"""
         with app.app_context():
             if User.query.filter_by(role=Role.ADMIN, is_active=True).first():
-                click.echo(click.style("❌ قبلاً یک ادمین وجود دارد.", fg='red'))
+                click.echo(click.style("❌ An Admin already exists.", fg='red'))
                 return
 
             username = username.strip()
             email = email.strip().lower()
 
             if len(username) < 3:
-                click.echo(click.style("❌ نام کاربری باید حداقل 3 کاراکتر داشته باشد.", fg='red'))
+                click.echo(click.style("❌ Username باید حداقل 3 کاراکتر داشته باشد.", fg='red'))
                 return
             if '@' not in email:
-                click.echo(click.style("❌ آدرس ایمیل نامعتبر است.", fg='red'))
+                click.echo(click.style("❌ آدرس Email نامعتبر است.", fg='red'))
                 return
             if len(password) < 8:
-                click.echo(click.style("❌ رمز عبور باید حداقل 8 کاراکتر داشته باشد.", fg='red'))
+                click.echo(click.style("❌ Password باید حداقل 8 کاراکتر داشته باشد.", fg='red'))
                 return
 
             if User.query.filter_by(username=username, is_active=True).first():
-                click.echo(click.style(f"❌ نام کاربری '{username}' قبلاً گرفته شده است.", fg='red'))
+                click.echo(click.style(f"❌ Username '{username}' قبلاً گرفته شده است.", fg='red'))
                 return
             if User.query.filter_by(email=email, is_active=True).first():
-                click.echo(click.style(f"❌ ایمیل '{email}' قبلاً استفاده شده است.", fg='red'))
+                click.echo(click.style(f"❌ Email '{email}' قبلاً استفاده شده است.", fg='red'))
                 return
 
             try:
@@ -212,17 +212,17 @@ def create_app():
                 )
                 db.session.add(user)
                 db.session.commit()
-                click.echo(click.style(f"✅ ادمین '{username}' با موفقیت ایجاد شد.", fg='green'))
+                click.echo(click.style(f"✅ Admin '{username}' successfully ایجاد شد.", fg='green'))
             except Exception as e:
                 db.session.rollback()
-                click.echo(click.style(f"❌ خطای پایگاه داده: {e}", fg='red'))
+                click.echo(click.style(f"❌ Errorی پایگاه داده: {e}", fg='red'))
 
 
     # ایجاد دیتابیس
     with app.app_context():
 
         # مسیر فایل دیتاست
-        # dataset_file = 'static/files/ports.json'  # فایل JSON حاوی اطلاعات پورت‌ها
+        # dataset_file = 'static/files/ports.json'  # فایل JSON حاوی Info پورت‌ها
         # load_ports_from_dataset(dataset_file)
 
         db.create_all()

@@ -10,7 +10,7 @@ def admin_required(f):
     @login_required
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated or current_user.role != 'admin':
-            flash("❌ دسترسی ممنوع.")
+            flash("❌ Access denied.")
             return redirect(url_for('users.profile'))
         return f(*args, **kwargs)
 
@@ -33,9 +33,9 @@ def approve_premium(req_id):
     req.user.is_premium = True
     db.session.commit()
 
-    # اعلان به کاربر
-    send_notification(req.user, "✅ درخواست ارتقاء شما تأیید شد.")
-    flash(f"✅ کاربر {req.user.username} به ویژه ارتقاء یافت.")
+    # Notification to User
+    send_notification(req.user, "✅ Upgrade request شما تأیید شد.")
+    flash(f"✅ User {req.user.username} upgraded to premium.")
     return redirect(url_for('admin.premium_requests'))
 
 
@@ -47,13 +47,13 @@ def reject_premium(req_id):
     req.reviewed_at = db.func.now()
     db.session.commit()
 
-    # اعلان به کاربر
-    send_notification(req.user, "❌ درخواست ارتقاء شما رد شد. می‌توانید دوباره تلاش کنید.")
-    flash(f"❌ درخواست کاربر {req.user.username} رد شد.")
+    # Notification to User
+    send_notification(req.user, "❌ Your upgrade request has been rejected. می‌توانید again تلاش کنید.")
+    flash(f"❌ request from User {req.user.username} rejected.")
     return redirect(url_for('admin.premium_requests'))
 
 
-# تابع اعلان داخلی (مثال ساده)
+# تابع Notification Insideی (مثال ساده)
 def send_notification(user, message):
-    # در عمل: ذخیره در جدول Notifications
-    print(f"📩 نوتیفیکیشن به {user.username}: {message}")
+    # در عمل: ذNoه در جدول Notifications
+    print(f"📩 نوتیفیکیشن to {user.username}: {message}")
