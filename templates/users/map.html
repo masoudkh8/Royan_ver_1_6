@@ -4,19 +4,19 @@
 {% block title %}{{ _('Ports Map') }}{% endblock %}
 
 {% block content %}
-<!-- سایدبار چپ و نقشه -->
+<!-- سایدبار Left و Roleه -->
 <div class="flex h-screen bg-gray-50">
 
-    <!-- سایدبار چپ -->
+    <!-- سایدبار Left -->
     <div id="sidebar" class="w-1/4 bg-white p-4 border-r border-gray-200 flex flex-col h-screen">
-          <!-- فقط برای فروشنده: فرم اضافه کردن -->
+          <!-- فقط برای Seller: فرم اضافه کRejectن -->
 
 
 
         <!-- عنوان -->
         <h2 class="text-xl font-bold text-gray-800 mb-4">{{ _('📌 Ports List') }}</h2>
 
-        <!-- فیلتر -->
+        <!-- Filter -->
         <input type="text" id="filter" placeholder="{{ _('Filter by country...') }}"
                class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 text-sm"
                onkeyup="filterPorts()">
@@ -40,17 +40,17 @@
             </button>
         </form>
 
-        <!-- نمایش مختصات کلیک -->
+        <!-- Show Coordinates کلیک -->
         <div id="coordinates-display" class="mt-4 p-3 bg-gray-100 rounded text-sm text-center text-gray-700 font-medium">
             {{ _('Click on the map to display coordinates') }}
         </div>
     </div>
 
-    <!-- نقشه -->
+    <!-- Roleه -->
     <div id="map" class="w-3/4 h-screen"></div>
 </div>
 
-<!-- فقط اگر کاربر ویژه بود، اسکریپت اجرا شود -->
+<!-- فقط اگر Premium User بود، اسکریپت اجرا شود -->
 {% if current_user.is_premium %}
 <!-- Leaflet CSS & JS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -61,22 +61,22 @@
 <script>
     let map, markers = {}, ports = [];
 
-    // ایجاد نقشه
+    // ایجاد Roleه
     function initMap() {
         map = L.map('map').setView([25.2048, 55.2708], 5);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // 🎯 کلیک روی نقشه → نمایش و پر کردن مختصات
+        // 🎯 کلیک روی Roleه → Show و پر کRejectن Coordinates
         map.on('click', function(e) {
             const lat = e.latlng.lat.toFixed(6);
             const lng = e.latlng.lng.toFixed(6);
 
-            // نمایش در سایدبار
+            // Show در سایدبار
             document.getElementById('coordinates-display').innerText = `${_('Lat')}: ${lat}, ${_('Lng')}: ${lng}`;
 
-            // پر کردن فرم
+            // پر کRejectن فرم
             document.getElementById('new-port-latitude').value = lat;
             document.getElementById('new-port-longitude').value = lng;
         });
@@ -84,14 +84,14 @@
         loadPorts();
     }
 
-    // بارگذاری پورت‌ها از API
+    // Loading پورت‌ها از API
     async function loadPorts() {
         try {
             const res = await fetch('{{ url_for("users.get_ports") }}');
             if (!res.ok) throw new Error("{{ _('Error loading ports') }}");
             ports = await res.json();
 
-            // پاک کردن قبلی‌ها
+            // پاک کRejectن Previous‌ها
             Object.values(markers).forEach(m => map.removeLayer(m));
             markers = {};
             const list = document.getElementById('port-list');
@@ -121,7 +121,7 @@
                     </div>
                 `;
 
-                // کلیک روی پورت → حرکت به موقعیت
+                // کلیک روی پورت → حرکت to موقعیت
                 item.addEventListener('click', () => {
                     map.setView([lat, lng], 13);
                     marker.openPopup();
@@ -135,7 +135,7 @@
         }
     }
 
-    // فیلتر پورت‌ها
+    // Filter پورت‌ها
     function filterPorts() {
         const filter = document.getElementById('filter').value.toLowerCase().trim();
         document.querySelectorAll('.port-item').forEach(item => {
@@ -144,7 +144,7 @@
         });
     }
 
-    // اضافه کردن پورت جدید
+    // اضافه کRejectن پورت New
     document.getElementById('add-port-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const data = {
@@ -178,7 +178,7 @@
         }
     });
 
-    // ویرایش پورت
+    // Edit پورت
     async function editPort(portId) {
         const port = ports.find(p => p.id === portId);
         const name = prompt("{{ _('New name:') }}", port.name);
@@ -204,7 +204,7 @@
         }
     }
 
-    // حذف پورت
+    // Delete پورت
     async function deletePort(portId) {
         if (confirm("{{ _('Are you sure?') }}")) {
             try {
@@ -222,7 +222,7 @@
         }
     }
 
-    // شروع نقشه
+    // شروع Roleه
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof L !== 'undefined') {
             initMap();
@@ -233,7 +233,7 @@
 </script>
 {% endif %}
 
-<!-- اگر کاربر ویژه نیست -->
+<!-- اگر Premium User نیست -->
 {% if not current_user.is_premium %}
 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm mx-4">

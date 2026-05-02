@@ -114,7 +114,7 @@
         <div class="container mx-auto px-6">
             <h3 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">{{ _('Our Services') }}</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- کارت ۱ -->
+                <!-- کارت 1 -->
                 <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.1s">
                     <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shopping-cart text-green-600 dark:text-green-300 text-xl"></i>
@@ -123,7 +123,7 @@
                     <p class="text-gray-600 dark:text-gray-300">{{ _('Digital and real-time registration, tracking, and confirmation of orders.') }}</p>
                 </div>
 
-                <!-- کارت ۲ -->
+                <!-- کارت 2 -->
                 <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.2s">
                     <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shield-alt text-blue-600 dark:text-blue-300 text-xl"></i>
@@ -132,7 +132,7 @@
                     <p class="text-gray-600 dark:text-gray-300">{{ _('User identity verification, document approval, and transparent premium upgrade process.') }}</p>
                 </div>
 
-                <!-- کارت ۳ -->
+                <!-- کارت 3 -->
                 <div class="text-center p-6 rounded-xl shadow hover:shadow-xl transition-all transform hover:scale-105 animate__animated animate__fadeIn" style="animation-delay: 0.3s">
                     <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-headset text-purple-600 dark:text-purple-300 text-xl"></i>
@@ -218,7 +218,7 @@
         </div>
     </section>
 
-    <!-- بخش تبلیغات -->
+    <!-- بخش Advertisements -->
     <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center">
         <div class="container mx-auto px-6">
             <h3 class="text-2xl font-bold mb-6">{{ _('Cooperate with Us') }}</h3>
@@ -256,7 +256,7 @@
             }
         }
 
-        // بارگذاری تم ذخیره شده
+        // Loading تم ذNoه شده
         if (localStorage.theme === 'dark') {
             document.getElementById('html-root').classList.add('dark');
             document.getElementById('dark-mode-icon').className = 'fas fa-sun';
@@ -266,12 +266,12 @@
         document.addEventListener("DOMContentLoaded", function () {
             const slider = document.getElementById('partner-slider');
 
-            // اگر اسلایدر وجود نداشت، خطا نده
+            // اگر اسلایدر وجود نداشت، Error نده
             if (!slider) return;
 
             let position = 0;
             const maxScroll = slider.scrollWidth / 2; // نصف طول
-            const speed = 0.5; // سرعت حرکت
+            const speed = 0.5; // Speed حرکت
 
             function animateSlider() {
                 position -= speed;
@@ -295,7 +295,7 @@
             });
         });
 
-        // تغییر جهت صفحه بر اساس زبان - حذف شد چون در HTML با Jinja2 انجام می‌شود
+        // تغییر Direction صفحه بر اساس زبان - deleted چون در HTML با Jinja2 انجام می‌شود
     </script>
 
 </body>

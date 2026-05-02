@@ -51,7 +51,7 @@
     <!-- محتوای اصلی -->
     <div class="container mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
 
-        <!-- فرم ورود IMO -->
+        <!-- فرم Login IMO -->
         <div class="lg:w-1/3">
             <div class="bg-white p-6 rounded-xl shadow-md">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ _('Search Vessel by IMO Number') }}</h2>
@@ -81,7 +81,7 @@
                     </button>
                 </form>
 
-                <!-- نمایش خطاها -->
+                <!-- Show Errorها -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% for category, message in messages %}
                         <div class="mt-4 p-3 text-sm rounded-lg
@@ -93,13 +93,13 @@
             </div>
         </div>
 
-        <!-- نقشه و جزئیات -->
+        <!-- Roleه و Details -->
         <div class="lg:w-2/3 space-y-6">
-            <!-- نقشه -->
+            <!-- Roleه -->
             {% if latitude and longitude %}
                 <div id="map"></div>
 
-                <!-- جدول جزئیات -->
+                <!-- جدول Details -->
                 <div class="table-container">
                     <table class="min-w-full">
                         <thead>

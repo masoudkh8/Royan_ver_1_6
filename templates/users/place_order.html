@@ -6,7 +6,7 @@
 {% block content %}
 <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 mb-20">
 
-  <!-- دکمه بازگشت -->
+  <!-- دکمه Back -->
     <a href="{{ url_for('users.profile') }}"  class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 mb-4 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -22,7 +22,7 @@
 
     <form method="POST" action="{{ url_for('users.place_order') }}" class="space-y-6">
 
-        <!-- محصول و کمیت -->
+        <!-- Product و کمیت -->
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-sm font-medium text-gray-700">{{ _('Product') }}</label>
@@ -50,7 +50,7 @@
                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
         </div>
 
-        <!-- پورت مبدأ و مقصد -->
+        <!-- پورت مبدأ و Destination -->
         <div class="grid md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-sm font-medium text-gray-700">{{ _('Origin Port') }}</label>
@@ -73,7 +73,7 @@
                 {% endfor %}
             </select>
         </div>
-        <!-- توضیحات اختیاری -->
+        <!-- Description اختیاری -->
         <div>
             <label class="block text-sm font-medium text-gray-700">{{ _('Notes (Optional)') }}</label>
             <textarea name="notes" rows="3"
@@ -81,7 +81,7 @@
                       placeholder="{{ _('Payment terms, packaging, ...') }}"></textarea>
         </div>
 
-        <!-- دکمه ارسال -->
+        <!-- دکمه Send -->
         <div class="pt-4">
             <button type="submit"
                     class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition duration-200 flex items-center justify-center">

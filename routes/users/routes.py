@@ -17,11 +17,11 @@ from routes.users import users_bp,root_bp
 # مسیر تغییر زبان
 @root_bp.route('/set_language/<lang_code>')
 def set_language(lang_code):
-    """تغییر زبان کاربر"""
+    """تغییر زبان User"""
     from app import SUPPORTED_LANGUAGES
     if lang_code in SUPPORTED_LANGUAGES:
         session['lang'] = lang_code
-    # برگشت به صفحه قبلی
+    # برگشت to صفحه Previous
     next_url = request.args.get('next', request.referrer or url_for('main_page'))
     return redirect(next_url)
 
@@ -39,7 +39,7 @@ def change_language(lang_code):
 @users_bp.route('/create_first_admin', methods=['GET', 'POST'])
 def create_first_admin():
     if User.query.filter_by(role='admin', is_active=True).first():
-        flash("قبلاً یک ادمین وجود دارد.")
+        flash("An Admin already exists.")
         return redirect(url_for('users.login'))
 
     if request.method == 'POST':
@@ -49,11 +49,11 @@ def create_first_admin():
 
 
         if User.query.filter_by(username=username, is_active=True).first():
-            flash("❌ نام کاربری قبلاً گرفته شده.")
+            flash("❌ Username already taken.")
             return redirect(url_for('users.register'))
 
         if User.query.filter_by(email=email, is_active=True).first():
-            flash("❌ ایمیل قبلاً استفاده شده.")
+            flash("❌ Email already in use.")
             return redirect(url_for('users.register'))
 
         hashed = generate_password_hash(password)
@@ -67,15 +67,15 @@ def create_first_admin():
 
         db.session.add(user)
         db.session.commit()
-        flash("ادمین اول ایجاد شد.")
+        flash("First Admin created.")
         return redirect(url_for('admin.login'))
 
     return '''
     <form method="post">
-        <input name="username" placeholder="نام کاربری" required><br>
-        <input name="email" type="email" placeholder="ایمیل" required><br>
-        <input name="password" type="password" placeholder="رمز عبور" required><br>
-        <button type="submit">ایجاد ادمین</button>
+        <input name="username" placeholder="Username" required><br>
+        <input name="email" type="email" placeholder="Email" required><br>
+        <input name="password" type="password" placeholder="Password" required><br>
+        <button type="submit">ایجاد Admin</button>
     </form>
     '''
 
@@ -94,11 +94,11 @@ def register():
         phone = request.form.get('phone')
 
         if User.query.filter_by(username=username, is_active=True).first():
-            flash("❌ نام کاربری قبلاً گرفته شده.")
+            flash("❌ Username already taken.")
             return redirect(url_for('users.register'))
 
         if User.query.filter_by(email=email, is_active=True).first():
-            flash("❌ ایمیل قبلاً استفاده شده.")
+            flash("❌ Email already in use.")
             return redirect(url_for('users.register'))
 
         hashed = generate_password_hash(password)
@@ -115,14 +115,14 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("✅ ثبت‌نام موفق! لطفاً وارد شوید.")
+        flash("✅ Registration successful! Please log in.")
         return redirect(url_for('users.login'))
 
     return render_template('register.html', roles=Role)
 
 
 # -------------------------------
-# ورود
+# Login
 # -------------------------------
 @users_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -138,17 +138,17 @@ def login():
 
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            flash("✅ خوش آمدید!")
+            flash("✅ Welcome!")
             return redirect(url_for('users.profile'))
         else:
-            flash("❌ ایمیل یا رمز عبور اشتباه است.")
+            flash("❌ Email or Password is incorrect.")
     support_user = User.query.filter_by(username='masoudkh', is_active=True).first()
     return render_template('login.html',support_user=support_user)
 
 
 
 # -------------------------------
-# ویرایش پروفایل
+# Edit Profile
 # -------------------------------
 @users_bp.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -158,7 +158,7 @@ def edit_profile():
         current_user.country = request.form['country']
         current_user.phone = request.form['phone']
         db.session.commit()
-        flash("✅ پروفایل بروزرسانی شد.")
+        flash("✅ Profile بروزرسانی شد.")
         return redirect(url_for('users.profile'))
     return render_template('edit_profile.html', user=current_user)
 
@@ -166,7 +166,7 @@ def edit_profile():
 
 
 # -------------------------------
-# حذف حساب
+# Delete حساب
 # -------------------------------
 @users_bp.route('/delete', methods=['POST'])
 @login_required
@@ -178,18 +178,18 @@ def delete_account():
     # db.session.delete(user)
     user.is_active = False
     db.session.commit()
-    flash("🗑️ حساب شما حذف شد.")
+    flash("🗑️ حساب شما deleted.")
     return redirect(url_for('users.register'))
 
 
 # -------------------------------
-# خروج
+# Logout
 # -------------------------------
 @users_bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    flash("👋 با موفقیت خارج شدید.")
+    flash("👋 successfully Outside شدید.")
     return redirect(url_for('users.login'))
 
 
@@ -199,11 +199,11 @@ def profile():
 
     if not current_user.is_active:
         logout_user()
-        flash("❌ این حساب غیرفعال است.")
+        flash("❌ این حساب Inactive است.")
         return redirect(url_for('users.login'))
     # ادامه منطق
 
-    # محاسبه تعداد سفارش‌های در انتظار (فقط برای فروشنده)
+    # محاسto تعداد Ordersی در انتظار (فقط برای Seller)
     pending_orders = 0
     if current_user.role == Role.SELLER :
         from models.order import OrderStatus
@@ -213,7 +213,7 @@ def profile():
     support_user = User.query.filter_by(username='support', is_active=True).first()
 
     if not support_user:
-        # اگر وجود نداشت، اولین فروشنده رو بذار
+        # اگر وجود نداشت، First Seller رو بذار
         support_user = User.query.filter_by(role=Role.SELLER, is_active=True).first()
 
 
@@ -242,7 +242,7 @@ from models.order import Order, OrderStatus
 #         # product = request.form['product']
 #         product = request.form.get('product', '').strip()
 #         if not product:
-#             flash("محصول را وارد کنید.")
+#             flash("Product را واReject کنید.")
 #             return redirect(url_for('users.place_order'))
 #         # quantity = float(request.form['quantity'])
 #         try:
@@ -250,20 +250,20 @@ from models.order import Order, OrderStatus
 #             if quantity <= 0:
 #                 raise ValueError
 #         except ValueError:
-#             flash("مقدار نامعتبر است.")
+#             flash("Quantity نامعتبر است.")
 #         price = float(request.form['price'])
 #         origin_port = request.form['origin_port']
 #         destination_port = request.form['destination_port']
 #         seller_id = int(request.form['seller_id'])  # دریافت از فرم
 #         notes = request.form.get('notes', '')
 #
-#         # چک کردن وجود فروشنده
+#         # چک کRejectن وجود Seller
 #         seller = User.query.get(seller_id)
 #         if not seller or seller.role != Role.SELLER:
-#             flash("❌ فروشنده معتبر نیست.")
+#             flash("❌ Seller معتبر نیست.")
 #             return redirect(url_for('users.place_order'))
 #
-#         # ایجاد سفارش
+#         # ایجاد Order
 #         order = Order(
 #             product=product,
 #             quantity_tons=quantity,
@@ -280,29 +280,29 @@ from models.order import Order, OrderStatus
 #         db.session.add(order)
 #        # db.session.commit()
 #
-#         # ارسال اعلان به فروشنده
+#         # Send Notification to Seller
 #         notification = Notification(
 #             user_id=seller.id,
-#             message=f"سفارش جدیدی از {current_user.username} دریافت کردید. (#{order.id})"
+#             message=f"Order Newی از {current_user.username} دریافت کRejectید. (#{order.id})"
 #         )
 #         db.session.add(notification)
 #         #db.session.commit()
 #
-#         #flash("✅ سفارش با موفقیت ثبت شد.")
+#         #flash("✅ Order successfully ثبت شد.")
 #
 #         ###33333333333333333333
 #         try:
 #             db.session.commit()
-#             flash("✅ سفارش و اعلان با موفقیت ثبت شد.")
+#             flash("✅ Order و Notification successfully ثبت شد.")
 #         except Exception as e:
 #             db.session.rollback()
-#             flash("❌ خطایی رخ داد.")
+#             flash("❌ Errorیی رخ داد.")
 #             return redirect(url_for('users.place_order'))
 #
 #         #3333333333333333333333333
 #         return redirect(url_for('users.profile'))
 #
-#     # ارسال لیست فروشندگان به تمپلیت
+#     # Send لیست Sellers to تمپلیت
 #     sellers = User.query.filter_by(role=Role.SELLER).all()
 #     return render_template('users/place_order.html', sellers=sellers)
 #
@@ -316,20 +316,20 @@ from models.order import Order, OrderStatus
 # #     destination_port = request.form['destination_port']
 # #     notes = request.form.get('notes', '')
 # #
-# #     # فرض: خریدار = کاربر فعلی
+# #     # فرض: خریدار = User فعلی
 # #     buyer_id = current_user.id
 # #
-# #     # فروشنده: فعلاً دستی (در آینده از جستجو انتخاب بشه)
-# #     # برای تست: اولین فروشنده در دیتابیس
+# #     # Seller: فعلاً دستی (در آینده از Search انتخاب بشه)
+# #     # برای تست: First Seller در دیتابیس
 # #     seller = User.query.filter_by(role=Role.SELLER).first()
 # #     if not seller:
-# #         flash("❌ هیچ فروشنده‌ای یافت نشد.")
+# #         flash("❌ هیچ Seller‌ای یافت نشد.")
 # #         return redirect(url_for('users.place_order'))
 # #
-# #     # بروکر: اگر کاربر ویژه باشه، خودش بروکر هست
+# #     # بروکر: اگر Premium User باشه، خودش بروکر هست
 # #     broker_id = current_user.id if current_user.is_premium else None
 # #
-# #     # ایجاد سفارش
+# #     # ایجاد Order
 # #     order = Order(
 # #         product=product,
 # #         quantity_tons=quantity,
@@ -342,19 +342,19 @@ from models.order import Order, OrderStatus
 # #         broker_id=broker_id,
 # #         status=OrderStatus.PENDING
 # #     )
-# #     order.calculate_total()  # محاسبه قیمت کل
+# #     order.calculate_total()  # محاسto قیمت کل
 # #
 # #     db.session.add(order)
 # #     db.session.commit()
 # #
-# #     flash(f"✅ سفارش {quantity} تن {product} با موفقیت ثبت شد! شماره سفارش: #{order.id}")
+# #     flash(f"✅ Order {quantity} Ton {product} successfully ثبت شد! Order Number: #{order.id}")
 # #     return redirect(url_for('users.profile'))
 #
 #
 # @users_bp.route('/orders')
 # @login_required
 # def my_orders():
-#     # تمام سفارش‌هایی که کاربر خریدار یا فروشنده یا بروکر آن است
+#     # تمام Ordersیی که User خریدار یا Seller یا بروکر آن است
 #     orders = Order.query.filter(
 #         (Order.buyer_id == current_user.id) |
 #         (Order.seller_id == current_user.id) |
@@ -365,22 +365,22 @@ from models.order import Order, OrderStatus
 #
 #
 #
-# # نمایش سفارش‌های دریافتی (فروشنده)
+# # Show Ordersی دریافتی (Seller)
 # @users_bp.route('/seller/orders')
 # @login_required
 # def seller_orders():
-#     # فقط اگر کاربر فروشنده باشد
+#     # فقط اگر User Seller باشد
 #     if current_user.role != Role.SELLER:
-#         flash("❌ دسترسی محدود: فقط برای فروشندگان")
+#         flash("❌ Access restricted: Sellers only")
 #         return redirect(url_for('users.profile'))
 #
-#     # دریافت سفارش‌هایی که این کاربر فروشنده آن است و هنوز تأیید نشده
+#     # دریافت Ordersیی که این User Seller آن است و هنوز تأیید نشده
 #     orders = Order.query.filter_by(seller_id=current_user.id).order_by(Order.created_at.desc()).all()
 #
 #     return render_template('users/seller_orders.html', orders=orders)
 #
 #
-# # رد سفارش
+# # Reject Order
 # @users_bp.route('/order/<int:order_id>/reject', methods=['POST'])
 # @login_required
 # def reject_order(order_id):
@@ -393,9 +393,9 @@ from models.order import Order, OrderStatus
 #     if order.status == OrderStatus.PENDING:
 #         order.status = OrderStatus.CANCELLED
 #         db.session.commit()
-#         flash(f"🗑️ سفارش #{order_id} رد شد.")
+#         flash(f"🗑️ Order #{order_id} rejected.")
 #     else:
-#         flash("⚠️ این سفارش قبلاً تغییر وضعیت داده است.")
+#         flash("⚠️ این Order قبلاً تغییر Status داده است.")
 #
 #     return redirect(url_for('users.seller_orders'))
 #
@@ -413,17 +413,17 @@ from models.order import Order, OrderStatus
 #         order.status = OrderStatus.CONFIRMED
 #         order.confirmed_at = datetime.now(tehran_tz)
 #
-#         # 📢 ارسال اعلان به خریدار
+#         # 📢 Send Notification to خریدار
 #         notification = Notification(
 #             user_id=order.buyer_id,
-#             message=f"سفارش شما (#{order.id}) توسط {current_user.company_name or current_user.username} تأیید شد."
+#             message=f"Order شما (#{order.id}) تCenter {current_user.company_name or current_user.username} تأیید شد."
 #         )
 #         db.session.add(notification)
 #
 #         db.session.commit()
-#         flash("✅ سفارش تأیید و اعلان به خریدار ارسال شد.")
+#         flash("✅ Order تأیید و Notification to خریدار Send شد.")
 #     else:
-#         flash("⚠️ این سفارش قبلاً تأیید یا رد شده است.")
+#         flash("⚠️ این Order قبلاً تأیید یا rejectedه است.")
 #
 #     return redirect(url_for('users.seller_orders'))
 
@@ -440,11 +440,11 @@ from . import users_bp
 @login_required
 def place_order():
     """
-    ثبت سفارش با اعتبارسنجی کامل و امن
+    Place Order با اعتبارسنجی کامل و امن
     """
     if request.method == 'POST':
         try:
-            # دریافت و اعتبارسنجی ورودی
+            # دریافت و اعتبارسنجی Loginی
             product = request.form.get('product', '').strip()
             quantity_str = request.form.get('quantity', '').strip()
             price_str = request.form.get('price', '').strip()
@@ -455,11 +455,11 @@ def place_order():
 
             # ✅ اعتبارسنجی فیلدها
             if not product:
-                flash("❌ لطفاً نام محصول را وارد کنید.")
+                flash("❌ لطفاً Product name را واReject کنید.")
                 return redirect(url_for('users.place_order'))
 
             if not origin_port or not destination_port:
-                flash("❌ لطفاً مبدأ و مقصد را انتخاب کنید.")
+                flash("❌ لطفاً مبدأ و Destination را انتخاب کنید.")
                 return redirect(url_for('users.place_order'))
 
             # ✅ اعتبارسنجی کمیت و قیمت
@@ -469,29 +469,29 @@ def place_order():
                 if quantity <= 0 or price <= 0:
                     raise ValueError
             except (ValueError, TypeError):
-                flash("❌ مقدار یا قیمت نامعتبر است.")
+                flash("❌ Quantity یا قیمت نامعتبر است.")
                 return redirect(url_for('users.place_order'))
 
-            # ✅ اعتبارسنجی فروشنده
+            # ✅ اعتبارسنجی Seller
             if not seller_id_str.isdigit():
-                flash("❌ فروشنده نامعتبر است.")
+                flash("❌ Seller نامعتبر است.")
                 return redirect(url_for('users.place_order'))
 
             seller_id = int(seller_id_str)
             seller = User.query.get(seller_id)
 
             if not seller:
-                flash("❌ فروشنده مورد نظر یافت نشد.")
+                flash("❌ Seller موReject نظر یافت نشد.")
                 return redirect(url_for('users.place_order'))
 
             if seller.role != Role.SELLER:
-                flash("❌ کاربر انتخابی فروشنده نیست.")
+                flash("❌ User انتخابی Seller نیست.")
                 return redirect(url_for('users.place_order'))
 
-            # ✅ تعیین بروکر (فقط اگر کاربر ویژه باشد)
+            # ✅ تعیین بروکر (فقط اگر Premium User باشد)
             broker_id = current_user.id if current_user.is_premium else None
 
-            # ✅ ایجاد سفارش
+            # ✅ ایجاد Order
             order = Order(
                 product=product,
                 quantity_tons=quantity,
@@ -506,34 +506,34 @@ def place_order():
             )
             order.calculate_total()
 
-            # ✅ ارسال اعلان به فروشنده
+            # ✅ Send Notification to Seller
             from models.notification import Notification
             notification = Notification(
                 user_id=seller.id,
-                message=f"سفارش جدیدی از {current_user.username} دریافت کردید. (#{order.id})"
+                message=f"Order Newی از {current_user.username} دریافت کRejectید. (#{order.id})"
             )
 
-            # ✅ افزودن و ذخیره در یک تراکنش واحد
+            # ✅ افزودن و ذNoه در یک تراکنش Unit
             db.session.add(order)
             db.session.add(notification)
             db.session.commit()
 
-            flash("✅ سفارش با موفقیت ثبت شد.")
+            flash("✅ Order successfully ثبت شد.")
             return redirect(url_for('users.profile'))
 
         except Exception as e:
-            db.session.rollback()  # ⚠️ بازگردانی تراکنش در صورت خطا
-            print(f"❌ خطا در ایجاد سفارش: {e}")
-            flash("❌ خطایی در ثبت سفارش رخ داد. لطفاً دوباره تلاش کنید.")
+            db.session.rollback()  # ⚠️ بازگRejectانی تراکنش در صورت Error
+            print(f"❌ Error در ایجاد Order: {e}")
+            flash("❌ Errorیی در Place Order رخ داد. لطفاً again تلاش کنید.")
             return redirect(url_for('users.place_order'))
 
-    # GET: نمایش فرم — فقط فروشندگان
+    # GET: Show فرم — فقط Sellers
     sellers = User.query.filter_by(role=Role.SELLER, is_active=True).all()
     return render_template('users/place_order.html', sellers=sellers)
 
 
 # -------------------------------
-# نمایش سفارش‌های کاربر
+# Show Ordersی User
 # -------------------------------
 @users_bp.route('/orders')
 @login_required
@@ -547,13 +547,13 @@ def my_orders():
 
 
 # -------------------------------
-# نمایش سفارش‌های فروشنده
+# Show Ordersی Seller
 # -------------------------------
 @users_bp.route('/seller/orders')
 @login_required
 def seller_orders():
     if current_user.role != Role.SELLER:
-        flash("❌ فقط برای فروشندگان قابل دسترسی است.")
+        flash("❌ فقط برای Sellers قابل دسترسی است.")
         return redirect(url_for('users.profile'))
 
     orders = Order.query.filter_by(seller_id=current_user.id).order_by(Order.created_at.desc()).all()
@@ -561,7 +561,7 @@ def seller_orders():
 
 
 # -------------------------------
-# تأیید سفارش توسط فروشنده
+# تأیید Order تCenter Seller
 # -------------------------------
 @users_bp.route('/order/<int:order_id>/confirm', methods=['POST'])
 @login_required
@@ -576,24 +576,24 @@ def confirm_order(order_id):
         order.status = OrderStatus.CONFIRMED
         order.confirmed_at = datetime.now(tehran_tz)
 
-        # ارسال اعلان به خریدار
+        # Send Notification to خریدار
         from models.notification import Notification
         notification = Notification(
             user_id=order.buyer_id,
-            message=f"سفارش شما (#{order.id}) توسط {current_user.username} تأیید شد."
+            message=f"Order شما (#{order.id}) تCenter {current_user.username} تأیید شد."
         )
         db.session.add(notification)
         db.session.commit()
 
-        flash("✅ سفارش تأیید شد و اعلان ارسال گردید.")
+        flash("✅ Order تأیید شد و Notification Send گRejectید.")
     else:
-        flash("⚠️ این سفارش قبلاً تأیید یا رد شده است.")
+        flash("⚠️ این Order قبلاً تأیید یا rejectedه است.")
 
     return redirect(url_for('users.seller_orders'))
 
 
 # -------------------------------
-# رد سفارش توسط فروشنده
+# Reject Order تCenter Seller
 # -------------------------------
 @users_bp.route('/order/<int:order_id>/reject', methods=['POST'])
 @login_required
@@ -607,9 +607,9 @@ def reject_order(order_id):
     if order.status == OrderStatus.PENDING:
         order.status = OrderStatus.CANCELLED
         db.session.commit()
-        flash(f"🗑️ سفارش #{order_id} رد شد.")
+        flash(f"🗑️ Order #{order_id} rejected.")
     else:
-        flash("⚠️ این سفارش قبلاً تغییر وضعیت داده است.")
+        flash("⚠️ این Order قبلاً تغییر Status داده است.")
 
     return redirect(url_for('users.seller_orders'))
 
@@ -617,10 +617,10 @@ def reject_order(order_id):
 @users_bp.route('/notifications')
 @login_required
 def notifications():
-    # خواندن همه اعلان‌ها
+    # خواندن All Notifications
     notifs = Notification.query.filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
 
-    # علامت‌گذاری به عنوان خوانده شده
+    # علامت‌گذاری to عنوان Read
     for n in notifs:
         if not n.is_read:
             n.is_read = True
@@ -632,12 +632,12 @@ def notifications():
 @users_bp.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
-    # ✅ فقط کاربران ویژه می‌تونن چت کنن
+    # ✅ فقط Users ویژه می‌تونن Chat کنن
     if not current_user.is_premium:
-        flash("❌ دسترسی محدود: فقط کاربران ویژه می‌توانند چت کنند.", "error")
+        flash("❌ Access restricted: Only premium users can chat.", "error")
         return redirect(url_for('users.profile'))
 
-    # لیست کاربران (فقط ویژه‌ها)
+    # لیست Users (فقط ویژه‌ها)
     users = User.query.filter(
         User.id != current_user.id,
         User.is_premium == True
@@ -648,14 +648,14 @@ def chat():
 
     # ✅ اگر گیرنده وجود نداشته باشه یا ویژه نباشه
     if receiver and not receiver.is_premium:
-        flash("❌ این کاربر ویژه نیست و نمی‌توانید با او چت کنید.", "error")
+        flash("❌ این Premium User نیست و نمی‌توانید با او Chat کنید.", "error")
         receiver = None
 
-    # ارسال پیام
+    # Send Message
     if request.method == 'POST' and receiver:
         content = request.form['content'].strip()
         if content:
-            # ایجاد پیام
+            # ایجاد Message
             msg = Message(
                 sender_id=current_user.id,
                 receiver_id=receiver.id,
@@ -664,18 +664,18 @@ def chat():
             db.session.add(msg)
             db.session.commit()
 
-            # ✅ ارسال اعلان به گیرنده
+            # ✅ Send Notification to گیرنده
             notification = Notification(
                 user_id=receiver.id,
-                message=f"📩 پیام جدیدی از {current_user.username} دریافت کردید."
+                message=f"📩 Message Newی از {current_user.username} دریافت کRejectید."
             )
             db.session.add(notification)
             db.session.commit()
 
-            flash("✉️ پیام ارسال شد.")
+            flash("✉️ Message Send شد.")
         return redirect(url_for('users.chat', receiver_id=receiver.id))
 
-    # دریافت پیام‌ها
+    # دریافت Messages
     messages = []
     if receiver:
         messages = Message.query.filter(
@@ -683,7 +683,7 @@ def chat():
             ((Message.sender_id == receiver.id) & (Message.receiver_id == current_user.id))
         ).order_by(Message.created_at.asc()).all()
 
-        # علامت‌گذاری پیام‌های دریافتی به عنوان خوانده شده
+        # علامت‌گذاری Messagesی دریافتی to عنوان Read
         for m in messages:
             if m.receiver_id == current_user.id and not m.is_read:
                 m.is_read = True
@@ -702,7 +702,7 @@ from flask import g
 @users_bp.app_context_processor
 def inject_support_user():
     if current_user.is_authenticated:
-        # مثلاً فروشنده اول یا کاربر با username='support'
+        # مثلاً Seller اول یا User با username='support'
         support_user = User.query.filter_by(username='support', is_active=True).first()
         if not support_user:
             support_user = User.query.filter_by(role=Role.SELLER, is_active=True).first()
@@ -729,7 +729,7 @@ country_codes = provider.COUNTRY_CODES
 # @users_bp.route('/vessel_finder', methods=['GET', 'POST'])
 # @login_required
 # def vessel_finder():
-#     # دریافت مختصات از پارامترهای URL
+#     # دریافت Coordinates از پارامترهای URL
 #     imo = get_imo(int)
 #     url = f"https://api.searoutes.com/vessel/v2/{imo}/position"
 #     headers = {
@@ -753,7 +753,7 @@ country_codes = provider.COUNTRY_CODES
 #     latitude = request.args.get('latitude', None)
 #     longitude = request.args.get('longitude', None)
 #
-#     # اگر مختصات وجود داشته باشه، به صفحه‌ی نقشه ارسال می‌کنیم
+#     # اگر Coordinates وجود داشته باشه، to صفحه‌ی Roleه Send می‌کنیم
 #     return render_template('users/map_vessel_finder.html', latitude=lat, longitude=long,imo=imo,mmsi=mmsi,name=name,destination=destination,speed=speed,date_arrival=date_arrival)
 #
 
@@ -761,7 +761,7 @@ country_codes = provider.COUNTRY_CODES
 @login_required
 def vessel_finder():
     if not current_user.is_premium:
-        flash("❌ دسترسی فقط برای کاربران ویژه مجاز است.", "error")
+        flash("❌ دسترسی فقط برای Users ویژه مجاز است.", "error")
         return redirect(url_for('users.profile'))
 
     # فقط در صورت POST و دریافت IMO
@@ -770,7 +770,7 @@ def vessel_finder():
 
         # اعتبارسنجی
         if not imo or not imo.isdigit() or len(imo) != 7:
-            flash("❌ لطفاً یک شناسه معتبر 7 رقمی (IMO) وارد کنید.", "error")
+            flash("❌ Please enter a valid 7-digit IMO number.", "error")
             return render_template('users/vessel_finder.html')
 
         url = f"https://api.searoutes.com/vessel/v2/{imo}/position"
@@ -785,7 +785,7 @@ def vessel_finder():
             data = response.json()
 
             if not data:
-                flash("❌ داده‌ای برای این کشتی یافت نشد.", "error")
+                flash("❌ داده‌ای برای این Ship یافت نشد.", "error")
                 return render_template('users/vessel_finder.html')
 
             pos = data[0]['position']
@@ -804,22 +804,22 @@ def vessel_finder():
             )
 
         except requests.exceptions.Timeout:
-            flash("❌ درخواست به سرور زمان‌بندی شد. لطفاً دوباره تلاش کنید.", "error")
+            flash("❌ درخواست to سرور زمان‌بندی شد. لطفاً again تلاش کنید.", "error")
         except requests.exceptions.RequestException as e:
-            flash("❌ خطایی در ارتباط با سرویس ردیابی کشتی رخ داد.", "error")
+            flash("❌ Errorیی در ارتباط با سرویس Ship Tracking رخ داد.", "error")
         except (KeyError, IndexError) as e:
-            flash("❌ داده‌های دریافتی نامعتبر هستند.", "error")
+            flash("❌ داده‌های دریافتی نامعتبر هسTonد.", "error")
 
-    # GET یا خطا: نمایش فرم
+    # GET یا Error: Show فرم
     return render_template('users/vessel_finder.html')
 ######################################TEST
 
-# نمایش نقشه
+# Show Roleه
 @users_bp.route('/map')
 @login_required
 def show_map():
     if not current_user.is_premium:
-        flash("❌ فقط کاربران ویژه می‌توانند به نقشه دسترسی داشته باشند.")
+        flash("❌ فقط Users ویژه می‌توانند to Roleه دسترسی داشته باشند.")
         return redirect(url_for('users.profile'))
     ports = Port.query.all()
     ports_data = [port.to_dict() for port in ports]
@@ -843,11 +843,11 @@ from flask import jsonify
 @users_bp.route('/api/ports', methods=['GET'])
 @login_required
 def get_ports():
-    # فقط کاربران ویژه می‌تونن ببینن
+    # فقط Users ویژه می‌تونن ببینن
     if not current_user.is_premium:
-        return jsonify({'error': 'دسترسی ممنوع: فقط کاربران ویژه'}), 403
+        return jsonify({'error': 'Access denied: فقط Users ویژه'}), 403
 
-    # دریافت همه پورت‌ها
+    # دریافت All پورت‌ها
     ports = Port.query.all()
     return jsonify([{
         'id': p.id,
@@ -861,7 +861,7 @@ def get_ports():
 @login_required
 def add_port():
     if current_user.role != Role.SELLER:
-        return jsonify({'error': 'دسترسی ممنوع'}), 403
+        return jsonify({'error': 'Access denied'}), 403
 
     data = request.get_json()
     port = Port(
@@ -879,9 +879,9 @@ def add_port():
 @login_required
 def update_port(port_id):
     if current_user.role != Role.SELLER:
-        return jsonify({'error': 'دسترسی ممنوع'}), 403
+        return jsonify({'error': 'Access denied'}), 403
 
-    # ✅ چک کردن اینکه port_id عددی باشه
+    # ✅ چک کRejectن اینکه port_id عددی باشه
     if not port_id.isdigit():
         return jsonify({'error': 'شناسه پورت باید یک عدد مثبت باشد.'}), 400
 
@@ -896,14 +896,14 @@ def update_port(port_id):
     port.longitude = data['longitude']
 
     db.session.commit()
-    return jsonify({'message': 'پورت با موفقیت بروزرسانی شد.'})
+    return jsonify({'message': 'پورت successfully بروزرسانی شد.'})
 
 
 @users_bp.route('/delete_port/<port_id>', methods=['DELETE'])
 @login_required
 def delete_port(port_id):
     if current_user.role != Role.SELLER:
-        return jsonify({'error': 'دسترسی ممنوع'}), 403
+        return jsonify({'error': 'Access denied'}), 403
     if not port_id.isdigit():
         return jsonify({'error': 'شناسه پورت باید یک عدد مثبت باشد.'}), 400
 
@@ -911,7 +911,7 @@ def delete_port(port_id):
     port = Port.query.get_or_404(port_id)
     db.session.delete(port)
     db.session.commit()
-    return jsonify({'message': 'پورت حذف شد.'})
+    return jsonify({'message': 'پورت deleted.'})
 
 # @users_bp.route('/test')
 # def test():
@@ -930,28 +930,28 @@ from models.premium_request import PremiumRequest
 @users_bp.route('/upgrade_to_premium')
 @login_required
 def upgrade_to_premium():
-    # آخرین درخواست کاربر
+    # Latest request from User
     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
-    # دریافت تمام درخواست‌ها برای نمایش تاریخچه
+    # دریافت تمام درخواست‌ها برای Show Dateچه
     requests = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(
         PremiumRequest.submitted_at.desc()).all()
 
     if req:
         if req.status == 'approved':
-            flash("✅ شما قبلاً کاربر ویژه شدید.")
+            flash("✅ شما قبلاً You are now a premium user.")
             return redirect(url_for('users.profile'))
         elif req.status == 'pending':
             flash("⚠️ درخواست شما در حال بررسی است.")
             return redirect(url_for('users.payment_confirmation'))
 
-    # ارسال `req` به تمپلیت
+    # Send `req` to تمپلیت
     return render_template('users/upgrade_premium.html', req=req, requests=requests)
 
-# شروع فرآیند (ایجاد درخواست جدید)
+# شروع فرآیند (ایجاد درخواست New)
 @users_bp.route('/start_upgrade', methods=['POST'])
 @login_required
 def start_upgrade():
-    # همیشه یک درخواست جدید ایجاد می‌کنیم
+    # همیشه یک درخواست New ایجاد می‌کنیم
     req = PremiumRequest(user_id=current_user.id)
     db.session.add(req)
     db.session.commit()
@@ -996,12 +996,12 @@ def upload_documents():
 
         req.docs_verified = True
         db.session.commit()
-        flash("مدارک با موفقیت آپلود شدند.")
+        flash("مدارک successfully آپلود شدند.")
         return redirect(url_for('users.make_payment'))
 
     return render_template('users/upload_documents.html', req=req)
 
-# پرداخت و آپلود رسید
+# پRejectاخت و آپلود رسید
 @users_bp.route('/make_payment', methods=['GET', 'POST'])
 @login_required
 def make_payment():
@@ -1026,8 +1026,8 @@ def make_payment():
                 req.status = 'pending'
                 req.payment_verified = True
                 db.session.commit()
-                flash("رسید پرداخت دریافت شد. در حال بررسی...")
-                # ارسال اعلان به ادمین
+                flash("رسید پRejectاخت دریافت شد. در حال بررسی...")
+                # Send Notification to Admin
                 notify_admin_of_new_request(req)
                 return redirect(url_for('users.payment_confirmation'))
 
@@ -1039,18 +1039,18 @@ def make_payment():
 def payment_confirmation():
     return render_template('users/payment_confirmation.html')
 
-# --- تابع کمکی: اعلان به ادمین ---
+# --- تابع کمکی: Notification to Admin ---
 def notify_admin_of_new_request(req):
     from flask_mail import Message
-    from app import mail  # فرض می‌کنیم mail تنظیم شده
+    from app import mail  # فرض می‌کنیم mail Tonظیم شده
 
     admins = User.query.filter_by(role='admin', is_active=True).all()
     emails = [a.email for a in admins if a.email]
 
     if emails:
         msg = Message(
-            subject="🔔 درخواست جدید ارتقاء به کاربر ویژه",
+            subject="🔔 درخواست New ارتقاء to Premium User",
             recipients=emails,
-            body=f"کاربر {req.user.username} یک درخواست جدید ارسال کرده است."
+            body=f"User {req.user.username} یک درخواست New Send کRejectه است."
         )
         mail.send(msg)

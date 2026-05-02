@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 SUPPORTED_LANGUAGES = {
-    'fa': 'فارسی',
+    'fa': 'Persian',
     'en': 'English',
     'es': 'Español',
     'fr': 'Français',
@@ -18,7 +18,7 @@ SUPPORTED_LANGUAGES = {
     'tr': 'Türkçe',
     'hi': 'हिन्दी',
     'bn': 'বাংলা',
-    'ur': 'اردو'
+    'ur': 'Urdu'
 }
 
 RTL_LANGUAGES = ['fa', 'ar', 'ur']
@@ -41,12 +41,12 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_PASSWORD= 'jcdhiqoktqtindfg'
     
-    # تنظیمات قیمت‌ها
-    PREMIUM_PRICE_USD = 10000  # قیمت ارتقاء به کاربر ویژه به دلار
-    SUBSCRIPTION_ANNUAL_IRR = 1200000  # اشتراک سالیانه مجله به تومان
-    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # اشتراک شش ماهه مجله به تومان
+    # Settings قیمت‌ها
+    PREMIUM_PRICE_USD = 10000  # قیمت ارتقاء to Premium User to دلار
+    SUBSCRIPTION_ANNUAL_IRR = 1200000  # Annual Subscription مجله to تومان
+    SUBSCRIPTION_SEMI_ANNUAL_IRR = 650000  # اشتراک شش ماهه مجله to تومان
     
-    # تنظیمات آپلود فایل مجله
+    # Settings آپلود فایل مجله
     UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
     MAGAZINE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'magazines')
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # حداکثر حجم فایل 50 مگابایت
