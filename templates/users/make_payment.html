@@ -1,11 +1,11 @@
 <!-- templates/users/make_payment.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}پRejectاخت هزینه ارتقاء{% endblock %}
+{% block title %}پRejectاخت هزینه upgrade{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-xl shadow">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">💳 پRejectاخت هزینه ارتقاء</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">💳 پRejectاخت هزینه upgrade</h2>
 
     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
         <h3 class="font-semibold text-yellow-800 mb-2">{{ _('Payment Amount') }}: {{ '{:,}'.format(PREMIUM_PRICE_USD) }} {{ _('USD') }}</h3>
@@ -15,21 +15,21 @@
     </div>
 
     <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-        <h3 class="font-semibold text-gray-800 mb-3">Info حساب شرکت</h3>
+        <h3 class="font-semibold text-gray-800 mb-3">Info account شرکت</h3>
         <div class="space-y-2 text-sm">
-            <p><strong>نام بانک:</strong> Bank of America</p>
-            <p><strong>شماره حساب:</strong> 1234567890</p>
-            <p><strong>نام صاحب حساب:</strong> Royan International Co.</p>
-            <p><strong>آیبان (IBAN):</strong> US1234567890123456789012</p>
-            <p><strong>سوئیفت (SWIFT):</strong> BOFAUS3N</p>
+            <p><strong>Bank name:</strong> Bank of America</p>
+            <p><strong>Account number:</strong> 1234567890</p>
+            <p><strong>Account holder name:</strong> Royan International Co.</p>
+            <p><strong>IBAN (IBAN):</strong> US1234567890123456789012</p>
+            <p><strong>SWIFT (SWIFT):</strong> BOFAUS3N</p>
         </div>
     </div>
 
     <form method="POST" enctype="multipart/form-data" class="space-y-8">
         <div class="border border-gray-200 rounded-lg p-6">
-            <h3 class="font-semibold text-gray-800 mb-3">آپلود رسید پRejectاخت</h3>
+            <h3 class="font-semibold text-gray-800 mb-3">upload receipt پRejectاخت</h3>
             <p class="text-sm text-gray-600 mb-4">
-                عکس یا فایل PDF رسید پRejectاخت خود را آپلود کنید.
+                عکس یا file PDF receipt پRejectاخت خود را upload کنید.
             </p>
             <input type="file" name="receipt" accept=".pdf,image/*" required
                    class="block w-full text-sm text-gray-500
@@ -42,7 +42,7 @@
 
         <div class="flex flex-col sm:flex-row gap-3 pt-4">
             <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition">
-                آپلود رسید و Send
+                upload receipt و Send
             </button>
             <a href="{{ url_for('users.upgrade_to_premium') }}" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition">
                 Back

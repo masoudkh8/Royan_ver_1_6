@@ -59,7 +59,7 @@
                         {% endif %}
                     </td>
                     <td class="py-3 px-4 text-sm space-y-2">
-                        <!-- تغییر Role -->
+                        <!-- Change role -->
                         <form method="POST" action="{{ url_for('admin.change_user_role', user_id=user.id) }}" class="inline">
                             <select name="role" onchange="this.form.submit()"
                                     class="text-sm border border-gray-300 rounded px-2 py-1">
@@ -103,7 +103,7 @@
         </table>
     </div>
 
-    <!-- صفحه‌بندی -->
+    <!-- Pagination -->
     {% if users.pages > 1 %}
     <div class="flex justify-center mt-6">
         <nav class="inline-flex rounded-md shadow-sm">

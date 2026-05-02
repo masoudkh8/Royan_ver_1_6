@@ -14,7 +14,7 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now(tehran_tz))
     is_read = db.Column(db.Boolean, default=False)
 
-    # رابطه‌ها
+    # Relationships
     sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_messages')
     receiver = db.relationship('User', foreign_keys=[receiver_id], backref='received_messages')
 

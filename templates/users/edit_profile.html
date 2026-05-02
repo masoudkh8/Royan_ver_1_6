@@ -8,7 +8,7 @@
     <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">{{ _('✏️ Edit Profile') }}</h2>
 
     <form method="POST" class="space-y-5">
-        <!-- نام شرکت -->
+        <!-- Company name -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">{{ _('Company Name') }}</label>
             <input type="text" name="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition" value="{{ user.company_name or '' }}" placeholder="{{ _('Export Company') }}">
@@ -20,13 +20,13 @@
             <input type="text" name="country" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition" value="{{ user.country or '' }}" placeholder="{{ _('Iran') }}">
         </div>
 
-        <!-- تلفن -->
+        <!-- Phone -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">{{ _('Phone') }}</label>
             <input type="text" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition" value="{{ user.phone or '' }}" placeholder="+98 912 345 6789">
         </div>
 
-        <!-- دکمه‌ها -->
+        <!-- Buttons -->
         <div class="flex gap-3 pt-4">
             <button type="submit" class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                 {{ _('Save Changes') }}

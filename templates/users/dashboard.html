@@ -6,7 +6,7 @@
 {% block content %}
 <div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6">
 
-    <!-- هدر User -->
+    <!-- Header User -->
     <div class="flex items-center space-x-4 space-x-reverse">
         <div class="bg-blue-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold">
             {{ user.username[0].upper() }}
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <!-- آیکون‌های سریع -->
+    <!-- Quick icons -->
     <div class="grid grid-cols-2 gap-4 mt-8">
         <a href="{{ url_for('users.edit_profile') }}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,14 +60,14 @@
 
 
         {% if current_user.role.value == 'buyer' %}
-            <!-- فرض: خریدار می‌خواد با First Seller Chat کنه -->
+            <!-- فرض: buyer می‌خواد با First Seller Chat کنه -->
             {% if seller %}
                 <a href="{{ url_for('users.chat', receiver_id=seller.id) }}" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                     💬 {{ _('Chat with Seller') }}
                 </a>
             {% endif %}
         {% elif current_user.role.value == 'seller' %}
-            <!-- Seller می‌تونه با یه خریدار یا بروکر Chat کنه -->
+            <!-- Seller می‌تونه با یه buyer یا بروکر Chat کنه -->
             {% if broker %}
                 <a href="{{ url_for('users.chat', receiver_id=broker.id) }}" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                     💬 {{ _('Chat with Broker') }}
@@ -91,7 +91,7 @@
         {% endif %}
 
 
-        <!-- دکمه Roleه برای Users ویژه -->
+        <!-- Role button for premium users -->
         {% if current_user.is_premium %}
             <a href="{{ url_for('users.show_map') }}" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow transition transform hover:scale-105">
                 🌍 {{ _('Port Finder') }}

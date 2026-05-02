@@ -20,7 +20,7 @@ from . import admin_bp
 
 
 # ---------------------------------------
-# Decorator: فقط Admin دسترسی داشته باشه
+# Decorator: فقط Admin دسترسی داشته ok
 # ---------------------------------------
 
 @admin_bp.route('')
@@ -29,9 +29,9 @@ def admin_index():
     return redirect(url_for('admin.login'))
 
 def admin_required(f):
-    @wraps(f)  # ✅ این خط مشکل رو حل می‌کنه
+    @wraps(f)  # ✅ این خط issue رو حل می‌کنه
     def decorated_function(*args, **kwargs):
-        # ✅ اول چک کن User واrejectedه باشد
+        # ✅ first چک کن User واrejectedه باشد
         if not current_user.is_authenticated:
             flash("❌ Please log in first.")
             return redirect(url_for('users.login'))
@@ -96,7 +96,7 @@ def manage_users():
         error_out=False
     )
 
-    # ✅ محاسto تعداد در بک‌اند
+    # ✅ محاسto quantity در بک‌اند
     total_active = User.query.filter_by(is_active=True).count()
     total_inactive = User.query.filter_by(is_active=False).count()
 
@@ -108,7 +108,7 @@ def manage_users():
         total_inactive=total_inactive
     )
 # ---------------------------------------
-# تغییر User role
+# change User role
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/role', methods=['POST'])
 @admin_required
@@ -180,7 +180,7 @@ def reject_premium(req_id):
 
 
 # ---------------------------------------
-# مشاهده Details درخواست
+# view Details request
 # ---------------------------------------
 @admin_bp.route('/premium_request/<int:req_id>')
 @admin_required
@@ -242,7 +242,7 @@ def delete_user(user_id):
 #     return redirect(url_for('admin.users_list'))
 
 # ---------------------------------------
-# Inactive‌سازی User
+# Inactive‌سofی User
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/deactivate', methods=['POST'])
 @admin_required
@@ -263,7 +263,7 @@ def deactivate_user(user_id):
 
 
 # ---------------------------------------
-# Active‌سازی User
+# Active‌سofی User
 # ---------------------------------------
 @admin_bp.route('/user/<int:user_id>/activate', methods=['POST'])
 @admin_required
@@ -276,12 +276,12 @@ def activate_user(user_id):
 
 
 
-# صفحه Login
+# Login page
 @admin_bp.route('/login')
 def login():
     return render_template('admin/login.html', current_year=datetime.now().year)
 
-# پRejectازش Login
+# پRejectofش Login
 @admin_bp.route('/login', methods=['POST'])
 def login_post():
     email = request.form.get('email')

@@ -9,7 +9,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Settings Tailwind برای RTL -->
+    <!-- Tailwind settings for RTL -->
     <script>
         tailwind.config = {
             theme: {
@@ -25,7 +25,7 @@
         }
     </script>
 
-    <!-- پلاگین RTL برای Tailwind -->
+    <!-- RTL plugin for Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/tailwindcss-rtl@0.9.5/dist/tailwindcss-rtl.min.js"></script>
 
     <style>
@@ -39,13 +39,13 @@
 
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg overflow-hidden">
 
-        <!-- هدر -->
+        <!-- Header -->
         <div class="bg-red-600 text-white py-6 px-8 text-center">
             <h1 class="text-2xl font-bold">{{ _('🔐 Admin Panel') }}</h1>
             <p class="text-red-100 text-sm mt-1">{{ _('Only for admin users') }}</p>
         </div>
 
-        <!-- فرم Login -->
+        <!-- Login form -->
         <div class="p-8 space-y-6">
             <!-- Message Success یا Error -->
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -85,7 +85,7 @@
                            placeholder="{{ _('Enter your password') }}">
                 </div>
 
-                <!-- دکمه Login -->
+                <!-- Login button -->
                 <div class="mt-6">
                     <button type="submit"
                             class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <!-- فوتر -->
+        <!-- Footer -->
         <div class="bg-gray-50 py-4 px-8 text-center border-t border-gray-100">
             <p class="text-xs text-gray-500">
                 &copy; {{ current_year }} {{ _('Your Company. All rights reserved.') }}

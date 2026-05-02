@@ -56,4 +56,4 @@ def reject_premium(req_id):
 # تابع Notification Insideی (مثال ساده)
 def send_notification(user, message):
     # در عمل: ذNoه در جدول Notifications
-    print(f"📩 نوتیفیکیشن to {user.username}: {message}")
+    print(f"📩 Notification to {user.username}: {message}")

@@ -1,9 +1,9 @@
 # wsgi.py
-# این فایل را در کنار app.py بسازید
+# این file را در کنار app.py بسofید
 
 from app import create_app
 
-# ایجاد اپلیکیشن برای محیط production
+# ایجاد application برای محیط production
 app = create_app()
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
 {% block content %}
 <div class="max-w-4xl mx-auto">
 
-    <!-- هدر و دکمه Back -->
+    <!-- Header و دکمه Back -->
     <div class="flex justify-between items-center mb-6">
         <div>
             <h2 class="text-2xl font-bold text-gray-800 flex items-center">
@@ -71,7 +71,7 @@
                 </p>
                 {% endif %}
 
-                <!-- دکمه‌های تأیید/Reject (فقط برای Status pending) -->
+                <!-- Confirm/Reject buttons (only for pending status) -->
                 {% if order.status.value == 'pending' %}
                 <div class="flex gap-3">
                     <form action="{{ url_for('users.confirm_order', order_id=order.id) }}" method="POST" onsubmit="return confirm('{{ _('Are you sure you want to confirm this order?') }}')">
